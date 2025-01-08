@@ -1,0 +1,24 @@
+<div class="our-brands" data-aos="fade-up">
+    <div class="container"><h2 class="our-brands-title">Nasze marki</h2></div>
+    <div class="our-brands-swiper-container">
+        <div class="container">
+            <div class="our-brands-swiper swiper container">
+                <div class="swiper-wrapper">
+                    {foreach $brands_slider.photos as $photo}
+                    {if $photo.url}
+                    <a href="{$photo.url}" class="swiper-slide">
+                        <img src="{$photo.src.source.photo}" title="{$photo.title}" alt="{$photo.alt}" width="{$photo.sec.params.width}" height="{$photo.sec.params.height}" class="our-brands-photo" />
+                    </a>
+                    {else}
+                    <div class="swiper-slide">
+                        <img src="{$photo.src.source.photo}" title="{$photo.title}" alt="{$photo.alt}" width="{$photo.sec.params.width}" height="{$photo.sec.params.height}" class="our-brands-photo" />
+                    </div>
+                    {/if}
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+        <div class="our-brands-swiper-prev">{include file="img/icons/chevron.svg"}</div>
+        <div class="our-brands-swiper-next">{include file="img/icons/chevron.svg"}</div>
+    </div>
+</div>

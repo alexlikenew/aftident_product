@@ -1,0 +1,21 @@
+.not-found {
+  padding: 80px 0;
+}
+
+.not-found-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-main p {
+  margin-top: 25px;
+}
+.not-found-main button {
+  margin-top: 40px;
+  outline: none;
+  border: none;
+}
+.not-found-main svg {
+  margin-top: 15px;
+}

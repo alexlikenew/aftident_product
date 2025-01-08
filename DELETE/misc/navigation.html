@@ -1,0 +1,37 @@
+<div class="nav-fixed">
+  <a href="https://www.facebook.com/aftident2/" title="Facebook Aftident" class="fb-container" target="_blank" data-aos="fade-down">
+    <div class="container fb-inner-container">
+        <div class="fb-button">
+            <img src="{$TPL_URL}/img/icons/fb.svg" alt="Facebook" width="20" height="20">
+            <div>Polub nas na Facebook'u!</div>
+        </div>
+        <div>i zobacz nasze porady!</div>
+        <div class="fb-close"></div>
+    </div>
+</a>
+  <header class="container">
+    <div class="nav-container">
+      <a href="{$CONF.konfiguracja_logo_url}" title="{$CONF.konfiguracja_logo_title}">
+        <img src="{$TPL_URL}/img/logo.svg" class="nav-logo" alt="{$CONF.konfiguracja_logo_alt}" width="209" height="30"/>
+      </a>
+  
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+      </div>
+      <nav class="primary-nav" id="mobile-menu">
+        {if $ml} {foreach from=$ml item=menu}
+        <a href="https://{$smarty.server.SERVER_NAME}{$menu.url}" class="nav-link {if $menu.selected}active{/if}">{$menu.name}</a>
+        {/foreach} {/if}
+        <a href="https://chema.rzeszow.pl/produkty/aftident" class="default-btn nav-btn mobile-only">{$LANG.CALL_TO_ACTION_BUTTON}</a>
+        <a href="https://www.facebook.com/aftident2/" class="nav-fb-mobile">
+          <img src="{$TPL_URL}/misc/icons/icon-fb.svg" class="nav-fb-mobile" alt="facebook"/>
+        </a>
+      </nav>
+      <a href="https://chema.rzeszow.pl/produkty/aftident" class="default-btn nav-btn desktop-only">{$LANG.CALL_TO_ACTION_BUTTON}</a>
+      <a href="https://www.facebook.com/aftident2/" class="nav-fb-desktop">
+        <img src="{$TPL_URL}/misc/icons/icon-fb.svg" class="nav-fb-desktop" alt="facebook" title="Facebook" width="11" height="20"/>
+      </a>
+    </div>
+  </header>
+</div>
+<div class="nav-spacing"></div>
