@@ -494,7 +494,7 @@ faqHints.forEach(element => {
 	}
 	element.addEventListener('click', faqOpenHint)
 })
-
+//============= SECTION FAQ HINTS OPEN & CLOSE ====================
 function sendForm(method, form, endpoint, event, successModal, errorModal) {
 	event.preventDefault()
 
@@ -550,7 +550,7 @@ function sendForm(method, form, endpoint, event, successModal, errorModal) {
 		},
 	})
 }
-//============= SECTION FAQ HINTS OPEN & CLOSE ====================
+//============= CONTACT FORM TEST====================
 $("#contact_form button[type='submit']").on('click', function (e) {
 	var form = $(this).closest('form')
 	sendForm('POST', form, '/ax_contact', e, false, false)
