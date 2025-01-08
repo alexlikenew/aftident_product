@@ -1,5 +1,13 @@
-<div class="block-text">
-    {if $block.title}<h{$block.h_type} class="block-title">{$block.title}</h{$block.h_type}>{/if}
+<main>
+    <!-- SECTION POLICIES -->
+    <section class="policies">
+        <div class="wrapper">
+            <!-- POLICIES HEADER -->
+            <div class="policies__header">
+                <h1 class="policies__header__title">{$block.title}</h1>
+                <div class="policies__header__text">{$block.content}</div>
+            </div>
 
-    <div class="text">{$block.content}</div>
-</div>
+        </div>
+    </section>
+</main>
