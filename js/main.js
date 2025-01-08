@@ -494,15 +494,70 @@ faqHints.forEach(element => {
 	}
 	element.addEventListener('click', faqOpenHint)
 })
+
+function sendForm(method, form, endpoint, event, successModal, errorModal) {
+	event.preventDefault()
+
+	form.find(':required').each(function () {
+		$(this).removeClass('input-error')
+	})
+
+	if (!form[0].checkValidity()) {
+		form.find(':required').each(function () {
+			if (!this.checkValidity()) {
+				$(this).addClass('input-error')
+			}
+		})
+		return
+	}
+
+	var formData = new FormData(form[0])
+
+	$.ajax({
+		type: method,
+		dataType: 'json',
+		data: formData,
+		url: BASE_URL + endpoint,
+		processData: false,
+		contentType: false,
+		success: function (response) {
+			console.log(response)
+			if (response.status === 'success') {
+				form[0].reset()
+				closeModal()
+				if (successModal) {
+					openModal(successModal)
+				} else {
+					console.log(response)
+					alert(response.message)
+				}
+			} else {
+				console.log(response)
+				if (errorTextElement && errorTextElement.length) {
+					errorTextElement.text(response.message).show()
+				} else {
+					alert('Error: ' + (response.message || 'Unknown error'))
+				}
+			}
+		},
+		error: function (error) {
+			if (errorModal) {
+				closeModal()
+				openModal(errorModal)
+			} else {
+				alert('Error: ' + error)
+			}
+		},
+	})
+}
 //============= SECTION FAQ HINTS OPEN & CLOSE ====================
 $("#contact_form button[type='submit']").on('click', function (e) {
 	var form = $(this).closest('form')
-	var seccessModal = alert('Formularz został wysłany!')
-	sendForm('POST', form, '/ax_contact', e, successModal, false)
+	sendForm('POST', form, '/ax_contact', e, false, false)
 })
 $("contact--page__form button[type='submit']").on('click', function (e) {
 	var form = $(this).closest('form')
-	var seccessModal = alert('Formularz został wysłany!')
-	sendForm('POST', form, '/ax_contact', e, successModal, false)
+
+	sendForm('POST', form, '/ax_contact', e, false, false)
 })
 //============= CONTACT FORM TEST====================
