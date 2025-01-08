@@ -1,0 +1,36 @@
+<div class="content">
+    <form class="form" id="edit_form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+        <div class="tabs-nav">
+            <div class="tabs-nav-item {if $tab_selected == 'content'}active{/if}" data-tab-label="content">Treść</div>
+            {if $item.has_photo}<div class="tabs-nav-item {if $tab_selected == 'photo'}active{/if}" data-tab-label="photo">Zdjęcie</div>{/if}
+            {if $item.has_video}<div class="tabs-nav-item tabs-buttons-hide {if $tab_selected == 'video'}active{/if}" data-tab-label="video">Wideo</div>{/if}
+            {* {if $item.is_parent}<div class="tabs-nav-item tabs-buttons-hide {if $tab_selected == 'blocks'}active{/if}" data-tab-label="blocks">Bloki</div>{/if} *}
+        </div>
+
+        <div class="tabs-wrapper">
+            {include file="./tabs/content-edit.html"}
+            {if $item.has_photo}{include file="./tabs/photo-edit.html" }{/if}
+            {* {if $item.is_parent}{include file="./tabs/blocks.html" }{/if} *}
+
+
+        </div>
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="id" id="item_id" value="{$item.id}" />
+            <input type="hidden" name="moduleName" value="{$module_name}">
+            {foreach from=$languages item=lang}
+            <input type="hidden" name="target_id[{$lang.id}]" value="{$opis[$lang.id].url_target1_id}" />
+            {/foreach}
+            {if $item_module}
+            <input type="hidden" name="item_module" value="{$item_module}">
+            <input type="hidden" name="item_id" value="{$item_id}">
+            <input type="hidden" name="module_id" value="{$module_id}">
+            {/if}
+            <input type="hidden" name="action" value="{if isset($duplicate) && $duplicate}create{else}Zapisz{/if}">
+            {if isset($duplicate) && !$duplicate}<input type="submit" class="btn btn-primary save_item" id="save_and_continue" name="action" data-module="{$module_name}" value="Zapisz i kontynuuj edycję">{/if}
+            <input type="submit" class="btn btn-save" id="save" data-module="{$module_name}" name="action"  value="Zapisz">
+            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+        </div>
+    </form>
+    {if $item.has_video}{include file="./tabs/video-edit.html" }{/if}
+</div>
+<script type="text/javascript" src="{$BASE_URL}/js/admin/menu.js?v={$smarty.now|date_format:'%Y%m%d%H%M'}"></script>

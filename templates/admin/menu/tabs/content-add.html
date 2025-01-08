@@ -1,0 +1,203 @@
+<div class="tab{if $tabActive} active{/if}" data-tab="content">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">Dane</h2>
+
+            {foreach from=$languages item=lang}
+            <div class="form-grid form-grid-2" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                <div class="form-group">
+                    <label for="name">Nazwa elementu [{$lang.code}]:</label>
+                    <input type="text" class="form-input" id="name" name="name[{$lang.id}]">
+                    <input type="hidden" name="lang_active[{$lang_main.id}]"  value="1" />
+                </div>
+            </div>
+            {/foreach}
+
+            <div class="form-group-label">Podmenu:</div>
+
+            <div class="form-grid">
+                <label class="checkbox-item">
+                    Element posiada podmenu
+                    <input type="checkbox" name="has_submenu" value="1"/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <div id="submenu-block" style="display: none">
+                <div class="form-group-label">Typ podmenu:</div>
+
+                <div class="form-grid">
+                    <label class="radio-item">
+                        zarządzalne
+                        <input type="radio" name="submenu_type" value="0"/>
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="radio-item">
+                        generowane automatycznie
+                        <input type="radio" name="submenu_type" value="1" data-submenu-target="submenu-generated"/>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div id="submenu-generated" style="display: none">
+                <div class="form-group-label">Wybierz moduł, z którego pobrane mają być elementy podmenu: </div>
+
+                <div class="form-grid form-grid-2">
+                    <div class="form-group">
+                        <select name="submenu_source" class="form-select">
+                            <option value="0">- wybierz moduł -</option>
+                            {foreach from=$modules item=$module}
+                                {if $module.class_name != ''}
+                                    <option value="{$module.id}">{$module.name}</option>
+                                {/if}
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group-label">Element wskazuje na:</div>
+
+            <div class="form-grid">
+                <label class="radio-item">
+                    zewnętrzny adres
+                    <input type="radio" name="type" value="{$types.url}" data-target="url"/>
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="radio-item">
+                    podstronę na serwerze
+                    <input type="radio" name="type" value="{$types.page}" data-target="page"/>
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="radio-item">
+                    moduł na serwerze
+                    <input type="radio" name="type" value="{$types.module}" data-target="module"/>
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="radio-item">
+                    kategorię
+                    <input type="radio" name="type" value="{$types.category}" data-target="category" {if $item.type==$types.category} checked="checked"{/if}/>
+                    <span class="checkmark"></span>
+                </label>
+{*
+                <label class="radio-item">
+                    ofertę na serwerze
+                    <input type="radio" name="type" value="{$types.offer}" data-target="offers"/>
+                    <span class="checkmark"></span>
+                </label>
+*}
+                <label class="radio-item">
+                    element bez linku
+                    <input type="radio" name="type" value="{$types.nolink}" data-target="nolink"/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <div class="form-grid form-grid-2" data-type="url" style="display: none">
+                <div class="form-group">
+                    {foreach from=$languages item=lang}
+                    <div data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                        <label for="url_{$lang.id}">Podaj zewnętrzny URL, rozpocznij od https:// [{$lang.code}]</label>
+                        <input type="text" class="form-input" id="url_{$lang.id}" name="url[{$lang.id}]" value="https://">
+                    </div>
+                    {/foreach}
+
+                    <label class="checkbox-item" style="font-weight: 400; margin-top: 10px">
+                        wyświetlaj stronę w nowym oknie <em>_blank</em>
+                        <input type="checkbox" name="blank" value="1" />
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="checkbox-item" style="font-weight: 400; margin-top: 10px">
+                        link z atrybutem <em>nofollow</em>
+                        <input type="checkbox" name="nofollow" value="1" />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+
+            {foreach from=$languages item=lang}
+            <div class="form-grid form-grid-2" data-type="page" style="display: none">
+                <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                    <label for="page_{$lang.id}">Wybierz stronę, na którą ma odsyłać element [{$lang.code}]</label>
+                    <select class="form-select menu-select" id="page_{$lang.id}">
+                        <option value="0">- wybierz stronę -</option>
+                        {foreach from=$pages[$lang.id] item=item}
+                        <option value="{$item.id}">{$item.title}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            {/foreach}
+
+            {foreach from=$languages item=lang}
+            <div class="form-grid form-grid-2" data-type="module" style="display: none">
+                <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                    <label for="module_{$lang.id}">Wybierz moduł, do którego ma odsyłać element [{$lang.code}]</label>
+                    <select class="form-select menu-select" id="module_{$lang.id}" data-lang="{$lang_main.id}">
+                        <option value="0">- wybierz moduł -</option>
+                        {foreach from=$modules item=option}
+                        <option value="{$option.id}" >{$option.name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            {/foreach}
+            <div class="form-grid form-grid-2" data-type="category" {if $item.type !== $types.category}style="display: none"{/if}>
+                <div class="form-group">
+                    <label for="category">Wybierz kategorię, do której ma odsyłać element</label>
+                    {$category_select}
+                </div>
+            </div>
+{*
+            <div class="form-grid form-grid-2" data-type="offers" style="display: none">
+                <div class="form-group">
+                    <label for="url">Wybierz ofertę, do której ma odsyłać element</label>
+                    <select class="form-select menu-select" data-lang="{$lang_main.id}">
+                        <option value="0">- wybierz ofertę -</option>
+                        {foreach from=$offers item=item}
+                        <option value="{$item.id}">{$item.title}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+*}
+        </div>
+    </div>
+
+</div>
+
+{if $languages|count > 1}
+<div class="content-panel{if $tabActive} active{/if}" data-tab="content">
+    <div class="content-block-title">Ustawienia</div>
+
+    <div class="form-group">
+        <label for="language">Wersja językowa</label>
+        <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+            {foreach from=$languages item=lang}
+            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <input type="checkbox"
+               name="lang_active[{$lang.id}]"
+               id="switch_active_{$lang.id}"
+               class="switch-input switch-active"
+               {if $lang.id == $LANG_MAIN.id}checked="checked"{/if} />
+        <label for="switch_active_{$lang.id}" class="switch"></label>
+        Aktywna
+    </div>
+    {/foreach}
+
+</div>
+{else}
+<input type="hidden" name="lang_active[{$languages[0].id}]" value="1">
+{/if}

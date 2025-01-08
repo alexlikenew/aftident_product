@@ -1,0 +1,203 @@
+<div class="tab{if $tab_selected=='content'} active{/if}" data-tab="content">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">Opis</h2>
+
+            {foreach from=$languages item=lang}
+            <div class="form-grid" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                <div class="form-group grid-2">
+                    <label for="title_{$lang.id}">Tytuł [{$lang.code}]</label>
+                    <input type="text" class="form-input" id="title_{$lang.id}" name="title[{$lang.id}]" value="{$opis[$lang.id].title}">
+                </div>
+                <div class="form-group grid-2">
+                    <label for="subtitle_{$lang.id}">Podtytuł [{$lang.code}]</label>
+                    <input type="text" class="form-input" id="subtitle_{$lang.id}" name="subtitle[{$lang.id}]" value="{$opis[$lang.id].subtitle}">
+                </div>
+            </div>
+            {/foreach}
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="template_name">Szablon strony</label>
+                    <select name="template_name" id="template_name" class="form-select">
+                        <option value="">- standardowy -</option>
+                        {foreach from=$page_templates item=template key=tpl_name}
+                        <option value="{$tpl_name}" {if $tpl_name == $item.template}selected{/if}>{$template}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="content-block">
+            <div class="btn-row" style="margin-bottom: 40px">
+                <a href="module.php?moduleName=bloki&amp;action=add&amp;item_id={$item.id}&amp;module_id={$files_type}&amp;item_module={$module_name}" class="btn btn-primary">+ Dodaj nowy blok</a>
+            </div>
+        </div>
+        {if $blocks}
+        <div class="content-block">
+            <h2 class="content-block-title">Bloki</h2>
+            <div class="list">
+                <table class="list-table">
+                    <thead>
+                    <tr class="list-table-row list-table-head">
+                        <th></th>
+                        <th style="width: 60%; padding: 0 10px">Tytuł</th>
+                        <th>Nagłówek</th>
+                        <th>Typ</th>
+                        <th>Aktywny</th>
+                        <th>Opcje</th>
+                    </tr>
+                    </thead>
+                    <tbody id="sortableList2" data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}" data-action="move_block">
+
+                    {foreach from=$blocks item=block name=cc}
+                    {if isset($block.items) && $block.items && $block.is_agregated}
+                    {foreach from=$block.items item=$bItem}
+                    <tr class="list-table-row" data-id="{$bItem.assign_id}">
+
+                        <td>
+                            {if $block.typePhoto}
+                            <div class="list-table-image">
+                                <img src="{$bItem.typePhoto.source.photo}" alt="">
+                            </div>
+                            {/if}
+                        </td>
+                        <td>{$bItem.title}</td>
+                        <td>H{$bItem.h_type}</td>
+                        <td>{$bItem.type_name}</td>
+                        <td>
+                            <input type="checkbox"
+                                   id="switch_{$bItem.id}"
+                                   class="switch-input switch-block-active"
+                                   data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}"
+                                   data-id="{$bItem.id}"
+                                   {if $bItem.active}checked="checked"{/if} />
+                            <label for="switch_{$bItem.id}" class="switch"></label>
+                        </td>
+                        <td>
+                            <div class="list-table-icon" data-id="{$bItem.id}" data-module="{$module_name}">
+                                <a href="module.php?moduleName=bloki&amp;action=edit&amp;id={$bItem.id}&amp;item_id={$item.id}&amp;module_id={$files_type}&amp;item_module={$module_name}" >
+                                    <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                                </a>
+                            </div>
+                            <div class="list-table-icon delete-item" title="Kasuj" onclick="return confirmDelete('{$bItem.name}', '?moduleName=bloki&action=delete&amp;id={$bItem.id}&amp;parent_id={$item.id}&item_module={$files_type}');">
+                                <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                            </div>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    {else}
+                    <tr class="list-table-row" data-id="{$block.assign_id}">
+
+                        <td>
+                            {if $block.typePhoto}
+                            <div class="list-table-image">
+                                <img src="{$block.typePhoto.source.photo}" alt="">
+                            </div>
+                            {/if}
+                        </td>
+                        <td>{$block.title}</td>
+                        <td>H{$block.h_type}</td>
+                        <td>{$block.type_name}</td>
+                        <td>
+                            <input type="checkbox"
+                                   id="switch_{$block.id}"
+                                   class="switch-input switch-block-active"
+                                   data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}"
+                                   data-id="{$block.id}"
+                                   {if $block.active}checked="checked"{/if} />
+                            <label for="switch_{$block.id}" class="switch"></label>
+                        </td>
+                        <td>
+                            <div class="list-table-icon" data-id="{$block.id}" data-module="{$module_name}">
+                                <a href="module.php?moduleName=bloki&amp;action=edit&amp;id={$block.id}&amp;item_id={$item.id}&amp;module_id={$files_type}&amp;item_module={$module_name}" >
+                                    <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                                </a>
+                            </div>
+                            <div class="list-table-icon delete-item" title="Kasuj" onclick="return confirmDelete('{$block.name}', '?moduleName=bloki&action=delete&amp;id={$block.id}&amp;parent_id={$item.id}&item_module={$files_type}');">
+                                <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                            </div>
+                        </td>
+                    </tr>
+                    {/if}
+                    {if $block.is_parent && $block.items}
+                    {foreach from=$block.items item=child}
+                    <tr class="list-table-row" data-id="{$child.assign_id}">
+
+                        <td>
+                            {if $child.photo}
+                            <div class="list-table-image">
+                                <img src="{$child.photo.source.photo}" alt="">
+                            </div>
+                            {/if}
+                        </td>
+                        <td class="list-table-row-child"><img src="{$TPL_URL}/img/icons/arrow-right.svg" alt="">{$child.name}</td>
+                        <td>{$child.type_name}</td>
+                        <td>
+                            <input type="checkbox"
+                                   id="switch_{$child.id}"
+                                   class="switch-input switch-block-active"
+                                   data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}"
+                                   data-id="{$block.id}"
+                                   {if $child.active}checked="checked"{/if} />
+                            <label for="switch_{$child.id}" class="switch"></label>
+                        </td>
+                        <td>
+                            <div class="list-table-icon" data-id="{$block.id}" data-module="{$module_name}">
+                                <a href="module.php?moduleName=bloki&amp;action=edit&amp;id={$child.id}&amp;item_id={$item.id}&amp;module_id={$files_type}&amp;item_module={$module_name}" >
+                                    <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                                </a>
+                            </div>
+                            <div class="list-table-icon delete-item" title="Kasuj" onclick="return confirmDelete('{$child.name}', '?moduleName=bloki&action=delete&amp;id={$child.id}&amp;parent_id={$item.id}&item_module={$files_type}');">
+                                <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                            </div>
+                        </td>
+                    </tr>
+                    {/foreach}
+
+                    {/if}
+
+                    {/foreach}
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        {/if}
+    </div>
+
+</div>
+
+{if $languages|count > 1}
+<div class="content-panel{if $tab_selected=='content'} active{/if}" data-tab="content">
+    <div class="content-block-title">Ustawienia</div>
+
+    <div class="form-group">
+        <label for="language">Wersja językowa</label>
+        <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+            {foreach from=$languages item=lang}
+            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <input type="checkbox"
+               name="lang_active[{$lang.id}]"
+               id="switch_active_{$lang.id}"
+               class="switch-input switch-active"
+               {if $opis[$lang.id].active}checked="checked"{/if} />
+        <label for="switch_active_{$lang.id}" class="switch"></label>
+        Aktywna
+    </div>
+    {/foreach}
+
+</div>
+{else}
+<input type="hidden" name="lang_active[{$languages[0].id}]" value="1">
+{/if}

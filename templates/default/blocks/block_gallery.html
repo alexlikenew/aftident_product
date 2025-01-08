@@ -1,0 +1,18 @@
+<div class="block-gallery">
+    {if $block.title}<h{$block.h_type} class="block-title">{$block.title}</h{$block.h_type}>{/if}
+
+    <div class="gallery">
+        {foreach from=$block.gallery.photos item=item}
+        <a href="{$item.src.source.photo}" class="gallery-item" data-fslightbox="gallery" data-photo="{$g1.id}">
+            <picture>
+                {if $item.src.source.photo_webp}
+                <source srcset="{$item.src.source.photo_webp}" type="image/webp">
+                {/if}
+                <source srcset="{$item.src.source.photo}" type="{$item.src.params.type}">
+                <img src="{$item.src.source.photo}" alt="{$item.alt}">
+            </picture>
+        </a>
+        {/foreach}
+    </div>
+
+</div>

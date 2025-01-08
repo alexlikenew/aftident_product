@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  php-apache-environment:
+    container_name: php-8-chutor
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: php:8.1-apache
+    depends_on:
+      - db-chutor
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "80:80"
+  db-chutor:
+    container_name: db-chutor
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+    ports:
+      - "3306:3306"
+  phpmyadmin-chutor:
+    container_name: phpmyadmin-chutor
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8080:80'
+    restart: always
+    environment:
+      PMA_HOST: db-chutor
+    depends_on:
+      - db-chutor

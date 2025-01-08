@@ -1,0 +1,17 @@
+<div class="offer-files">
+    <h4 class="offer-files-title">{$block.title}</h4>
+
+    <div class="offer-files-main">
+        {foreach from=$page.files item=file}
+            <a href="{$file.url}" class="btn btn-outline" download>{$file.name}</a>
+        {/foreach}
+    </div>
+
+    <div class="offer-files-bg">
+        <picture>
+            <source srcset="{$TPL_URL}/img/price-bg.avif" type="image/avif">
+            <source srcset="{$TPL_URL}/img/price-bg.png" type="image/png">
+            <img src="{$TPL_URL}/img/price-bg.png" alt="{$page.title}">
+        </picture>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="home-customers" data-aos="fade-in" data-aos-duration="400" data-aos-easing="ease-in-out">
+    <h3 class="title">{$blocks['zaufali-nam'][0]['title']}</h3>
+
+    <div class="text">
+        {$blocks['zaufali-nam'][0]['content']}
+    </div>
+
+    <div id="home-customers-slider" class="swiper">
+        <div class="swiper-wrapper">
+            {foreach from=$blocks['zaufali-nam'][0].gallery.photos item=client}
+                <div class="swiper-slide">
+                    <img src="{$client.src.source.photo_webp}" alt="{$client.title}">
+                </div>
+            {/foreach}
+        </div>
+    </div>
+</div>

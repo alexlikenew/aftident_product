@@ -1,0 +1,122 @@
+<div class="edit-thumb-container" style="width: 800px; max-width: 100%">
+    <div class="edit-thumb-container__left">
+        <img class="image" id="image" src="{$photo.photo.src}" alt="{$photo.title}" />
+    </div>
+    <div class="edit-thumb-container__right">
+        <div style="width: {$preview.width}px; height: {$preview.height}px; overflow: hidden; margin-bottom: 20px;">
+            <img id="preview" src="{$photo.photo.src}" />
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<form method="post" action="{$smarty.server.PHP_SELF}">
+    <div class="content-panel active" style="padding: 0; margin-bottom: 20px">
+        <div class="content-block-title">Ustawienia</div>
+
+        <div class="form-group">
+            <label for="language">Wersja językowa</label>
+            <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+                {foreach from=$languages item=lang}
+                <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+                {/foreach}
+            </select>
+        </div>
+
+        {foreach from=$languages item=lang}
+        <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+            <input type="checkbox"
+                   name="lang_active[{$lang.id}]"
+                   id="switch_active_{$lang.id}"
+                   class="switch-input switch-active"
+                   {if $opis[$lang.id].active}checked="checked"{/if} />
+            <label for="switch_active_{$lang.id}" class="switch"></label>
+            Aktywna
+        </div>
+        {/foreach}
+
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <label for="title_{$lang.id}">Tytuł [{$lang.code}]:</label>
+        <input type="text" class="form-input" id="title_{$lang.id}" name="title[{$lang.id}]" value="{$opis[$lang.id].title}">
+    </div>
+    <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <label for="url">Link [{$lang.code}]:</label>
+        <input type="text" class="form-input" id="url" name="url[{$lang.id}]" value="{$opis[$lang.id].url}">
+    </div>
+    <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <label for="alt">Alt [{$lang.code}]:</label>
+        <input type="text" class="form-input" id="alt" name="alt[{$lang.id}]" value="{$opis[$lang.id].alt}">
+    </div>
+    <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <label for="content">Opis [{$lang.code}]:</label>
+        <textarea id="content" class="form-textarea text-editor" name="content[{$lang.id}]">{$opis[$lang.id].content}</textarea>
+    </div>
+    {/foreach}
+
+    <input type="hidden" name="x" id="foto_kadr_x" value="0"/>
+    <input type="hidden" name="y" id="foto_kadr_y" value="0"/>
+    <input type="hidden" name="x2" id="foto_kadr_x2" value="0"/>
+    <input type="hidden" name="y2" id="foto_kadr_y2" value="0"/>
+    <input type="hidden" name="action" value="save_photo"/>
+    <input type="hidden" name="type" value="{$type}"/>
+    <input type="hidden" name="foto_id" value="{$photo.id}" />
+    <input type="hidden" name="slider_id" value="{$photo.slider_id}" />
+    <input type="hidden" name="moduleName" value="{$module_name}">
+    <input class="btn btn-save" type="submit" value="Zapisz" />
+</form>
+<script type="text/javascript" src="{$BASE_URL}/js/admin/dropUpload.js?{$smarty.now|date_format:'%Y%m%d%H%M'}"></script>
+<script type="text/javascript" src="{$BASE_URL}/js/admin/admin.js?{$smarty.now|date_format:'%Y%m%d%H%M'}"></script>
+<script type="text/javascript" src="{$BASE_URL}/js/admin/tinymce.init.js"></script>
+{literal}
+<script type="text/javascript">
+  var jcrop_api;
+  var boundx;
+  var boundy;
+
+  function showPreview(coords) {
+    var rx = {/literal}{$preview.width}{literal} / coords.w;
+    var ry = {/literal}{$preview.height}{literal} / coords.h;
+
+    $('#foto_kadr_x').val(Math.round(coords.x));
+    $('#foto_kadr_y').val(Math.round(coords.y));
+    $('#foto_kadr_x2').val(Math.round(coords.x2));
+    $('#foto_kadr_y2').val(Math.round(coords.y2));
+
+    $('#preview').css({
+      width: Math.round(rx * {/literal}{$thumb_conf.photo_width}{literal}) + 'px',
+    height: Math.round(ry * {/literal}{$thumb_conf.photo_height}{literal}) + 'px',
+    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+        marginTop: '-' + Math.round(ry * coords.y) + 'px'
+  });
+  }
+
+    function releaseCheck() {
+      this.setOptions({setSelect: [{/literal}{$thumb_conf.x}, {$thumb_conf.y}, {$thumb_conf.width}, {$thumb_conf.height}{literal} ]});
+      }
+
+      $(document).ready(function() {
+        $('#image').Jcrop({
+          onChange: showPreview,
+          onSelect: showPreview,
+          onRelease: releaseCheck,
+          aspectRatio: {/literal}{$size.width}{literal} / {/literal}{$size.height}{literal},
+          minSize: [{/literal}{$size.width}{literal},{/literal}{$size.height}{literal}],
+          allowSelect: false,
+              boxWidth: 640
+        }, function() {
+          // Store the API in the jcrop_api variable
+          var bounds = this.getBounds();
+          boundx = bounds[0];
+          boundy = bounds[1];
+
+          // Move the preview into the jcrop container for css positioning
+          jcrop_api = this;
+          jcrop_api.animateTo([{/literal}{$thumb_conf.x}, {$thumb_conf.y}, {$thumb_conf.width}, {$thumb_conf.height}{literal} ]);
+
+        });
+        });
+</script>
+{/literal}

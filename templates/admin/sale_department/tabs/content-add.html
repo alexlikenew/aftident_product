@@ -1,0 +1,70 @@
+<div class="tab{if $tabActive} active{/if}" data-tab="content">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">Opis</h2>
+            <div class="form-grid form-grid-2">
+                <div class="form-group">
+                    <label for="name">Imię i Nazwisko</label>
+                    <input type="text" class="form-input" id="name" name="name" value="">
+                </div>
+            </div>
+            {foreach from=$languages item=lang}
+                <div class="form-grid form-grid-2" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                    <div class="form-group">
+                        <label for="workplace_{$lang.id}">Stanowisko [{$lang.code}]</label>
+                        <input type="text" class="form-input" id="workplace_{$lang.id}" name="workplace[{$lang.id}]" value="{$opis[$lang.id].workplace}">
+                    </div>
+                </div>
+            {/foreach}
+        <div class="form-grid form-grid-2">
+            <div class="form-group">
+                <label for="phone1">Telefon:</label>
+                <input type="text" class="form-input" id="phone1" name="phone1" value="">
+            </div>
+        </div>
+        <div class="form-grid form-grid-2">
+            <div class="form-group">
+                <label for="phone2">Telefon 2:</label>
+                <input type="text" class="form-input" id="phone2" name="phone2" value="">
+            </div>
+        </div>
+        <div class="form-grid form-grid-2">
+            <div class="form-group">
+                <label for="name">Email:</label>
+                <input type="text" class="form-input" id="email" name="email" value="">
+            </div>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+{if $languages|count > 1}
+<div class="content-panel{if $tabActive} active{/if}" data-tab="content">
+    <div class="content-block-title">Ustawienia</div>
+
+    <div class="form-group">
+        <label for="language">Wersja językowa</label>
+        <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+            {foreach from=$languages item=lang}
+            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <input type="checkbox"
+               name="lang_active[{$lang.id}]"
+               id="switch_active_{$lang.id}"
+               class="switch-input switch-active"
+               checked="checked" />
+        <label for="switch_active_{$lang.id}" class="switch"></label>
+    Aktywna
+    </div>
+    {/foreach}
+
+</div>
+{else}
+<input type="hidden" name="lang_active[{$languages[0].id}]" value="1">
+{/if}

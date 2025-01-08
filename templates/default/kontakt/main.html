@@ -1,0 +1,46 @@
+<style>@import url("{$TPL_URL}/css/contact.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+<header class="page-header">
+    <div class="page-header-image">
+        <picture>
+            {if $page.photo.source.photo_webp}
+            <source srcset="{$page.photo.source.photo_webp}" type="image/webp">
+            {/if}
+            <source srcset="{$page.photo.source.photo}" type="{$page.photo.params.type}">
+            <img src="{$page.photo.source.photo}" alt="{$page.title}">
+        </picture>
+    </div>
+
+    <div class="page-header-overlay"></div>
+
+    <h1 class="page-title">{$page.title}</h1>
+
+    {include file="misc/reservation.html"}
+</header>
+
+<main class="page contact-page">
+    <div class="page-frame page-frame--left">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-3-left.svg" alt="Chutor Kozacki">
+    </div>
+    <div class="page-frame page-frame--right">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-3-right.svg" alt="Chutor Kozacki">
+    </div>
+
+    <div class="container">
+        {include file="misc/breadcrumbs.html"}
+
+        {if $page.blocks}
+        {foreach from=$page.blocks item=block}
+        {include file="blocks/{$block.template_file}.html"}
+        {/foreach}
+        {/if}
+    </div>
+
+    <div class="page-bottom">
+        <picture>
+            <source srcset="{$TPL_URL}/img/page-bottom-1.avif" type="image/avif">
+            <source srcset="{$TPL_URL}/img/page-bottom-1.png" type="image/png">
+            <img src="{$TPL_URL}/img/page-bottom-1.png" alt="{$page.title}">
+        </picture>
+    </div>
+</main>

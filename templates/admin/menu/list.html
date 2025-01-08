@@ -1,0 +1,125 @@
+<div class="content">
+    <div class="tab tab-list active">
+
+        <div class="content-block">
+            <form method="post" action="{$smarty.server.PHP_SELF}?moduleName={$module_name}">
+                <div class="form-grid form-grid-2">
+                    <div class="form-group">
+                        <label for="menu_group">Wybierz menu którym chcesz zarządzać:</label>
+                        <select name="group" id="menu_group" class="form-select" onchange="this.form.submit();">
+                            {foreach from=$mm item=item}
+                            <option value="{$item.group}"{if $mm_sel.group==$item.group} selected="true"{/if}>{$item.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" name="action" value="change_menu" />
+            </form>
+
+            <div class="btn-row">
+                <a href="module.php?moduleName={$module_name}&pid={$pid}&group={$mm_sel.group}&action=add" class="btn btn-primary">+ Dodaj nowy element</a>
+            </div>
+
+        </div>
+
+        <div class="list">
+            <form method="post" action="">
+                <div class="list-top">
+                    <div class="list-top-panel">
+                        {if $upperPID !== "" && $upperPID !== "none"}
+                        <a href="?moduleName={$module_name}&pid={$upperPID}&group={$mm_sel.group}" class="list-top-panel-back">
+                            <img src="{$TPL_URL}/img/icons/icon-arrow-back.svg" alt="">
+                            Przejdź kategorię wyżej
+                        </a>
+                        {/if}
+
+                        <div class="form-grid">
+                            <div class="list-top-panel-count btn-row">
+                                <div style="margin-right: 20px">Wybrano: <span class="checked-count"></span></div>
+                                <input type="submit" name="action" value="Usuń" class="btn btn-cancel" onclick="return confirmDelete();">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {if $menu}
+                <table class="list-table">
+                    <thead>
+                        <tr class="list-table-row list-table-head">
+                            <th style="width: 70px">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="1" name="mark_all" class="checkbox-mark-all"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </th>
+                            <th style="width: 300px">Nazwa</th>
+                            <th>Wskazuje na</th>
+                            <th class="center">Podmenu</th>
+                            <th>Opcje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sortableList" data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}" data-action="move">
+                    {foreach from=$menu item=item name=aa}
+                        <tr class="list-table-row" data-id="{$item.id}">
+                            <td>
+                                <label class="checkbox-item list-check-item">
+                                    <input type="checkbox" value="{$item.id}" name="list_items[]"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>
+                                {if $item.has_submenu==1 and $item.submenu_type==0}
+                                <a href="?moduleName=menu&pid={$item.id}&group={$mm_sel.group}" class="color-grey">{$item.name}</a>
+                                {else}
+                                {$item.name}
+                                {/if}
+                            </td>
+                            <td>
+                                {if $item.type == $types.url}
+                                <span>Adres zewnętrzny: {$item.url}</span>
+                                {elseif $item.type == $types.page}
+                                <span>Podstrona: </span>
+                                {elseif $item.type == $types.module}
+                                <span>Moduł: {$item.select.name} </span>
+                                {elseif $item.type == $types.nolink}
+                                <span>Element bez linku</span>
+                                {elseif $item.type == $types.category}
+                                <span>Kategoria: </span>
+                                {elseif $item.type == $types.producer}
+                                <span>Producent</span>
+                                {/if}
+                                {if $item.type != $types.nolink}
+                                <span>{$item.select.title}</span>
+                                {/if}
+                            </td>
+                            <td class="center">
+                                {if $item.has_submenu==1}
+                                    {include file="components/icons/icon-done.html"}
+                                {/if}
+                            </td>
+                            <td>
+                                <a href="module.php?moduleName={$module_name}&pid={$pid}&id={$item.id}&group={$mm_sel.group}&action=edit" class="list-table-icon" title="Edytuj">
+                                    <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                                </a>
+                                <div class="list-table-icon" title="Kasuj" onclick="return confirmDelete('{$item.name}', 'module.php?moduleName={$module_name}&pid={$pid}&id={$item.id}&group={$mm_sel.group}&action=delete');">
+                                    <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                                </div>
+                            </td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+                {/if}
+            </form>
+        </div>
+        {*
+        {if $pages>1}
+        {include file="misc/pagination.html"}
+        {/if}
+        *}
+    </div>
+</div>
+
+{include file="modals/modal-delete.html"}
+
+<script type="text/javascript" src="{$BASE_URL}/js/admin/menu.js?v={$smarty.now|date_format:'%Y%m%d%H%M'}"></script>

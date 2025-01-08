@@ -1,0 +1,61 @@
+<div class="tab{if $tab_selected=='price-steps'} active{/if}" data-tab="price-steps">
+  <div class="tab-wrapper">
+
+    <div class="content-block">
+      <h2 class="content-block-title">Progi kwotowe</h2>
+
+      <form method="post" enctype="multipart/form-data" action="/admin/module.php">
+
+    <div class="form-grid form-grid-2">
+      <div class="form-group">
+        {foreach from=$price_steps item=step}
+        <label for="price_{$step.id}">{$step.title}</label>
+        <input type="number" id="price_{$step.id}" name="steps[{$step.id}]" step="0.01" value="{if isset($item.price_step[$step.id]['value'])}{$item.price_step[$step.id]['value']}{else}0.00{/if}">
+        <label for="price_extra_yes_{$step.id}">Dodatkowa budowa - tak</label>
+        <input type="number" id="price_extra_yes_{$step.id}" name="extra[yes][{$step.id}]" step="0.01" value="{if isset($item.price_step[$step.id]['extra_yes'])}{$item.price_step[$step.id]['extra_yes']}{else}0.00{/if}">
+        <label for="price_extra_no_{$step.id}">Dodatkowa budowa - Nie</label>
+        <input type="number" id="price_extra_no_{$step.id}" name="extra[no][{$step.id}]" step="0.01" value="{if isset($item.price_step[$step.id]['extra_no'])}{$item.price_step[$step.id]['extra_no']}{else}0.00{/if}">
+        <label for="price_advanced_yes_{$step.id}">Zaawansowane projekty - tak</label>
+        <input type="number" id="price_advanced_yes_{$step.id}" name="advanced[yes][{$step.id}]" step="0.01" value="{if isset($item.price_step[$step.id]['advanced_yes'])}{$item.price_step[$step.id]['advanced_yes']}{else}0.00{/if}">
+        <label for="price_advanced_no_{$step.id}">Zaawansowane projekty - Nie</label>
+        <input type="number" id="price_advanced_no_{$step.id}" name="advanced[no][{$step.id}]" step="0.01" value="{if isset($item.price_step[$step.id]['advanced_no'])}{$item.price_step[$step.id]['advanced_no']}{else}0.00{/if}">
+        <label for="price_time_12_{$step.id}">Minimalny czas - 12</label>
+        <input type="number" id="price_time_12_{$step.id}" name="min_time[12][{$step.id}]" step="0.01" value="{if isset($item.price_step[$step.id]['min_time_12'])}{$item.price_step[$step.id]['min_time_12']}{else}0.00{/if}">
+        <label for="price_time_18_{$step.id}">Minimalny czas - 18</label>
+        <input type="number" id="price_time_18_{$step.id}" name="min_time[18][{$step.id}]" step="0.01" value="{if isset($item.price_step[$step.id]['min_time_18'])}{$item.price_step[$step.id]['min_time_18']}{else}0.00{/if}">
+        <label for="price_time_24_{$step.id}">Minimalny czas - 24</label>
+        <input type="number" id="price_time_24_{$step.id}" name="min_time[24][{$step.id}]" step="0.01" value="{if isset($item.price_step[$step.id]['min_time_24'])}{$item.price_step[$step.id]['min_time_24']}{else}0.00{/if}">
+        <label for="price_time_30_{$step.id}">Minimalny czas - 30</label>
+        <input type="number" id="price_time_30_{$step.id}" name="min_time[36][{$step.id}]" step="0.01" value="{if isset($item.price_step[$step.id]['min_time_30'])}{$item.price_step[$step.id]['min_time_30']}{else}0.00{/if}">
+        <br />
+        <hr />
+        {/foreach}
+      </div>
+    </div>
+
+  <br>
+  <br>
+
+
+  <div class="btn-row">
+
+    <input type="hidden" name="parent_id"   value="{$item.id}" />
+    <input type="hidden" name="moduleName" value="{$module_name}" />
+    <input type="hidden" name="action" value="update_price_list" />
+    <input class="btn btn-save" type="submit" name="submit" value="Zapisz" />
+  </div>
+
+  </form>
+</div>
+</div>
+
+</div>
+
+<div class="modal modal-file">
+  <div class="modal-bg"></div>
+  <div class="modal-content">
+    <div class="modal-close"></div>
+    <div class="modal-title">Edytuj</div>
+    <div class="modal-dynamic"></div>
+  </div>
+</div>

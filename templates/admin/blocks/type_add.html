@@ -1,0 +1,137 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" id="edit_form" enctype="multipart/form-data">
+        <div class="tabs-nav">
+            <div class="tabs-nav-item active" data-tab-label="content">Typ</div>
+        </div>
+
+        <div class="tabs-wrapper">
+            <div class="tab active" data-tab="content">
+                <div class="tab-wrapper">
+                    <div class="content-block">
+                        <h2 class="content-block-title">Nazwa</h2>
+                        <div class="form-grid form-grid" data-lang="{$lang.id}" >
+                            <div class="form-group">
+                                <label for="title">Tytuł </label>
+                                <input type="text" class="form-input" id="title" name="title" value="{$article.title}" required>
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="template_name">Szablon bloku</label>
+                                <select name="template_name" id="template_name" class="form-select">
+
+                                    {foreach from=$page_templates item=template key=tpl_name}
+                                    <option value="{$tpl_name}" {if $tpl_name == $item.template}selected{/if}>{$template}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-grid form-grid-2">
+                            <div class="form-group">
+                                <label for="module">Rodzaj</label>
+                                <select name="module" id="module" class="form-select">
+                                    <option value="0">Uniwersalny</option>
+                                    {foreach from=$modules item=option}
+                                    <option value="{$option.id}" {if $item.module_id  == $option.id} selected="selected"{/if}>{$option.name}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="template_name">Ikona</label>
+                                <div class="drop-container" id="dropContainer">
+                                    <div class="icon">
+                                        <img src="{$TPL_URL}/img/icons/icon-drop.svg" alt="">
+                                    </div>
+                                    <div class="text">Upuść plik tutaj <br> lub dodaj z komputera </div>
+                                    <label class="button" for="photo">
+                                        + Dodaj plik
+                                        <input type="file" name="photo" id="photo" accept="image/*" >
+                                    </label>
+                                </div>
+
+                                <div class="image-preview">
+                                    <div class="image-preview-item">
+                                        <img src="#" alt="" class="image-preview-img">
+
+                                        <div class="image-preview-item__delete">
+                                            <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <h4 class="content-block-title">Elementy bloku</h4>
+                    <div class="form-grid">
+                        <label class="checkbox-item">
+                            Pole tekstowe
+                            <input type="checkbox" value="1" name="text" {if $item.has_text} checked {/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="form-grid">
+                        <label class="checkbox-item">
+                            Zdjęcie
+                            <input type="checkbox" value="1" name="photo" {if $item.elements.photo} checked {/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="form-grid">
+                        <label class="checkbox-item">
+                            Wideo
+                            <input type="checkbox" value="1" name="video" {if $item.elements.video} checked {/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="form-grid">
+                        <label class="checkbox-item">
+                            Podtytuł
+                            <input type="checkbox" value="1" name="subtitle" {if $item.elements.subtitle} checked {/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="form-grid">
+                        <label class="checkbox-item">
+                            URL
+                            <input type="checkbox" value="1" name="url" {if $item.elements.url} checked {/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="form-grid">
+                        <label class="checkbox-item">
+                            Cytat
+                            <input type="checkbox" value="1" name="quote" {if $item.elements.quote} checked {/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="form-grid">
+                        <label class="checkbox-item">
+                            Galeria
+                            <input type="checkbox" value="1" name="gallery" {if $item.elements.gallery} checked {/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    {*<div class="form-grid">
+                        <label class="checkbox-item">
+                            Moduł
+                            <input type="checkbox" value="1" name="has_module" {if $item.elements.has_module} checked {/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>*}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="moduleName" value="{$module_name}">
+            <input type="hidden" name="action" value="create_type">
+            <input type="submit" class="btn btn-save" id="save" data-module="{$module_name}"  value="Zapisz">
+            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+        </div>
+    </form>
+</div>

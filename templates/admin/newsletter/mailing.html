@@ -1,0 +1,108 @@
+<div class="content">
+        <div class="tab active" data-tab="content">
+            <div class="tab-wrapper">
+                <div class="content-block">
+                    {if ! isset($template)}
+                    <form method="post" action="{$smarty.server.PHP_SELF}">
+                        <div class="form-grid form-grid-2">
+                            <div class="form-group">
+                                <label for="template">Wybierz szablon:</label>
+                                <select name="template" id="template" class="form-select" onchange="this.form.submit()">
+                                    <option value=""{if ! isset($smarty.post.template) or $smarty.post.template==''} selected="true"{/if}>pusty</option>
+                                    {foreach from=$mail_tpl item=item}
+                                    <option value="{$item.id}"{if isset($smarty.post.template) and $smarty.post.template=='{$item.id}'} selected="true"{/if}>{$item.name}</option>
+                                    {/foreach}
+                                </select>
+
+                                <input type="hidden" name="action" value="load_template" />
+                            </div>
+                        </div>
+                    </form>
+                    {/if}
+                    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+                        <div class="form-group-label">Wyślij biuletyn do:</div>
+
+                        <div class="form-grid form-grid-2">
+                            <label class="radio-item">
+                                wszystkich zapisanych
+                                <input type="radio" name="send" value="all" id="send_all"{if isset($smarty.post.send) and $smarty.post.send=='all'} checked="true"{/if} />
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+
+                        <div class="form-grid form-grid-2">
+                            <label class="radio-item">
+                                wybranej grupy
+                                <input type="radio" name="send" value="group" id="send_group"{if isset($smarty.post.send) and $smarty.post.send=='group'} checked="true"{/if}  />
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+
+                        <div class="form-grid form-grid-2">
+                            <label class="radio-item">
+                                na podany adres
+                                <input type="radio" name="send" value="one" id="send_one"{if isset($smarty.post.send) and $smarty.post.send=='one' or empty($smarty.post.send)} checked="true"{/if}/>
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+
+                        <div class="form-grid form-grid-2">
+                            <div class="form-group" id="send_one_email">
+                                <label for="email">Podaj adres, na jaki wysłać biuletyn:</label>
+                                <input type="email" class="form-input" id="email" name="email">
+                            </div>
+
+                            <div class="form-group" id="send_group_email">
+                                <label for="group">Wybierz grupę, do której chcesz wysłać biuletyn:</label>
+                                <select name="grupa" id="group" class="form-select">
+                                    <option value="%" selected="true">- wszystkie -</option>
+                                    {foreach from=$grupy item=val key=k}
+                                    <option value="{$k}">{$val}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mailing_start_date">Rozpocznij wysyłanie:</label>
+                                <input type="text" class="form-input" id="mailing_start_date" name="mailing_start_date">
+                            </div>
+                        </div>
+
+
+                        <div class="form-grid form-grid-2">
+                            <div class="form-group">
+                                <label for="mailing_subject">Tytuł biuletynu:</label>
+                                <input type="text" class="form-input" id="mailing_subject" name="mailing_subject" value="{$template.name|default:''}" {if isset($template)}readonly{/if}>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {if isset($template)}
+                            <div style="height:300px; overflow:auto; border:1px solid #ccc; padding:5px;">
+                                {$template.value_org|default:''}
+                            </div>
+                            <input type="hidden" name="mailing_content" value="{$encoded_content|default:''}"/>
+                            {else}
+                            <label for="mailing_content">Treść</label>
+                            <textarea name="mailing_content" id="mailing_content" class="text-editor">{$template.value|default:''}</textarea>
+                            {/if}
+
+                        </div>
+
+                        <div class="btn-row btn-row-bottom">
+                            <input type="hidden" name="action" value="send" />
+                            <input type="hidden" name="id" value="{$template.id|default:''}" />
+                            <input type="hidden" name="date_add" value="{$template.date_add|default:''}" />
+                            <input class="btn btn-save" type="submit" value="Wyślij biuletyn" />
+                            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+
+</div>

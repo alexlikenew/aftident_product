@@ -1,0 +1,22 @@
+<!-- SECTION FORGET ABOUT PAIN -->
+<section class="forget-pain">
+    <img class="forget-pain__background-image-dots" src="{$TPL_URL}/img/aftident_top_background_dots_desktop.png"
+        alt="Czerwone kropki w tle strony">
+    <div class="wrapper">
+        <div class="forget-pain__text">
+            {if $block.title}
+            <h{$block.h_type}>{$block.title}</h>
+                {/if}
+                {if $block.content}
+                <p>{$block.content}</p>
+                {/if}
+                <a title="Kup nasze produkty tutaj" class="buy-now-btn" href="{$block.url.url}">{$block.url.title}</a>
+        </div>
+        <div class="forget-pain__image">
+            <img class="forget-pain__image__mobile" src="{$block.photo.source.photo_webp}" alt="{$block.title}"
+                title="{$block.title}">
+            <img class="forget-pain__image__desktop" src="{$block.photo.source.main}" alt="{$block.title}"
+                title="{$block.title}">
+        </div>
+    </div>
+</section>

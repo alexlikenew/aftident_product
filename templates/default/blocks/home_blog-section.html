@@ -1,0 +1,37 @@
+<main>
+    <section class="articles">
+        <div class="wrapper">
+            <h{$block.h_type} class="articles__title">
+                {$block.title}
+            </h{$block.h_type}>
+            <div class="articles__subtitle">{$block.content}</div>
+            <!-- ARTICLES TABLE -->
+            <div class="articles__table">
+                <!-- SINGLE ARTICLE -->
+                {foreach from=$blog_last item=item}
+
+
+                <div class="articles__table__article">
+                    <div class="articles__table__article__image">
+                        <img loading="lazy" class="articles__table__article__image--mobile"
+                            src="{$item.photo.source.photo_webp}" alt="Miniaturne zdjęcie artykułu"
+                            title="{$item.title}">
+                        <img loading="lazy" class="articles__table__article__image--desktop"
+                            src="{$item.photo.source.photo_webp}" alt="Miniaturne zdjęcie artykułu"
+                            title="{$item.title}">
+                    </div>
+                    <div class="articles__table__article__information">
+                        <p class="articles__table__article__information__date">{$item.date_add}</p>
+                        <h3 class="articles__table__article__information__title"><a href="{$item.url}"
+                                title="{$item.title}">{$item.title}</a>
+                        </h3>
+                        <!-- <p class="articles__table__article__information__text">{$item.content_short}</p> -->
+                    </div>
+                </div>
+                {/foreach}
+            </div>
+
+
+        </div>
+    </section>
+</main>

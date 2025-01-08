@@ -1,0 +1,11 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+        <div class="tabs-nav">
+            <div class="tabs-nav-item active" data-tab-label="content">Treść</div>
+        </div>
+
+        <div class="tabs-wrapper">
+            {include file="./tabs/content-add.html" tabActive=true}
+        </div>
+    </form>
+</div>

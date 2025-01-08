@@ -1,0 +1,35 @@
+<div class="home-offer">
+    <div class="home-offer-frame home-offer-frame--left">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-2-left.svg" alt="Chutor Kozacki">
+    </div>
+    <div class="home-offer-frame home-offer-frame--right">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-2-right.svg" alt="Chutor Kozacki">
+    </div>
+
+    <div class="container">
+        {if $block.title}<h{$block.h_type} class="home-offer-title">{$block.title}</h{$block.h_type}>{/if}
+
+        <div class="home-offer-grid">
+            {foreach from=$block.gallery.photos item=photo}
+            <a href="{$photo.url}" class="home-offer-item" title="{$photo.title}">
+                <div class="image">
+                    <picture>
+                        <source srcset="{$photo.src.source.photo_webp}" type="image/webp">
+                        <source srcset="{$photo.src.source.photo}" type="{$photo.src.params.type}">
+                        <img loading="lazy" src="{$photo.src.source.photo}" width="100" height="100" alt="{$photo.alt}">
+                    </picture>
+                </div>
+
+                <div class="content">
+                    <div class="title">{$photo.title}</div>
+                    <div class="text">{$photo.content}</div>
+                </div>
+
+                <div class="icon">
+                    <img src="{$TPL_URL}/img/icons/icon-arrow.svg" width="38" height="22" alt="Chutor Kozacki">
+                </div>
+            </a>
+            {/foreach}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+.radio-item {
+  align-self: end;
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: black;
+  font-size: 14px;
+  line-height: 18px;
+  user-select: none;
+
+  a, strong {
+    font-family: $font-primary-bold;
+    color: black;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #fff;
+    border: 2px solid #D5D5D5;
+    border-radius: 50%;
+
+    &.white {
+      background-color: white;
+    }
+
+    &.check-error {
+      border-color: red;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 4px;
+      top: 1px;
+      width: 5px;
+      height: 8px;
+      border: solid #fff;
+      border-width: 0 1px 1px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  & input:checked ~ .checkmark {
+    background: $color-primary;
+    border-color: $color-primary;
+  }
+
+  & input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  &-col {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.switch-btn {
+  display: flex;
+  align-items: center;
+
+  input {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: absolute;
+  }
+
+  label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 26px;
+    height: 16px;
+    background: white;
+    display: block;
+    border-radius: 13px;
+    position: relative;
+    border: 1px solid #B8BBBC;
+    margin-bottom: 0;
+  }
+
+  label:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background: #B8BBBC;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+
+  input:checked + label {
+    background: white;
+  }
+
+  input:checked + label:after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+  }
+
+  //label:active:after {
+  //  width: 26px;
+  //}
+}

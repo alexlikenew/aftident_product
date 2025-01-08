@@ -1,0 +1,94 @@
+<div class="page-title"><h1>{$pageTitle}: {$group_name}</h1></div>
+
+<div class="page-content">
+    <div class="info">
+        {$LANG._KOMENTARZE_MODERACJA_INFO}
+    </div>
+
+    <div class="center">
+        {foreach item=group_item from=$groups}
+        <a style="margin: 10px; display: inline; font-size: 10pt; font-weight: bold;" href="?group={$group_item.value}" title="{$LANG.POKAZ_KOMENTARZE}">{$group_item.name}</a>
+        {/foreach}
+    </div>
+    <br class="clear" />
+
+    {section name=c loop=$comments}
+        {if $smarty.section.c.first}
+            <table cellspacing="1" class="special">
+                <thead>
+                    <tr>
+                        <th width="1%" align="center">{$LANG.LP}</th>
+                        <th width="1%" align="center">{$LANG.ID}</th>
+                        <th width="150">{$LANG.TYTUL}</th>
+                        <th>{$LANG.TRESC}</th>
+                        <th>{$LANG.AUTOR}</th>
+                        <th>{$LANG.GRUPA}</th>
+                        <th width="110">{$LANG.DATA}</th>
+                        <th width="40">{$LANG.OPCJE}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {/if}
+                {if $smarty.section.a1.index is odd}
+                    <tr class="shadow_dark">
+                    {else}
+                    <tr class="shadow_light">
+                    {/if}
+                    <td align="center">{$smarty.section.c.iteration+$interval}.</td>
+                    <td>{$comments[c].id}</td>
+                    <td><strong>{$comments[c].title}</strong></td>
+                    <td>{$comments[c].content|nl2br}</td>
+                    <td class="center">{$comments[c].author}</td>
+                    <td class="center"><span class="not-important">{$group_name}</span></td>
+                    <td class="center"><span class="not-important">{$comments[c].date_add}</span></td>
+                    <td class="opcje">
+                        <a href="?c_page={$c_page}&amp;action=delete&amp;id={$comments[c].id}&amp;group={$smarty.get.group}" onclick="return confirm('{$LANG.CONFIRM_DELETE}');"><img src="{$TPL_URL}/img/delete.png" alt="{$LANG.KASUJ}" /></a>
+                        <a href="#" onclick="return showHide('edit_comment_{$comments[c].id}');"><img src="{$TPL_URL}/img/edit.png" alt="{$LANG.EDYTUJ}" /></a>
+                    </td>
+                </tr>
+                {if $smarty.section.a1.index is odd}
+                    <tr class="shadow_dark">
+                    {else}
+                    <tr class="shadow_light">
+                    {/if}
+                    <td id="edit_comment_{$comments[c].id}" class="hidden" colspan="8">
+                        <form method="post" action="{$smarty.server.PHP_SELF}">
+                            <table align="center">
+                                <tr>
+                                    <td colspan="2"><b>{$LANG.EDYCJA_KOMENTARZA}:</b></td>
+                                </tr>
+                                <tr>
+                                    <th>{$LANG.AUTOR}</th>
+                                    <td><input type="text" class="text" name="author" value="{$comments[c].author}" size="30" /></td>
+                                </tr>
+                                <tr>
+                                    <th>{$LANG.TYTUL}</th>
+                                    <td><input class="text" type="text" name="title" value="{$comments[c].title}" size="50" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding-top: 9px; vertical-align: top;">{$LANG.TRESC}</th>
+                                    <td><textarea cols="50" rows="10" name="content">{$comments[c].content}</textarea></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="center">
+                                        <input class="submit" type="submit" value="{$LANG.ZAPISZ_ZMIANY}" />
+                                        <input type="hidden" name="action" value="edit" />
+                                        <input type="hidden" name="id" value="{$comments[c].id}" />
+                                        <input type="hidden" name="group" value="{$smarty.get.group}" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+                {if $smarty.section.c.last}
+                </tbody>
+            </table>
+            {if $pages>1}
+                {include file="misc/stronicowanie.html"}
+            {/if}
+        {/if}
+    {sectionelse}
+        <p class="center error">{$LANG.BRAK_WPISOW_W_BAZIE}</p>
+    {/section}
+</div>

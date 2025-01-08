@@ -1,0 +1,205 @@
+<div class="tab{if $tabActive} active{/if}" data-tab="seo">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">
+                Opcje TITLE:<br />
+                <small>możliwość wyboru odpowiedniego TITLE w nagłówku strony</small>
+            </h2>
+
+            <label class="radio-item">
+                Konfiguracja główna CMS: <b>{$SEOCONF.page_title}</b>
+                <input type="radio" value="1" name="op_page_title" {if $opcje.op_page_title=='1'}checked="checked" {/if}/>
+                <span class="checkmark"></span>
+            </label>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Automatyczna z tytułu strony
+                    <input type="radio" value="2" name="op_page_title" {if $opcje.op_page_title=='2'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Automatyczna z tytułu strony + Konfiguracja główna CMS
+                    <input type="radio" value="3" name="op_page_title" {if $opcje.op_page_title=='3'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Ręczna [proszę niżej wpisać tekst]
+                    <input type="radio" value="4" name="op_page_title" {if $opcje.op_page_title=='4'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Ręczna [proszę niżej wpisać tekst] + Konfiguracja główna CMS
+                    <input type="radio" value="5" name="op_page_title" {if $opcje.op_page_title=='5'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <div class="form-group">
+                    <label for="page_title"></label>
+                    <textarea name="page_title[{$language_id}]" class="form-textarea" id="page_title">{$opis[$language_id].page_title}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2 class="content-block-title">
+                Opcje KEYWORDS:<br />
+                <small>możliwość wyboru odpowiedniego KEYWORDS w nagłówku strony</small>
+            </h2>
+
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Konfiguracja główna CMS: <b>{$SEOCONF.page_keywords}</b>
+                    <input type="radio" value="1" name="op_page_keywords" {if $opcje.op_page_keywords=='1'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Automatyczna z tytułu strony
+                    <input type="radio" value="2" name="op_page_keywords" {if $opcje.op_page_keywords=='2'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Automatyczna z tytułu strony + Konfiguracja główna CMS
+                    <input type="radio" value="3" name="op_page_keywords" {if $opcje.op_page_keywords=='3'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Ręczna [proszę niżej wpisać tekst]
+                    <input type="radio" value="4" name="op_page_keywords" {if $opcje.op_page_keywords=='4'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Ręczna [proszę niżej wpisać tekst, frazy odzielone przecinkami] + Konfiguracja główna CMS
+                    <input type="radio" value="5" name="op_page_keywords" {if $opcje.op_page_keywords=='5'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <div class="form-group">
+                    <label for="page_keywords"></label>
+                    <textarea name="page_keywords[{$language_id}]" class="form-textarea" id="page_keywords">{$opis[$language_id].page_keywords}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2 class="content-block-title">
+                Opcje DESCRIPTION:<br />
+                <small>możliwość wyboru odpowiedniego DESCRIPTION w nagłówku strony</small>
+            </h2>
+
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Konfiguracja główna CMS: <b>{$SEOCONF.op_page_description}</b>
+                    <input type="radio" value="1" name="op_page_description" {if $opcje.op_page_description=='1'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Automatyczna z tytułu strony
+                    <input type="radio" value="2" name="op_page_description" {if $opcje.op_page_description=='2'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Automatyczna z tytułu strony + Konfiguracja główna CMS
+                    <input type="radio" value="3" name="op_page_description" {if $opcje.op_page_description=='3'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Automatyczna z treści strony
+                    <input type="radio" value="4" name="op_page_description" {if $opcje.op_page_description=='4'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Automatyczna z treści strony + Konfiguracja główna CMS
+                    <input type="radio" value="5" name="op_page_description" {if $opcje.op_page_description=='5'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Ręczna [proszę niżej wpisać tekst]
+                    <input type="radio" value="6" name="op_page_description" {if $opcje.op_page_description=='6'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Ręczna [proszę niżej wpisać tekst, frazy odzielone przecinkami] + Konfiguracja główna CMS
+                    <input type="radio" value="7" name="op_page_description" {if $opcje.op_page_description=='7'}checked="checked" {/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <div class="form-group">
+                    <label for="page_description"></label>
+                    <textarea name="page_description[{$language_id}]" class="form-textarea" id="page_description">{$opis[$language_id].page_description}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2 class="content-block-title">
+                Krótki opis:
+            </h2>
+
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Automatyczny z treści strony [pierwsze 250 znaków]
+                    <input type="radio" value="1" name="op_content_short"/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid form-grid-2">
+                <label class="radio-item">
+                    Ręczny [proszę niżej wpisać tekst]
+                    <input type="radio" value="2" name="op_content_short"/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <div class="form-grid form-grid-2">
+                <div class="form-group">
+                    <label for="content_short"></label>
+                    <textarea name="content_short[{$language_id}]" class="form-textarea" id="content_short">{$opis[$language_id].content_short}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2 class="content-block-title">
+                Tagi: <br>
+                <small>tagi odzielone znakiem <b>|</b> wstawiane pod artykułem jako linki</small>
+            </h2>
+
+            <div class="form-grid form-grid-2">
+                <div class="form-group">
+                    <label for="tagi"></label>
+                    <input type="text" class="form-input" id="tagi" name="tagi[{$language_id}]">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

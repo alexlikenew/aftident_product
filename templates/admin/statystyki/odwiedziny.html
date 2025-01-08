@@ -1,0 +1,34 @@
+<div class="page-title"><h1>{$pageTitle} | <span class="important">{$smarty.get.type}</span></h1></div>
+
+<div class="page-content">
+    {section name=o loop=$odwiedz}
+        {if $smarty.section.o.first}
+            <table class="special" cellspacing="1">
+                <thead>
+                    <tr>
+                        <th width="1%" align="center">{$LANG.LP}</th>
+                        <th>{$LANG.TYTUL}</th>
+                        <th>{$LANG.DATA_UTWORZENIA}</th>
+                        <th>{$LANG.ODWIEDZINY}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {/if}
+                <tr class="{cycle values="shadow_dark,shadow_light"}">
+                    <td align="center">{$smarty.section.o.iteration+$interval}.</td>
+                    <td><a href="{$odwiedz[o].url}" target="_blank"><b>{$odwiedz[o].title}</b></a></td>
+                    <td>{$odwiedz[o].date_add}</td>
+                    <td class="center important"><strong>{$odwiedz[o].count}</strong></td>	
+                </tr>
+                {if $smarty.section.o.last}
+                </tbody>
+            </table>
+        {/if}
+    {sectionelse}
+        <p class="center error">{$LANG.BRAK_WPISOW_W_BAZIE}</p>
+    {/section}
+
+    {if $pages>1}
+        {include file="misc/stronicowanie.html"}
+    {/if}
+</div>

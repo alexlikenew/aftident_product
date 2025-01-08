@@ -1,0 +1,95 @@
+<style>@import url("{$TPL_URL}/css/price-list.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+
+<header class="page-header">
+    <div class="container-wide">
+        {include file="misc/breadcrumbs.html"}
+
+        <h1 class="page-title">{$form.title}</h1>
+    </div>
+
+    <div class="page-header-image">
+        {if $module.photo}
+        <picture>
+            {if $module.photo.source.photo_webp}
+            <source srcset="{$module.photo.source.photo_webp}" type="image/webp">
+            {/if}
+            <source srcset="{$module.photo.source.photo}" type="{$module.photo.params.type}">
+            <img src="{$module.photo.source.photo}" alt="{$module.title}">
+        </picture>
+        {else}
+        <picture>
+            <img src="{$TPL_URL}/img/about-header.png" alt="{$module.title}">
+        </picture>
+        {/if}
+    </div>
+</header>
+
+<main class="price-list-page grants-page container-wide">
+    <div class="page-sidebar">
+        <div class="page-sidebar-item">
+            <a href="#">Dotacje UE na inwestycje / innowacje</a>
+        </div>
+        <div class="page-sidebar-item">
+            <a href="#">Dotacje UE na OZE</a>
+        </div>
+        <div class="page-sidebar-item">
+            <a href="#">Dotacje UE na wzornictwo</a>
+        </div>
+    </div>
+
+    <div class="page-main">
+        <h2 class="price-list-title">{$form.subtitle}</h2>
+
+        <div class="price-list-text">
+            {$form.content_short}
+        </div>
+        <form method="post" class="price-list-form">
+            <div class="price-list-form-wrapper">
+                {foreach from=$form.inputs item=input key=key}
+                {if $input->getType() == 1}
+                <div class="question">
+                    <div class="title">
+                        <span class="number">{$key + 1}.</span> {$input->getTitle()}
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-input input-required" name="{$input->getName()}">
+                        <div class="form-group-unit">zł</div>
+                        <div class="input-error-message">Minimalna wartość dofinansowania to 1 mln zł</div>
+                    </div>
+                </div>
+                {else if $input->getType() == 2}
+                <div class="question">
+                    <div class="title">
+                        <span class="number">{$key + 1}.</span> {$input->getTitle()}
+                    </div>
+                    <div class="form-group row">
+                        {foreach from=$input->getContent() item=option}
+                        <label class="checkbox-item radio">
+                            <span class="checkbox-item-row">{$option.title}</span>
+                            <input type="radio" name="{$input->getName()}" value="{$option.value}" class="check-required" />
+                            <span class="checkmark"></span>
+                        </label>
+                        {/foreach}
+                    </div>
+                </div>
+                {/if}
+                {/foreach}
+                <input type="hidden" name="action" value="{$form.action}">
+            </div>
+            <button class="btn btn-primary">
+                Oblicz wynagrodzenie CCG za Twój projekt
+                <img src="{$TPL_URL}/img/icons/icon-arrow-white.svg" alt="Chutor Kozacki">
+            </button>
+        </form>
+
+    </div>
+</main>
+
+<div class="container-wide">
+    {include file="misc/reviews-slider.html"}
+    {include file="misc/footer-form.html"}
+    {include file="misc/footer-map.html"}
+</div>
+

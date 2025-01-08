@@ -1,0 +1,83 @@
+<div class="content">
+    <div class="tab active" data-tab="content">
+        <div class="tab-wrapper">
+            <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+                <div class="content-block">
+                    <div class="btn-row">
+                        <a href="module.php?moduleName={$module_name}&action=add" class="btn btn-save" title="Dodaj nową opcję"><strong>Dodaj nowy wyraz</strong></a>
+                    </div>
+                    <br />
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="language">Wersja językowa</label>
+                            <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+                                {foreach from=$languages item=lang}
+                                <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                    </div>
+
+                    <br>
+                    {foreach from=$config item=item name=cc}
+                    {foreach from=$languages item=lang}
+                    <div class="form-grid form-grid-2" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                    <div class="form-group">
+                        <label for="conf[{$smarty.foreach.cc.iteration}]"><strong>{$item.name} [{$lang.code}]</strong> / {$item.description[$lang.id]}:</label>
+                        <textarea name="conf_value[{$item.id}][{$lang.id}]" id="conf[{$smarty.foreach.cc.iteration}]" class="form-textarea">{$item.value[$lang.id]}</textarea>
+                        <input type="hidden" name="conf_name[{$smarty.foreach.cc.iteration}]" value="{$item.name}" />
+                    </div>
+                </div>
+                {/foreach}
+                {/foreach}
+                <div class="btn-row">
+                    <input type="hidden" name="action" value="save_all" />
+                    <input type="hidden" name="moduleName" value="{$module_name}">
+                    <input type="submit" class="btn btn-save" id="save" value="Zapisz">
+                    <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+                </div>
+        </div>
+        </form>
+{*
+        {if $user.admin_login==1}
+        <div class="content-block">
+            <div class="content-block-title">Dodaj nową opcję</div>
+
+            <form method="post" action="{$smarty.server.PHP_SELF}">
+
+                <div class="form-grid form-grid-2">
+                    <div class="form-group">
+                        <label for="conf_name">Nazwa opcji:</label>
+                        <input type="text" id="conf_name" name="conf_name" class="form-input">
+                    </div>
+                </div>
+                <div class="form-grid form-grid-2">
+                    <div class="form-group">
+                        <label for="conf_value">Wartość opcji:</label>
+                        <textarea name="conf_value" id="conf_value" class="form-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="form-grid form-grid-2">
+                    <div class="form-group">
+                        <label for="conf_description">Krótki opis opcji:</label>
+                        <textarea name="conf_description" id="conf_description" class="form-textarea"></textarea>
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <input type="hidden" value="dodaj" />
+                    <input type="hidden" name="action" value="new_option" />
+                    <input type="hidden" name="moduleName" value="{$module_name}">
+                    <input type="hidden" name="conf_table" value="config" />
+                    <input type="submit" class="btn btn-save" value="Dodaj">
+                </div>
+            </form>
+        </div>
+        {/if}
+        *}
+    </div>
+
+</div>
+
+
+</div>

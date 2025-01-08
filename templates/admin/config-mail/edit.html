@@ -1,0 +1,68 @@
+<div class="content">
+    <div class="tab active" data-tab="content">
+        <div class="tab-wrapper">
+            <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+                <div class="content-block">
+
+                    <div class="btn-row">
+                        <input type="submit" class="btn btn-save" value="Zapisz">
+                    </div>
+                    <br>
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="biuro_email"><strong>biuro_email</strong> / {$LANG.BIURO_EMAIL_LABEL}:</label>
+                            <textarea name="biuro_email" id="biuro_email" class="form-textarea">{$biuro_email}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="auth_email"><strong>auth_email</strong> / {$LANG.AUTH_EMAIL_LABEL}:</label>
+                            <textarea name="auth_email" id="auth_email" class="form-textarea">{$auth_email}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="auth_pass"><strong>auth_pass</strong> / {$LANG.AUTH_PASS_LABEL}:</label>
+                            <textarea name="auth_pass" id="auth_pass" class="form-textarea">{$auth_pass}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="auth_smtp"><strong>auth_smtp</strong> / {$LANG.AUTH_SMTP_LABEL}:</label>
+                            <textarea name="auth_smtp" id="auth_smtp" class="form-textarea">{$auth_smtp}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="auth_port"><strong>auth_port</strong> / {$LANG.AUTH_PORT_LABEL}:</label>
+                            <textarea name="auth_port" id="auth_port" class="form-textarea">{$auth_port}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="auth_host"><strong>auth_host</strong> / {$LANG.AUTH_HOST_LABEL}:</label>
+                            <textarea name="auth_host" id="auth_host" class="form-textarea">{$auth_host}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="auth_auth"><strong>auth_auth</strong> / {$LANG.AUTH_AUTH_LABEL}:</label>
+                            <textarea name="auth_auth" id="auth_auth" class="form-textarea">{$auth_auth}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="btn-row">
+                        <input type="hidden" name="action" value="save_all" />
+
+                        <input type="submit" class="btn btn-save" id="save" value="Zapisz">
+                        <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+</div>

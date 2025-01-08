@@ -1,0 +1,20 @@
+<!-- SECTION EFFECTS -->
+<section class="effects">
+    <div class="wrapper">
+        <div class="effect__container">
+            <div class="effect__container__information">
+                <h{$block.h_type} class="effect__container__information__title">{$block.title}
+                </h{$block.h_type}>
+                <div class="effect__container__information__text">{$block.content}</div>
+
+            </div>
+            <div class="effect__container__image">
+                <img class="effect__container__image--mobile" src="{$block.photo.source.photo_webp}"
+                    alt="{$block.title}" title="{$block.title}">
+
+                <img class="effect__container__image--desktop" src="{$block.photo.source.photo_webp}"
+                    alt="{$block.title}" title="{$block.title}">
+            </div>
+        </div>
+    </div>
+</section>

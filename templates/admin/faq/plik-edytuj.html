@@ -1,0 +1,72 @@
+{literal}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.zakladka').stop(true, true).hide();
+            $('.zakladka-label-selected').each(function() {
+                var id = $(this).attr('id').toString().replace('zakladka-label-', '');
+                $('#zakladka-' + id).stop(true, true).show();
+                if ($('#zakladka-' + id).children('.tiny_mce').length > 0) {
+                    var tinymce = $('#zakladka-' + id).children('.tiny_mce');
+                    if (!tinymce.hasClass('initialized')) {
+                        var tinyid = tinymce.attr('id');
+                        initTinyMce(tinyid);
+                        $('#zakladka-' + id).children('.tiny_mce').addClass('initialized');
+                    }
+                }
+            });
+        });
+    </script>
+{/literal}
+<div style="padding: 30px;">
+    <form method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+        <table class="special" cellspacing="1" cellpadding="0">
+            <tr>
+                <td>Plik <small>[nowy zastąpi stary]</small>:</td>
+            </tr>
+            <tr>
+                <td><input class="file" type="file" name="plik" size="94" /></td>
+            </tr>
+            <tr>
+                <td>Nazwa wyświetlana:</td>
+            </tr>
+            <tr>
+                <td>
+                    {if $lang_multi}
+                        {section name=j1 loop=$JEZYK}
+                            {if $smarty.section.j1.first}
+                                <div class="zakladki">
+                                {/if}
+                                <div id="zakladka-label-filename-{$plik.id}-{$JEZYK[j1].code}" class="zakladka-label{if $smarty.section.j1.first} zakladka-label-selected{/if}">
+                                    <img src="{$TPL_URL}/img/{$JEZYK[j1].directory}/{$JEZYK[j1].code}.gif" alt="{$JEZYK[j1].name}" title="{$JEZYK[j1].name}" /> <small>[{$JEZYK[j1].name}]</small>
+                                </div>
+                                {if $smarty.section.j1.last}
+                                    <div class="clear"></div>
+                                </div>
+                            {/if}
+                        {/section}
+                        {section name=j1 loop=$JEZYK}
+                            {assign var=language_id value=$JEZYK[j1].id}
+                            <div id="zakladka-filename-{$plik.id}-{$JEZYK[j1].code}" class="zakladka" style="background-color: #ffffff;">
+                                <input class="text title-smallest" type="text" name="name[{$language_id}]" value="{$plik.opis[$language_id].name}" />
+                                <input type="hidden" name="name_old[{$language_id}]" value="{$plik.opis[$language_id].name}" />
+                            </div>
+                        {/section}
+                    {else}
+                        <input class="text title-small" type="text" name="name[{$lang_main.id}]" value="{$plik.opis[$lang_main.id].name}" />
+                        <input type="hidden" name="name_old[{$lang_main.id}]" value="{$plik.opis[$lang_main.id].name}" />
+                    {/if}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" name="id" value="{$plik.id}" />
+                    <input type="hidden" name="filename_old" value="{$plik.filename}" />
+                    <input type="hidden" name="parent_type" value="{$plik.parent_type}" />
+                    <input type="hidden" name="parent_id" value="{$plik.parent_id}" />
+                    <input type="hidden" name="action" value="save_plik" />
+                    <input class="submit" type="submit" name="submit" value="Zapisz zmiany" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

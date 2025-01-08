@@ -1,0 +1,18 @@
+<!-- SECTION PRIZE KRAKDENT 2023 -->
+<section class="prize">
+    <div class="wrapper">
+        <div class="prize__container">
+            <div class="prize__container__information">
+                {if $block.title}
+                <h{$block.h_type} class="prize__container__information__title">{$block.title}</h{$block.h_type}>
+                {/if}
+                <p class="prize__container__information__text">
+                    {$block.content}
+                </p>
+            </div>
+            <div class="prize__container__image">
+                <img src="{$block.photo.source.photo_webp}" alt="{$block.title}" title="{$block.title}">
+            </div>
+        </div>
+    </div>
+</section>

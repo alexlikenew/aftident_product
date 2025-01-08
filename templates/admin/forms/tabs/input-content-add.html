@@ -1,0 +1,70 @@
+<div class="tab{if $tabActive} active{/if}" data-tab="content">
+  <div class="tab-wrapper">
+
+    <div class="content-block">
+
+      {foreach from=$languages item=lang}
+      <div class="form-grid" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if} style="margin-bottom: 40px;">
+      <div class="form-group grid-2">
+        <label for="title_{$lang.id}">Tytuł [{$lang.code}]:</label>
+        <input type="text" class="form-input" id="title_{$lang.id}" name="title[{$lang.id}]" value="">
+      </div>
+    </div>
+    {/foreach}
+    <div class="form-grid">
+      <div class="form-group grid-2">
+        <label for="input_name">Nazwa:</label>
+        <input type="text" class="form-input" id="input_name" name="name" value="" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-group-label">Typ pola</div>
+    </div>
+    <div class="form-grid">
+      {foreach from=$input_types item=type key=type_id}
+      <div class="form-group">
+        <label for="text_input_{$type_id}" class="check-icon">
+          <input id="text_input_{$type_id}" name="type_id" type="radio" value="{$type_id}" >
+          <span class="check-icon-img">
+                           <img src="{if $type.image}{$type.image}{else}/upload/blocks/types/8/zdjecie-675.jpg{/if}"><br />
+                        </span>
+          {$type.name}
+        </label>
+      </div>
+      {/foreach}
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+{if $languages|count > 1}
+<div class="content-panel{if $tabActive} active{/if}" data-tab="content">
+  <div class="content-block-title">Ustawienia</div>
+
+  <div class="form-group">
+    <label for="language">Wersja językowa</label>
+    <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+      {foreach from=$languages item=lang}
+      <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+      {/foreach}
+    </select>
+  </div>
+
+  {foreach from=$languages item=lang}
+  <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+  <input type="checkbox"
+         name="lang_active[{$lang.id}]"
+         id="switch_active_{$lang.id}"
+         class="switch-input switch-active"
+         checked="checked" />
+  <label for="switch_active_{$lang.id}" class="switch"></label>
+  Aktywna
+</div>
+{/foreach}
+
+</div>
+{else}
+<input type="hidden" name="lang_active[{$languages[0].id}]" value="1">
+{/if}

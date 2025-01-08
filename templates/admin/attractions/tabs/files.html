@@ -1,0 +1,127 @@
+<div class="tab{if $tab_selected=='files'} active{/if}" data-tab="files">
+    <div class="tab-wrapper">
+
+        {if $files}
+        <div class="content-block">
+            <h2 class="content-block-title">Pliki</h2>
+
+            <form method="post" enctype="multipart/form-data" action="{$smarty.server.PHP_SELF}">
+                <div class="list">
+                    <table class="list-table">
+                        <thead>
+                        <tr class="list-table-row list-table-head">
+                            <th style="width: 70px">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="1" name="mark_all" class="checkbox-mark-all"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </th>
+                            <th style="width: 90px">Lp.</th>
+                            <th style="width: 400px;">Nazwa</th>
+                            <th>Opcje</th>
+                        </tr>
+                        </thead>
+                        <tbody id="sortableList" data-url="{$smarty.server.PHP_SELF}" data-action="move_file">
+                        {foreach from=$files item=file name=aa}
+                        <tr class="list-table-row" data-id="{$file.id}">
+                            <td>
+                                <label class="checkbox-item list-check-item">
+                                    <input type="checkbox" value="1" name="list_item_{$file.id}"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>{$smarty.foreach.aa.iteration}</td>
+                            <td>
+                                <a href="{$file.url}" target="_blank">{$file.filename}</a>
+                            </td>
+                            <td>
+                                <div class="list-table-icon edit-file" data-id="{$file.id}" data-module="{$module_name}">
+                                    <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                                </div>
+                                <div class="list-table-icon" title="Kasuj" onclick="return confirmDelete('{$file.filename}', '?action=delete_file&amp;id={$file.id}&amp;parent_id={$item.id}&amp;moduleName={$module_name}');">
+                                    <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                                </div>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+        </div>
+        {/if}
+
+        <div class="content-block">
+            <h2 class="content-block-title">Dodaj pliki</h2>
+
+            <form method="post" enctype="multipart/form-data" action="/admin/module.php">
+                <div class="drop-container" id="dropContainer">
+                    <div class="icon">
+                        <img src="{$TPL_URL}/img/icons/icon-drop.svg" alt="">
+                    </div>
+                    <div class="text">Upuść plik tutaj <br> lub dodaj z komputera </div>
+                    <label class="button" for="file">
+                        + Dodaj plik
+                        <input type="file" name="plik" id="file">
+                    </label>
+                </div>
+
+                {foreach from=$languages item=lang}
+                <div class="form-grid form-grid-2" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                    <div class="form-group">
+                        <label for="name_{$lang.id}">Nazwa wyświetlana [{$lang.code}]:</label>
+                        <input type="text" class="form-input" id="name_{$lang.id}" name="name[{$lang.id}]" >
+                    </div>
+                </div>
+                {/foreach}
+
+                <div class="form-grid form-grid-2">
+                    <div class="form-group">
+                        <label for="language">Wersja językowa</label>
+                        <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+                            {foreach from=$languages item=lang}
+                            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid form-grid-2">
+                    {foreach from=$languages item=lang}
+                        <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                        <input type="checkbox"
+                               name="lang_active[{$lang.id}]"
+                               id="switch_file_{$lang.id}"
+                               class="switch-input switch-active" />
+                        <label for="switch_file_{$lang.id}" class="switch"></label>
+                        Aktywna
+                    </div>
+                {/foreach}
+                </div>
+                <br>
+                <br>
+
+
+                <div class="btn-row">
+                    <input type="hidden" name="parent_type" value="{$files_type}" />
+                    <input type="hidden" name="parent_id"   value="{$item.id}" />
+                    <input type="hidden" name="moduleName" value="{$module_name}" />
+                    <input type="hidden" name="action" value="add_plik" />
+                    <input class="btn btn-save" type="submit" name="submit" value="Dodaj plik" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal modal-file">
+    <div class="modal-bg"></div>
+    <div class="modal-content">
+        <div class="modal-close"></div>
+        <div class="modal-title">Edytuj</div>
+        <div class="modal-dynamic"></div>
+    </div>
+</div>

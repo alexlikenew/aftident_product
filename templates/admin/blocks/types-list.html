@@ -1,0 +1,60 @@
+<div class="content">
+    <div class="tab tab-list active">
+        <div class="tab-list-top">
+            <a href="module.php?moduleName=bloki&action=type_add" class="btn btn-primary">+ Dodaj nowy typ</a>
+        </div>
+       {* <div class="tab-list-top">
+            <a href="module.php?moduleName=bloki&action=show_main" class="btn btn-primary">Bloki uniwersalne</a>
+        </div>*}
+        <div class="list">
+            <form method="post" action="module.php?moduleName={$module_name}">
+
+                {if $articles}
+                <table class="list-table" >
+                    <thead>
+                    <tr class="list-table-row list-table-head">
+                        <th></th>
+                        <th>Tytuł</th>
+                        <th>Typ</th>
+                        <th>Ilość</th>
+                        <th>Klucz</th>
+                        <th>Szablon</th>
+                    </tr>
+                    </thead>
+                    <tbody {if isset($page_id) && $page_id} id="sortableList" data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}"  data-action="move" {/if}>
+                    {foreach from=$articles item=item name=aa}
+                    <tr class="list-table-row" data-id="{$item.id}">
+                        <td>
+                            <div class="list-table-image">
+                                <img src="{$item.photo.source.list}" >
+                            </div>
+                        </td>
+                        <td>
+                            <a href="module.php?moduleName={$module_name}&action=edit&amp;id={$item.id}">{$item.title}</a>
+                        </td>
+                        <td>{if $item.module_id == 0}Uniwersalny{else}{$modules[$item.module_id].name}{/if}</td>
+                        <td>{if isset($quantity[$item.id])}{$quantity[$item.id]}{else}0{/if}</td>
+                        <td>{$item.title_url}</td>
+                        <td>{$item.template_file}</td>
+                        <td>
+                            <a href="module.php?moduleName={$module_name}&action=type_edit&amp;id={$item.id}" class="list-table-icon" title="Edytuj">
+                                <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                            </a>
+                            {if !isset($quantity[$item.id])}
+                            <div class="list-table-icon delete-item" title="Kasuj" onclick="return confirmDelete('{$item.title}', '?moduleName={$module_name}&action=delete_type&amp;id={$item.id}');">
+                                <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                            </div>
+                            {/if}
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+                {/if}
+            </form>
+        </div>
+
+
+    </div>
+</div>
+{include file="modals/modal-delete.html"}

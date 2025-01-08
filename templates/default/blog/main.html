@@ -1,0 +1,68 @@
+<!-- MAIN PAGE -->
+<main>
+    <!-- SECTION KNOWLEDGE BASE -->
+    <section class="knowledge-base">
+        <div class="wrapper">
+            <div class="knowledge-base__container">
+                <h1 class="knowledge-base__container__title">{$module.subtitle}</h1>
+                <p class="knowledge-base__container__text">{$module.content_short}</p>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION NEW ARTICLE -->
+    <section class="newest-article">
+        <div class="wrapper">
+            <div class="newest-article__container">
+                <div class="newest-article__container__image">
+                    <img class="newest-article__container__image--mobile" src="{$last_added.0.photo.source.photo_webp}"
+                        alt="Zjęcie głowne artykułu" title="{$last_added.0.title}">
+                    <img class="newest-article__container__image--desktop" src="{$last_added.0.photo.source.photo_webp}"
+                        alt="Zjęcie głowne artykułu" title="{$last_added.0.title}">
+                </div>
+                <div class="newest-article__container__information">
+                    <p class="newest-article__container__information__heading">Najnowszy artykuł</p>
+                    <h2 class="newest-article__container__information__title">{$last_added.0.title}</h2>
+                    <p class="newest-article__container__information__text">{$last_added.0.content_short}</p>
+                    <a title="Przeczytaj pełny artykuł" class="newest-article__container__information__link"
+                        href="{$last_added.0.url}">Czytaj dalej</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION ARTICLES TABLE -->
+    <section class="articles">
+        <div class="wrapper">
+            <h2 class="articles__title">
+                Dowiedz się więcej!
+            </h2>
+            <!-- ARTICLES TABLE -->
+            <div class="articles__table">
+                <!-- SINGLE ARTICLE -->
+                {foreach from=$articles item=item}
+
+
+                <div class="articles__table__article">
+                    <div class="articles__table__article__image">
+                        <img loading="lazy" class="articles__table__article__image--mobile"
+                            src="{$item.photo.source.photo_webp}" alt="Miniaturne zdjęcie artykułu"
+                            title="{$item.title}">
+                        <img loading="lazy" class="articles__table__article__image--desktop"
+                            src="{$item.photo.source.photo_webp}" alt="Miniaturne zdjęcie artykułu"
+                            title="{$item.title}">
+                    </div>
+                    <div class="articles__table__article__information">
+                        <p class="articles__table__article__information__date">{$item.date_add}</p>
+                        <h3 class="articles__table__article__information__title"><a href="{$item.url}"
+                                title="{$item.title}">{$item.title}</a>
+                        </h3>
+                        <!-- <p class="articles__table__article__information__text">{$item.content_short}</p> -->
+                    </div>
+                </div>
+                {/foreach}
+            </div>
+
+            {include file="misc/pagination.html"}
+        </div>
+    </section>
+
+</main>

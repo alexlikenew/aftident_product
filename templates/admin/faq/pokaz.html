@@ -1,0 +1,74 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <div class="action_buttons">
+        <a href="?action=add" class="przycisk" title="Nowe pytanie"><strong>Dodaj nowe pytanie</strong></a>
+        <div class="clear"></div>
+    </div>
+
+    <table class="special" cellspacing="1" cellpadding="0">
+        <tbody>
+            {section name=a1 loop=$articles}
+                {if $smarty.section.a1.first}
+                <thead>
+                    <tr>
+                        <th width="380px;">Tytuł i krótka treść</th>
+                        <th width="90px;">Data dodania</th>
+                        <th width="70px;">Widoczna</th>
+                        <th width="70px;">Galeria</th>
+                        <th>Opcje</div>
+                    </tr>
+                </thead>
+                <tbody>
+                {/if}
+                {if $smarty.section.a1.index is odd}
+                    <tr class="shadow_dark">
+                    {else}
+                    <tr class="shadow_light">
+                    {/if}
+                    <td width="380px;">
+                        <a href="?action=edit&amp;id={$articles[a1].id}">
+                            {if $articles[a1].auth==1}
+                                <img src="{$BASE_URL}/templates/admin/img/encrypted.png" alt="Zabezpieczona hasłem" />
+                            {/if}
+                            <b>{$articles[a1].title}</b>
+                        </a>
+                        <br />
+                        <span>{$articles[a1].content_short}</span>
+                    </td>
+                    <td class="center not-important" width="90px">{$articles[a1].date_add}</td>
+                    <td class="center" width="70px;">
+                        {if $articles[a1].active==1}
+                            <a href="?action=set_inactive&amp;id={$articles[a1].id}" title="Uczyń niewidoczną"><img src="{$TPL_URL}/img/visible.png" alt="Widoczna" title="Widoczna" /></a>
+                            {else}
+                            <a href="?action=set_active&amp;id={$articles[a1].id}" title="Uczyń widoczną"><img src="{$TPL_URL}/img/novisible.png" alt="Niewidoczna" title="Niewidoczna" /></a>
+                            {/if}
+                    </td>
+                    <td class="center" width="70px;">
+                        {if $articles[a1].gallery_id>0}
+                            <img src="{$TPL_URL}/img/visible.png" alt="Dołączona galeria: {$articles[a1].gallery_id}" title="Dołączona galeria: {$articles[a1].gallery_id}" />
+                        {else}
+                            <img src="{$TPL_URL}/img/novisible.png" alt="Brak galerii" title="Brak galerii" />
+                        {/if}
+                    </td>
+                    <td class="opcje">
+                        <a href="?action=delete&amp;id={$articles[a1].id}" title="Kasuj" onclick="return confirmDelete()"><img src="{$BASE_URL}/templates/admin/img/delete.png" alt="Kasuj" /></a>
+                        <a href="?action=edit&amp;id={$articles[a1].id}" title="Edytuj"><img src="{$BASE_URL}/templates/admin/img/edit.png" alt="Edytuj" /></a>
+                        <a href="{$articles[a1].url}" target="_blank" title="Podgląd"><img src="{$BASE_URL}/templates/admin/img/html.png" alt="Podgląd online" /></a>
+                    </td>
+                </tr>
+                {if $smarty.section.m1.last}
+                </tbody>
+            {/if}
+        {sectionelse}
+            <tr>
+                <td class="center">Brak pytań w bazie. Aby stworzyć nowe pytanie użyj opcji powyżej.</td>
+            </tr>
+        {/section}
+        </tbody>
+    </table>
+
+    {if $pages>1}
+        {include file="misc/stronicowanie.html"}
+    {/if}
+</div>

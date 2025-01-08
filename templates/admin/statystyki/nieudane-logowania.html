@@ -1,0 +1,38 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    {section name=l loop=$log}
+        {if $smarty.section.l.first}
+            <table cellspacing="1" class="special">
+                <thead>
+                    <tr>
+                        <th width="1%" align="center">{$LANG.LP}</th>
+                        <th>{$LANG.LOGIN}</th>
+                        <th>{$LANG.HASLO}</th>
+                        <th>{$LANG.POWOD_ODRZUCENIA}</th>
+                        <th>{$LANG.DATA}</th>
+                        <th>{$LANG.HOST}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {/if}
+                <tr class="{cycle values="shadow_dark,shadow_light"}">
+                    <td align="center">{$smarty.section.l.iteration+$interval}.</td>
+                    <td><b>{$log[l].login}</b></td>
+                    <td class="not-important">{$log[l].pass}</td>
+                    <td>{$log[l].reason}</td>	
+                    <td class="center"><span class="not-important">{$log[l].date_add}</span></td>
+                    <td class="center"><span class="not-important">{$log[l].host}</span></td>
+                </tr>
+                {if $smarty.section.l.last}
+                </tbody>
+            </table>
+        {/if}
+    {sectionelse}
+    <p class="center error">{$LANG.BRAK_WPISOW_W_BAZIE}</p>
+    {/section}
+
+    {if $pages>1}
+        {include file="misc/stronicowanie.html"}
+    {/if}
+</div>

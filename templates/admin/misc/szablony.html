@@ -1,0 +1,83 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <div class="info">{$LANG._SZABLONY_INFO}</div>
+    <div class="info">{$LANG._SZABLONY_INFO2} <b>{$BASE_URL}/templates</b> {$LANG._SZABLONY_INFO3}</div>
+
+    <hr />
+
+    <form class="formularz" method="post">
+        <p align="center">
+            {$LANG.WYBIERZ_DOMYSLNY_SZABLON}: 
+            <select name="template" onchange="this.form.submit()">
+                {section name=t0 loop=$templates}
+                    {if $templates[t0].ready==1}
+                        <option value="{$templates[t0].name}"{if $currTpl==$templates[t0].name} selected="true"{/if}>
+                            {$templates[t0].name}</option>
+                        {/if}	
+                    {/section}
+            </select>
+            <input class="submit" type="submit" value="{$LANG.ZAPISZ}" />
+            <input type="hidden" name="action" value="save" /> 
+        </p>
+    </form>
+
+
+    <table class="special" cellspacing="1" cellpadding="0">
+        <thead>
+            <tr>
+                <th>{$LANG.NAZWA_SZABLONU}</th>
+                <th align="center">{$LANG.KATALOG_KOMPILACJI}</th>
+                <th align="center">{$LANG.KATALOG_CACHE}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {section name=t1 loop=$templates}
+                {if $smarty.section.t1.index is odd}
+                    {if $currTpl==$templates[t1].name}
+                        <tr class="shadow_selected">
+                        {else}
+                        <tr class="shadow_dark">
+                        {/if}
+                    {else}
+                        {if $currTpl==$templates[t1].name}
+                        <tr class="shadow_selected">
+                        {else}
+                        <tr class="shadow_dark">
+                        {/if}
+                    {/if}
+                    <td>
+                        {if $templates[t1].ready==true}
+                            <a href="{$BASE_URL}/index.php?tpl={$templates[t1].name}" target="_blank" title="{$LANG.PODGLAD}">
+                                <img src="{$BASE_URL}/templates/admin/img/html.png" alt="{$LANG.PODGLAD}" />
+                                <span> {$templates[t1].name}</span>
+                            </a>
+                        {else}
+                            <span>{$templates[t1].name}</span>
+                        {/if}
+                    </td>
+                    <td align="center">
+                        {if $templates[t1].compile}
+                            <span class="green_font">{$LANG.OK}</span>
+                        {else}
+                            <span class="red_font">
+                                _SZABLONY_BLAD_UPRAWNIEN
+                                {$ROOT_PATH}/templates/_compile/{$templates[t0].name}
+                            </span>
+                        {/if}
+                    </td>
+                    <td align="center">
+                        {if $templates[t1].cache}
+                            <span class="green_font">{$LANG.OK}</span>
+                        {else}
+                            <span class="red_font">
+                                _SZABLONY_BLAD_UPRAWNIEN
+                                {$ROOT_PATH}/templates/_cache/{$templates[t0].name}
+                            </span>
+                        {/if}
+                    </td>
+                </tr>
+            {/section}
+        </tbody>
+    </table>
+</div>

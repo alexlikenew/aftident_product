@@ -1,0 +1,32 @@
+<ul class="d1">
+    {foreach from=$map name=n1 key=k1 item=i1}
+        <li class="s">{$mm[$k1].nazwa}</li>
+        <ul class="d2">
+            {foreach from=$i1 name=n2 key=k2 item=i2}
+                {if $i2.name}
+                    <li {if $i2.submenu}class="s"{/if}>
+                        <a href="{$i2.url}" title="{$i2.name}" {if $i2.blank==1}target="_blank"{/if}>
+                            <span>{$i2.name} (</span>
+                            {if $i2.type == $types.url}
+                                <span>Adres zewnętrzny: </span>
+                            {elseif $i2.type == $types.page}
+                                <span>Podstrona: </span>
+                            {elseif $i2.type == $types.module}
+                                <span>Moduł: </span>
+                            {/if}
+                            {if $i2.type == $types.url}
+                                <span>{$i2.url}</span>
+                            {else}
+                                <span>{$i2.select.title}</span>
+                            {/if}
+                            </span>)</span>
+                        </a>
+                    </li>
+                    {if $i2.submenu}
+                        {include file="menu/tree_submenu.html" submenu=$i2.submenu}
+                    {/if}
+                {/if}
+            {/foreach}
+        </ul>
+    {/foreach}
+</ul>

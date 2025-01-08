@@ -1,0 +1,59 @@
+<style>@import url("{$TPL_URL}/css/news.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+<style>@import url("{$TPL_URL}/css/inspirations.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+<div class="container-wide">
+    {include file="misc/breadcrumbs.html"}
+</div>
+
+<main class="inspiration-page">
+    <h1 class="inspiration-page-title container-wide">{$article.title}</h1>
+    <h1 class="inspiration-page-subtitle container-wide">{$article.subtitle}</h1>
+
+    <div class="inspiration-page-content container">
+        <div class="inspiration-page-image">
+            {if $article.photo}
+            <picture>
+                {if $article.photo.source.photo_webp}
+                <source srcset="{$article.photo.source.webp}" type="image/webp">
+                {/if}
+                <source srcset="{$article.photo.source.photo}" type="{$block.photo.params.type}" >
+                <img loading="lazy" src="{$article.photo.source.photo}" alt="{$block.title}">
+            </picture>
+            {else}
+            <picture>
+                <img src="{$TPL_URL}/img/article-image.png" alt="Chutor Kozacki">
+            </picture>
+            {/if}
+        </div>
+
+        <div class="inspiration-page-text">
+            {$article.content}
+        </div>
+    </div>
+</main>
+
+<div class="container-wide">
+    {if $article.products}
+    <div class="product-other">
+        <h4 class="product-other-title">
+            {$LANG.INSPIRACJE_POWIAZANE_PRODUKTY}
+        </h4>
+
+        <div class="products-list">
+            {foreach from=$article.products item=item}
+            {include file="products/product-card.html"}
+            {/foreach}
+        </div>
+    </div>
+    {/if}
+
+    {include file="misc/news-other.html"}
+</div>
+
+{if $module.content}
+<div class="page-bottom">
+    <div class="container">
+        {$module.content}
+    </div>
+</div>
+{/if}

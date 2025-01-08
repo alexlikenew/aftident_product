@@ -1,0 +1,78 @@
+<style>@import url("{$TPL_URL}/css/news.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+<header class="page-header">
+    <div class="page-header-image">
+        {if $module.photo}
+        <picture>
+            {if $module.photo.source.photo_webp}
+            <source srcset="{$module.photo.source.photo_webp}" type="image/webp">
+            {/if}
+            <source srcset="{$module.photo.source.photo}" type="{$module.photo.params.type}">
+            <img src="{$module.photo.source.photo}" alt="{$module.title}">
+        </picture>
+        {else}
+        <picture>
+            <source srcset="{$TPL_URL}/img/page-header.avif" type="image/avif">
+            <source srcset="{$TPL_URL}/img/page-header.png" type="image/png">
+            <img src="{$TPL_URL}/img/page-header.png" alt="{$module.title}">
+        </picture>
+        {/if}
+    </div>
+
+    <div class="page-header-overlay"></div>
+
+    <h1 class="page-title">{$module.title}</h1>
+
+    {include file="misc/reservation.html"}
+</header>
+
+<main class="page news">
+    <div class="page-frame page-frame--left">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-3-left.svg" alt="Chutor Kozacki">
+    </div>
+    <div class="page-frame page-frame--right">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-3-right.svg" alt="Chutor Kozacki">
+    </div>
+
+    <div class="container">
+        {include file="misc/breadcrumbs.html"}
+
+
+        <div class="news-grid">
+            {foreach from=$articles item=item}
+            <div class="article-card">
+                <div href="{$item.url}" class="image">
+                    {if $item.photo}
+                    <picture>
+                        {if $item.photo.source.photo_webp}
+                        <source srcset="{$item.photo.source.photo_webp}" type="image/webp">
+                        {/if}
+                        <source srcset="{$item.photo.source.photo}" type="{$item.photo.params.type}" >
+                        <img loading="lazy" src="{$item.photo.source.photo}" alt="{$item.title}">
+                    </picture>
+                    {/if}
+                </div>
+
+                <a href="{$item.url}" class="overlay" title="{$item.title}"></a>
+                <div class="content">
+                    <div class="title">{$item.title}</div>
+                    <div class="hidden">
+                        <div class="text">{$item.content_short}</div>
+                        <a href="{$item.url}" class="btn btn-primary">Zobacz więcej</a>
+                    </div>
+                </div>
+            </div>
+            {/foreach}
+        </div>
+
+    </div>
+
+
+    <div class="page-bottom">
+        <picture>
+            <source srcset="{$TPL_URL}/img/page-bottom-2.avif" type="image/avif">
+            <source srcset="{$TPL_URL}/img/page-bottom-2.png" type="image/png">
+            <img src="{$TPL_URL}/img/page-bottom-2.png" alt="{$page.title}">
+        </picture>
+    </div>
+</main>

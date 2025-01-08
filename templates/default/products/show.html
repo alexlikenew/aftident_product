@@ -1,0 +1,121 @@
+<style>@import url("{$TPL_URL}/css/product-page.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+<div class="container">
+    {include file="misc/breadcrumbs.html"}
+</div>
+
+<main class="product">
+    <div class="product-top container">
+        <div class="product-gallery">
+            <div id="product-gallery" class="swiper gallery-top">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="{if $product.photo}{$product.photo.source.photo_webp}{else}{$TPL_URL}/img/product-img.png{/if}" class="image" data-fslightbox="product-top" data-photo="{$item.id}">
+                            <picture>
+                                <img src="{if $product.photo}{$product.photo.source.photo_webp}{else}{$TPL_URL}/img/product-img.png{/if}" alt="{$product.title}">
+                            </picture>
+                        </a>
+                    </div>
+                    {if isset($product.gallery) && $product.gallery}
+                    {foreach from=$product.gallery.photos item=photo}
+                        <div class="swiper-slide">
+                            <a href="{if isset($photo.src) && $photo.src}{$photo.src.source.photo_webp}{else}{$TPL_URL}/img/product-img.png{/if}" class="image" data-fslightbox="product-top" data-photo="{$item.id}">
+                                <picture>
+                                    <img src="{if isset($photo.src) && $photo.src}{$photo.src.source.photo_webp}{else}{$TPL_URL}/img/product-img.png{/if}" alt="{$product.title}">
+                                </picture>
+                            </a>
+                        </div>
+                    {/foreach}
+                    {/if}
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            {if isset($product.gallery) && $product.gallery}
+            <div id="product-gallery-thumbs" class="swiper gallery-thumbs">
+                <div class="swiper-wrapper">
+                    {foreach from=$product.gallery.photos item=photo}
+                    <div class="swiper-slide image">
+                        <picture>
+                            <img src="{if isset($photo.src) && $photo.src}{$photo.src.source.photo_webp}{else}{$TPL_URL}/img/product-3d.png{/if}" alt="{$product.title}">
+                        </picture>
+                    </div>
+                    {/foreach}
+                </div>
+            </div>
+            {/if}
+
+        </div>
+
+        <div class="product-info">
+            <h1 class="product-title">{$product.title}</h1>
+            <h2 class="product-subtitle">{$product.code}</h2>
+
+            <div class="product-text">
+                {$product.content_short}
+            </div>
+
+            <div class="product-ask">
+                <h3 class="product-ask-title">{$LANG.PRODUKTY_ZAKUP_TITLE}</h3>
+
+                <div class="product-text">
+                    {$LANG.PRODUKTY_ZAKUP_TXT}
+                </div>
+
+                <a href="/kontakt" class="btn btn-outline">
+                    {$LANG.PRODUKTY_ZAKUP_BUTTON}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-main container">
+        <div class="content">
+            <div class="bg"></div>
+            <h3 class="product-main-title">{$product.title}</h3>
+
+            <div class="product-main-text">
+                {$product.content}
+            </div>
+        </div>
+        {if $product.features}
+            <div class="specifications">
+                {foreach from=$product.features name=productFeatures item=feature}
+                    <div class="bg"></div>
+                    <h4 class="specifications-title">{$feature.title}:</h4>
+                    {foreach from=$feature.items item=fvalue}
+                        {if $feature.with_values}
+                        <div class="specifications-row">
+                            <strong>{$fvalue.title}:</strong>
+                            <span>{$fvalue.value}</span>
+                        </div>
+                        {else}
+                        <div class="specifications-row">
+                            <span>{$fvalue.title}</span>
+                        </div>
+                        {/if}
+                    {/foreach}
+                    {if !$smarty.foreach.productFeatures.last}
+                        <div class="specifications-divider"></div>
+                    {/if}
+                {/foreach}
+            </div>
+        {/if}
+    </div>
+
+    <div class="product-other container">
+        <h4 class="product-other-title">
+            <span>{$LANG.PRODUKTY_INNE}</span> {$category.title}
+        </h4>
+
+        <div class="products-list">
+            {foreach from=$articles item=item }
+            {include file="products/product-card.html"}
+            {/foreach}
+        </div>
+    </div>
+</main>
+
+<div class="container">
+    {include file="misc/inspirations-other.html"}
+</div>

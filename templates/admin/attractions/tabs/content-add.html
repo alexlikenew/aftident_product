@@ -1,0 +1,78 @@
+<div class="tab{if $tabActive} active{/if}" data-tab="content">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">Opis</h2>
+            {foreach from=$languages item=lang}
+            <div class="form-grid form-grid-2" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                <div class="form-group">
+                    <label for="title_{$lang.id}">Tytuł [{$lang.code}]</label>
+                    <input type="text" class="form-input" id="title_{$lang.id}" name="title[{$lang.id}]" value="{$opis[$lang.id].title}">
+                </div>
+            </div>
+                <div class="form-grid form-grid-2" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+            </div>
+
+            <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                <label for="content_{$lang.id}">Treść [{$lang.code}]</label>
+                <textarea name="content[{$lang.id}]" id="content_{$lang.id}" class="text-editor">{$opis[$lang.id].content}</textarea>
+            </div>
+        {/foreach}
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="date_add">Data dodania:</label>
+                    <input type="text" class="form-input" id="date_add" name="date_add">
+                </div>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="gallery_id">Galeria</label>
+                    <select name="gallery_id" id="gallery_id" class="form-select">
+                        <option value="">- brak -</option>
+                        {foreach from=$galleries item=gallery}
+                        <option value="{$gallery.id}" {if $gallery.id == $item.gallery_id}selected{/if}>{$gallery.title}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            <div class="form-grid">
+                <label class="checkbox-item">
+                    Wyświetlaj na głównej
+                    <input type="checkbox" value="1" name="main" {if $item.main} checked {/if} />
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{if $languages|count > 1}
+<div class="content-panel{if $tabActive} active{/if}" data-tab="content">
+    <div class="content-block-title">Ustawienia</div>
+
+    <div class="form-group">
+        <label for="language">Wersja językowa</label>
+        <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+            {foreach from=$languages item=lang}
+            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <input type="checkbox"
+               name="lang_active[{$lang.id}]"
+               id="switch_active_{$lang.id}"
+               class="switch-input switch-active"
+               checked="checked" />
+        <label for="switch_active_{$lang.id}" class="switch"></label>
+    Aktywna
+    </div>
+    {/foreach}
+
+</div>
+{else}
+<input type="hidden" name="lang_active[{$languages[0].id}]" value="1">
+{/if}

@@ -1,0 +1,14 @@
+{
+  "class": "Klasa",
+  "id": "Id",
+  "value": "Wartość domyślna",
+  "readonly": "Tylko do odczytu",
+  "disabled": "Zablokowane",
+  "maxlength": "Maksymalna długość",
+  "autofocus": "Autofocus",
+  "size": "Długość",
+  "pattern": "Wzór",
+  "placeholder": "Przykład",
+  "required": "Wymagane",
+  "autocomplete": "Autocmplete"
+}

@@ -1,0 +1,35 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    {section name=w loop=$wyniki}
+        {if $smarty.section.w.first}
+            <table cellspacing="1" class="special">
+                <thead>
+                    <tr>
+                        <td width="1%" align="center">{$LANG.LP}</td>
+                        <td>{$LANG.WPISYWANA_FRAZA}</td>
+                        <td>{$LANG.ZNALEZIONYCH_WYNIKOW}</td>
+                        <td>{$LANG.ILOSC_WYSWIETLEN}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {/if}
+                <tr class="{cycle values="shadow_dark,shadow_light"}">
+                    <td align="center">{$smarty.section.w.iteration+$interval}.</td>
+                    <td><a href="{$wyniki[w].title_url}" target="_blank"><b>{$wyniki[w].keyword}</b></a></td>
+                    <td class="center important"><strong>{$wyniki[w].ilosc}</strong></td>
+                    <td class="center important"><strong>{$wyniki[w].count}</strong></td>
+                </tr>
+                {if $smarty.section.w.last}
+                </tbody>
+            </table>
+        {/if}
+    {sectionelse}
+        <p class="center error">{$LANG.BRAK_WPISOW_W_BAZIE}</p>
+    {/section}
+
+
+    {if $pages>1}
+        {include file="misc/stronicowanie.html"}
+    {/if}
+</div>

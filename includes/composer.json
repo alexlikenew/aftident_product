@@ -1,0 +1,24 @@
+{
+    "require": {
+        "smarty/smarty": "*",
+        "pear/cache_lite": "^1.8",
+        "phpmailer/phpmailer": "^6.5",
+        "hackzilla/password-generator": "^1.4",
+        "ext-json": "*",
+        "ext-curl": "*",
+        "ext-simplexml": "*",
+        "ext-mysqli": "*",
+        "ext-gd": "*",
+        "symfony/var-dumper": "^5.2",
+        "symfony/error-handler": "^5.2",
+        "openpayu/openpayu": "^2.2",
+        "monolog/monolog": "^2.2",
+        "gusapi/gusapi": "^5.3",
+        "phpoffice/phpspreadsheet": "^1.21",
+        "ext-openssl": "*",
+        "ministryofweb/php-osm-tiles": "^2.0",
+        "maxh/php-nominatim": "^2.3",
+        "paquettg/php-html-parser": "^3.1",
+        "divineomega/php-cli-progress-bar": "^2.1"
+    }
+}

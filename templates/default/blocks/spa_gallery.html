@@ -1,0 +1,33 @@
+<div class="block-gallery">
+
+    <div class="spa-gallery">
+        {foreach from=$block.gallery.photos item=item}
+        <div class="spa-gallery-item {if $item.content}with-content{/if}">
+            <a href="{$item.src.source.photo}" class="image" data-fslightbox="gallery" data-photo="{$g1.id}">
+                <picture>
+                    {if $item.src.source.photo_webp}
+                    <source srcset="{$item.src.source.photo_webp}" type="image/webp">
+                    {/if}
+                    <source srcset="{$item.src.source.photo}" type="{$item.src.params.type}">
+                    <img src="{$item.src.source.photo}" alt="{$item.alt}">
+                </picture>
+            </a>
+
+            {if $item.content}
+            <div class="content">
+                <div class="title">{$item.title}</div>
+
+                <div class="text">{$item.content}</div>
+
+                <div class="icon">
+                    <img src="{$TPL_URL}/img/quote.svg" alt="Chutor Kozacki">
+                </div>
+            </div>
+            {else}
+            <div class="title">{$item.title}</div>
+            {/if}
+        </div>
+        {/foreach}
+    </div>
+
+</div>

@@ -1,0 +1,50 @@
+<div>
+    <form method="post" enctype="multipart/form-data" action="{$smarty.server.PHP_SELF}" style="width: 450px;">
+        <div>
+
+            <div class="form-group">
+                <label for="language">Wersja językowa</label>
+                <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+                    {foreach from=$languages item=lang}
+                    <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+                    {/foreach}
+                </select>
+            </div>
+
+            {foreach from=$languages item=lang}
+                <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                    <input type="checkbox"
+                           name="lang_active[{$lang.id}]"
+                           id="switch_active_{$lang.id}"
+                           class="switch-input switch-active"
+                           {if $descriptions[$lang.id].active}checked="checked"{/if} />
+                    <label for="switch_active_{$lang.id}" class="switch"></label>
+                    Aktywna
+                </div>
+
+                <div class="form-grid form-grid" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                    <div class="form-group">
+                        <label for="blockTitle">Tytuł [{$lang.code}]:</label>
+                        <input type="text" class="form-input" id="blockTitle" name="blockTitle[{$lang.id}]" value="{$descriptions[$lang.id].title}">
+                    </div>
+
+                </div>
+                <div class="form-grid form-grid" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                    <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                        <label for="content_{$lang.id}">Treść [{$lang.code}]</label>
+                        <textarea name="content[{$lang.id}]" id="content_{$lang.id}" class="text-editor">{$descriptions[$lang.id].content}</textarea>
+                    </div>
+                </div>
+
+            {/foreach}
+
+            <div class="btn-row">
+                <input type="hidden" name="parent_id" value="{$block.id_product}" />
+                <input type="hidden" name="id" value="{$block.id}" />
+                <input type="hidden" name="action" value="save_block" />
+                <input type="hidden" name="moduleName" value="{$module_name}">
+                <input class="btn btn-save" type="submit" name="submit" value="Zapisz" />
+            </div>
+
+        </form>
+</div>

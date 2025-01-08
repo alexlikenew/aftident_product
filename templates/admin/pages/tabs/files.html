@@ -1,0 +1,95 @@
+<div class="tab{if $tab_selected=='files'} active{/if}" data-tab="files">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">Pliki</h2>
+
+            <form method="post" enctype="multipart/form-data" action="{$smarty.server.PHP_SELF}">
+                <div class="list">
+                    <table class="list-table">
+                        <thead>
+                        <tr class="list-table-row list-table-head">
+                            <th style="width: 70px">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="1" name="mark_all" class="checkbox-mark-all"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </th>
+                            <th style="width: 90px">Lp.</th>
+                            <th style="width: 400px;">Nazwa</th>
+                            <th>Opcje</th>
+                        </tr>
+                        </thead>
+                        <tbody id="sortableList" data-url="{$smarty.server.PHP_SELF}" data-action="move_file">
+                        {foreach from=$files item=file name=aa}
+                        <tr class="list-table-row" data-id="{$file.id}">
+                            <td>
+                                <label class="checkbox-item list-check-item">
+                                    <input type="checkbox" value="1" name="list_item_{$file.id}"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>{$smarty.foreach.aa.iteration}</td>
+                            <td>
+                                <a href="{$file.url}" target="_blank">{$file.filename}</a>
+                            </td>
+                            <td>
+                                <div class="list-table-icon edit-file" data-id="{$file.id}" data-module="{$module_name}">
+                                    <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                                </div>
+                                <a href="/admin/module.php?action=delete_file&amp;id={$file.id}&amp;parent_id={$item.id}&amp;moduleName={$module_name}" class="list-table-icon" title="Kasuj" onclick="return confirmDelete();">
+                                    <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                                </a>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="content-block">
+            <h2 class="content-block-title">Dodaj pliki</h2>
+
+            <form method="post" name="gal_zdjecia" enctype="multipart/form-data" action="/admin/module.php">
+                <div class="drop-container" id="dropContainer">
+                    <div class="icon">
+                        <img src="{$TPL_URL}/img/icons/icon-drop.svg" alt="">
+                    </div>
+                    <div class="text">Upuść plik tutaj <br> lub dodaj z komputera </div>
+                    <label class="button" for="file">
+                        + Dodaj plik
+                        <input type="file" name="plik" id="file">
+                    </label>
+                </div>
+
+                <div class="form-grid form-grid-2">
+                    <div class="form-group">
+                        <label for="name">Nazwa wyświetlana:</label>
+                        <input type="text" class="form-input" id="name" name="name[{$LANG_MAIN.id}]" >
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <input type="hidden" name="parent_type" value="{$files_type}" />
+                    <input type="hidden" name="parent_id"   value="{$item.id}" />
+                    <input type="hidden" name="moduleName" value="{$module_name}" />
+                    <input type="hidden" name="action" value="add_plik" />
+                    <input class="btn btn-save" type="submit" name="submit" value="Dodaj plik" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal modal-file">
+    <div class="modal-bg"></div>
+    <div class="modal-content">
+        <div class="modal-close"></div>
+        <div class="modal-title">Edytuj</div>
+        <div class="modal-dynamic"></div>
+    </div>
+</div>

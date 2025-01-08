@@ -1,0 +1,90 @@
+<div class="content">
+    <div class="tab tab-list active">
+
+        <div class="content-block">
+            <div class="content-block-title">Rejestr zmian</div>
+
+            <div class="list">
+                {if $items}
+                <table class="list-table">
+                    <thead>
+                    <tr class="list-table-row list-table-head">
+                        <th>Wykonana przez:</th>
+                        <th>Akcja</th>
+                        <th>Dotyczy</th>
+                        <th>Data</th>
+                        <th>Opcje</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach from=$items item=item name=aa}
+                    <tr class="list-table-row">
+                        <td style="padding-right: 20px;">{$item.login}</td>
+                        <td style="padding-right: 20px;">
+                            {if $item.action == 0}
+                            <div class="label-action label-action-add">Dodano</div>
+                            {elseif $item.action == 1}
+                            <div class="label-action label-action-edit">Zmieniono</div>
+                            {else}
+                            <div class="label-action label-action-delete">Usunięto</div>
+                            {/if}
+                        </td>
+                        <td style="padding-right: 20px;">{$item.data.moduleName} -> {$item.data.title[$LANG_MAIN.id]}</td>
+                        <td style="padding-right: 20px;">{$item.date_add}</td>
+                        <td>
+                            <div class="modal-open" style="color: #109CF1; cursor: pointer" data-modal-name="modal_{$item.id}">
+                                zobacz szczegóły
+                            </div>
+
+                            <div class="modal modal-register" data-modal="modal_{$item.id}">
+                                <div class="modal-bg"></div>
+                                <div class="modal-content">
+                                    <div class="modal-close"></div>
+                                    <div class="content-block-title">Szczegóły</div>
+                                    <div class="">
+                                        <div class="row">
+                                            <span class="row-title">Akcja</span>
+                                            <span class="row-content">
+                                                {if $item.action == 0}
+                                                <span class="label-action label-action-add">Dodano</span>
+                                                {elseif $item.action == 1}
+                                                <span class="label-action label-action-edit">Zmieniono</span>
+                                                {else}
+                                                <span class="label-action label-action-delete">Usunięto</span>
+                                                {/if}
+                                            </span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="row-title">Wykonana przez</div>
+                                            <div class="row-content">{$item.login}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="row-title">Data wykonania</div>
+                                            <div class="row-content">{$item.date_add}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="row-title">Dotyczy</div>
+                                            <div class="row-content">{$item.data.moduleName} -> {$item.data.title[$LANG_MAIN.id]}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="row-title">Dodatkowe uwagi</div>
+                                            <div class="row-content">{$item.method}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+                {else}
+                <div>Brak</div>
+                {/if}
+            </div>
+            {if $pages>1}
+            {include file="misc/pagination.html"}
+            {/if}
+        </div>
+    </div>
+</div>

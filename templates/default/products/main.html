@@ -1,0 +1,84 @@
+<style>@import url("{$TPL_URL}/css/products.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+
+<header class="products-header">
+    <div class="image">
+        {if $module.photo}
+        <picture>
+            {if $module.photo.source.photo_webp}
+            <source srcset="{$module.photo.source.photo_webp}" type="image/webp">
+            {/if}
+            <source srcset="{$module.photo.source.photo}" type="{$module.photo.params.type}">
+            <img src="{$module.photo.source.photo}" alt="{$module.title}">
+        </picture>
+        {else}
+        <picture>
+            <img src="{$TPL_URL}/img/products-header.png" alt="Chutor Kozacki">
+        </picture>
+        {/if}
+    </div>
+
+    <div class="overlay">
+        <div class="container">
+            {include file="misc/breadcrumbs.html"}
+
+            <h1 class="title">{$LANG.PRODUKTY_NAGLOWEK}</h1>
+        </div>
+    </div>
+</header>
+
+<main class="products container">
+    <div class="products-sidebar">
+        <div class="products-sidebar-row row-head">
+            <div class="title head">
+                {$LANG.CATEGORIES}
+                <img src="{$TPL_URL}/img/icons/icon-triangle-menu.svg" class="products-sidebar-icon" alt="Chutor Kozacki">
+            </div>
+        </div>
+
+        <div class="products-sidebar-sub">
+            {foreach from=$categories.categories item=cat}
+            <div class="products-sidebar-row">
+                <a href="{$cat.url}" class="title">{$cat.title}</a>
+               {* <span class="number">{if isset($categories.products_quantity[$cat.id]) && $categories.products_quantity[$cat.id]}{$categories.products_quantity[$cat.id]}{else}0{/if}</span>*}
+            </div>
+            {/foreach}
+        </div>
+    </div>
+
+    <div class="products-main">
+        <div class="products-subcategories">
+            {foreach from=$categories.categories item=category}
+            <a href="{$category.url}" class="item" title="{$category.title}">
+                <div class="title">{$category.title}</div>
+
+                <div class="image">
+                    <picture>
+                        {if $category.photo.source.photo_webp}
+                        <source srcset="{$category.photo.source.photo_webp}" type="image/webp">
+                        {/if}
+                        <source srcset="{$category.photo.source.photo}" type="{$category.photo.params.type}">
+                        <img src="{$category.photo.source.photo}" alt="{$category.title}">
+                    </picture>
+                </div>
+            </a>
+            {/foreach}
+        </div>
+
+        <div class="products-list grid-3">
+            {foreach from=$products item=$item}
+            {include file="products/product-card.html"}
+            {/foreach}
+        </div>
+
+        {include file="misc/pagination.html"}
+    </div>
+</main>
+
+{if $module.content}
+<div class="page-bottom">
+    <div class="container">
+        {$module.content}
+    </div>
+</div>
+{/if}

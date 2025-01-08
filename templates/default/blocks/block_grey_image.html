@@ -1,0 +1,22 @@
+<div class="block-grey-img">
+    <div class="block-grey-frame block-grey-frame--right">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-2-right-bottom.svg" alt="Chutor Kozacki">
+    </div>
+
+    {if $block.photo}
+    <div class="image">
+        <picture>
+            {if $block.photo.source.photo_webp}
+            <source srcset="{$block.photo.source.photo_webp}" type="image/webp">
+            {/if}
+            <source srcset="{$block.photo.source.photo}" type="{$block.photo.params.type}" >
+            <img loading="lazy" src="{$block.photo.source.photo}" alt="{$block.title}">
+        </picture>
+    </div>
+    {/if}
+
+    <div class="quote">
+        {$block.content}
+    </div>
+</div>
+

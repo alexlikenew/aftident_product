@@ -1,0 +1,139 @@
+.list-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 65px;
+  padding: 15px 30px;
+
+  &-panel {
+    display: flex;
+    align-items: center;
+
+    &-back {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 300;
+
+      img { margin-right: 10px}
+    }
+
+    &-count {
+      display: none;
+
+      &.show { display: flex }
+    }
+  }
+
+  &-filter {
+    &__item {
+
+    }
+
+    &__select {
+      border: none;
+      color: $color-primary;
+    }
+  }
+}
+
+.list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+
+  .center { @include flex-center; }
+
+  thead {
+    th {
+      color: #848484;
+      font-size: 13px;
+      font-weight: 300;
+      padding: 5px 0;
+
+      &:first-child { padding-left: 30px}
+      &:last-child { padding-right: 30px}
+    }
+  }
+
+  &-row {
+    border-bottom: 1px solid #F2F2F2;
+
+    td {
+      height: 60px;
+      font-size: 14px;
+      padding: 5px 0;
+
+      &:first-child { padding-left: 30px}
+      &:last-child { padding-right: 30px}
+    }
+  }
+
+  &-image {
+    width: 55px;
+    height: 55px;
+    border: 1px solid #F2F2F2;
+    @include flex-center;
+    position: relative;
+
+    img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    &__zoom {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 10;
+      width: 150px;
+      height: 150px;
+      border: 1px solid #F2F2F2;
+      background-color: white;
+      filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.15));
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      img { @include image-contain}
+    }
+
+    &:hover { cursor: pointer; }
+    &:hover > &__zoom {
+      display: flex;
+    }
+  }
+
+  &-icon {
+    display: inline-block;
+
+    &:hover { cursor: pointer}
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    img {
+      width: 24px;
+    }
+  }
+}
+
+.label-action {
+  display: inline-block;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  padding: 5px 10px;
+
+  &-add {
+    background: #5BAC4F;
+  }
+
+  &-edit {
+    background: #EE821E;
+  }
+
+  &-delete {
+    background: #B71C1C;
+  }
+}

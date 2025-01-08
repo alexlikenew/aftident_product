@@ -1,0 +1,64 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+
+        <div class="tab active" data-tab="content">
+            <div class="tab-wrapper">
+                <div class="content-block">
+                    <h2 class="content-block-title">Opis</h2>
+
+                    <div class="form-grid form-grid">
+                        <div class="form-group">
+                            <label for="name">Nazwa:</label>
+                            <input type="text" class="form-input" id="name" name="name" value="{$item.name}">
+                        </div>
+                        <div class="form-group">
+                            <label for="code">Kod:</label>
+                            <input type="text" class="form-input" id="code" name="code" value="{$item.code}">
+                        </div>
+                    </div>
+                    <div class="form-grid-2">
+
+                        <div class="form-group">
+                            <label for="domain">Domena:</label>
+                            <input type="text" class="form-input" id="domain" name="domain" value="{$item.domain}">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <div class="form-group-label">Opcje dodatkowe</div>
+                    <br>
+
+                    <div class="form-grid">
+                        <label class="checkbox-item">
+                            Główny
+                            <input type="checkbox" name="main" value="1" {if $item.main}checked="checked"{/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-item">
+                            Aktywny
+                            <input type="checkbox" name="active" value="1" {if $item.active}checked="checked"{/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-item">
+                            Generuj tytuły
+                            <input type="checkbox" name="gen_title" value="1" {if $item.gen_title}checked="checked"{/if} />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="return" value="{$back}" />
+            <input type="hidden" name="id" value="{$item.id}" />
+            <input type="hidden" name="moduleName" value="{$module_name}">
+            <input type="submit" class="btn btn-save" name="action" value="Zapisz">
+            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+        </div>
+    </form>
+
+</div>
+

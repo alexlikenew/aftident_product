@@ -1,0 +1,145 @@
+/*
+ *		plik:		css/logowanie.css
+ *		autor: 		Technetium [Tc]
+ *							Przemek Szalko
+ *							01 czerwiec 2007
+ *		modify:		Marek Kleszyk
+ *							05 luty 2009
+ *		system:		T.CMS-4.0-SEO
+ */
+
+			/* --------- standardowe ---------- */
+
+.clear { clear: both; }
+.center { text-align: center; }
+.left { text-align: left; }
+.right { text-align: right; }
+.hidden { display: none; }
+.error { color: #c00; }
+
+img { border: none; }
+a:focus { -moz-outline-style: none; }
+a, a:hover, a:visited, a:active { text-decoration: none; color: #61675a; }
+
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #e6e8e2;
+	text-align: center;
+	font-family: "Tahoma", "Verdana", "Helvetica", "Arial", sans-serif;
+	font-size: 8pt;
+	color: #868d88;
+}
+
+#container {
+	margin: 0 auto;
+	padding: 0;
+	width: 404px;
+	height: auto;
+	text-align: center;
+}
+
+#container #top1 {
+	margin-top: 76px;
+	width: 220px;
+	height: 69px;
+	background-image: url(../img/admin-top.jpg);
+	background-repeat: no-repeat;
+	background-color: #545955;
+	float: left;
+}
+
+#container #top2 {
+	margin-top: 76px;
+	width: 184px;
+	height: 69px;
+	background-image: url(../img/admin-top.jpg);
+	background-repeat: no-repeat;
+	background-color: #545955;
+	float: left;
+}
+
+#container #top1 a.logo, #container #top2 img.wer {
+	position: relative;
+	top: 13px;
+	left: 18px;
+	float: left;
+}
+
+#container #logowanie {
+	margin-top: 7px;
+	padding-top: 7px;
+	width: 230px;
+	height: 20px;
+	background-image: url(../img/admin-logowanie.jpg);
+	background-repeat: no-repeat;
+	background-color: #CCD0AF;
+	color: #61675a;
+	float: left;
+}
+
+#container #domena {
+	margin-top: 7px;
+	padding-top: 7px;
+	width: 174px;
+	height: 20px;
+	background-color: #CCD0AF;
+	color: #61675a;
+	font-weight: bold;
+	float: left;
+}
+
+#container #content {
+	width: 404px;
+	height: 200px;
+	background-color: #fff;
+	border-bottom: 4px solid #ccd0af;
+	float: left;
+}
+
+#container #content .error {
+	padding: 3px;
+	width: 398px;
+	height: 60px;
+	display: block;
+}
+
+.form-login {
+	margin: 20px 60px;
+	padding: 0;
+	display: block;
+}
+
+.pola {
+	padding: 0;
+	margin: 0;
+	float: left;
+}
+
+.image {
+	margin-top: 18px;
+	margin-left: 30px;
+	padding: 0;
+	float: left;
+}
+
+input.text {
+	width: 100px;
+	height: 16px;
+	border: 1px solid #dadada;
+	padding: 3px;
+	margin: 5px;
+}
+
+#container #footer {
+	padding-top: 10px;
+	width: 404px;
+	height: 20px;
+	float: left;
+}
+
+#container #footer a {
+	color: #868d88;
+}

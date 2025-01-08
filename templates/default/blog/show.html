@@ -1,0 +1,68 @@
+<main>
+    <!-- SECTION ARTICLE  -->
+    <section class="single-article">
+        <div class="wrapper">
+            <!-- ARTICLE HEADING -->
+            <div class="single-article__heading">
+                <div class="single-article__heading__information">
+                    <!-- ARTICLE TITLE -->
+                    <h1 class="single-article__heading__information__title">{$article.title}</h1>
+                    <!-- ARTICLE SHORT INFORMATION -->
+                    <div class="single-article__heading__information__text">{$article.content_short}
+                    </div>
+                </div>
+                <div class="single-article__heading__image">
+                    <img class="single-article__heading__image--mobile" src="{$article.photo.source.photo_webp}"
+                        alt="Główne zdjęcię artykułu" title="{$article.title}">
+                    <img class="single-article__heading__image--desktop" src="{$article.photo.source.photo_webp}"
+                        alt="Główne zdjęcię artykułu" title="{$article.title}">
+                </div>
+            </div>
+            <div class="single-article__divider"></div>
+            <!-- ARTICLE MAIN CONTENT -->
+            <div class="single-article__content">
+                <!-- ARTICLE MAIN INFORMATION -->
+                <div class="single-article__content__text">
+
+                    {if $article.blocks} {foreach from=$article.blocks item=block} {if
+                    isset($block.items) && $block.items} {foreach from=$block.items
+                    item=block} {include file="blocks/{$block.template_file}.html"}
+                    {/foreach} {else} {include file="blocks/{$block.template_file}.html"}
+                    {/if} {/foreach} {/if}
+                    <!-- <img class="single-article__content__text__image" src="" alt=""> -->
+                </div>
+                <!-- ADRTICLE SIDE MENU WITH ARTICLES -->
+                <div class="single-article__content__articles">
+                    <p class="single-article__content__articles__heading">Zobacz również</p>
+                    <div class="single-article__content__articles__table">
+                        {foreach from=$last_added item=item}
+                        <!-- SINGLE ARTICLE -->
+                        <div class="single-article__content__articles__article">
+                            <!-- SINGLE ARTICLE IMAGE -->
+                            <div class="single-article__content__articles__article__image">
+                                <img class="single-article__content__articles__article__image--mobile"
+                                    src="{$item.photo.source.photo_webp}"
+                                    alt="Miniaturne zdjęcie artykułu {$item.title}" title="Przeczytaj artykuł!">
+                                <img class="single-article__content__articles__article__image--desktop"
+                                    src="{$item.photo.source.photo_webp}"
+                                    alt="Miniaturne zdjęcie artykułu {$item.title}" title="{$item.title}">
+                            </div>
+                            <!-- SINGLE ARTICLE INFORMATION -->
+                            <div class="single-article__content__articles__article__information">
+                                <p class="single-article__content__articles__article__information__date">{$item.date}
+                                </p>
+                                <h2 class="single-article__content__articles__article__information__title">
+                                    <a href="{$item.url}" title="{$item.title}">{$item.title}</a>
+                                </h2>
+                                <!-- <p class="single-article__content__articles__article__information__text">
+                                    {$item.content_short}
+                                </p> -->
+                            </div>
+                        </div>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

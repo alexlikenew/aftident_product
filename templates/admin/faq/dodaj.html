@@ -1,0 +1,340 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <div class="zakladki">
+        <div id="zakladka-label-glowna" class="zakladka-label{if $zakladka_selected == 'glowna'} zakladka-label-selected{/if}">Treść</div>
+        <div id="zakladka-label-seo" class="zakladka-label{if $zakladka_selected == 'seo'} zakladka-label-selected{/if}">SEO</div>
+        <div class="clear"></div>
+    </div>
+    <form method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+        <div id="zakladka-glowna" class="zakladka">
+            <table class="special" cellspacing="1" cellpadding="0">
+                {if $lang_multi}
+                    <tr>
+                        <th>Wersje językowe:</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {section name=j1 loop=$JEZYK}
+                                {if $smarty.section.j1.first}
+                                    <div class="zakladki">
+                                    {/if}
+                                    <div id="zakladka-label-title-{$JEZYK[j1].code}" class="zakladka-label{if $smarty.section.j1.first} zakladka-label-selected{/if}">
+                                        <img src="{$TPL_URL}/img/{$JEZYK[j1].directory}/{$JEZYK[j1].code}.gif" alt="{$JEZYK[j1].name}" title="{$JEZYK[j1].name}" /> <small>[{$JEZYK[j1].name}]</small>
+                                    </div>
+                                    {if $smarty.section.j1.last}
+                                        <div class="clear"></div>
+                                    </div>
+                                {/if}
+                            {/section}
+                            {section name=j1 loop=$JEZYK}
+                                {assign var=language_id value=$JEZYK[j1].id}
+                                <div id="zakladka-title-{$JEZYK[j1].code}" class="zakladka">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input id="lang-active-{$language_id}" type="checkbox" name="lang_active[{$language_id}]" value="1" checked="true" />
+                                                    <label for="lang-active-{$language_id}">aktywna w tej wersji językowej</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tytuł pytania:</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input class="text title-smallest" type="text" name="title[{$language_id}]" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Treść:</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <textarea id="edytor_{$language_id}" class="tiny_mce tiny_mce-smallest" name="content[{$language_id}]"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {/section}
+                        </td>
+                    </tr>
+                {else}
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Tytuł pytania:</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input class="text title-small" type="text" name="title[{$lang_main.id}]" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Treść:</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <textarea id="edytor" class="tiny_mce-small" name="content[{$lang_main.id}]"></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" name="lang_active[{$lang_main.id}]" value="1" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                {/if}
+
+                <tr>
+                    <th>Opcje dodatkowe:</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="show_title" type="checkbox" name="show_title" value="1" checked="checked" />
+                        <label for="show_title">pokazuj tytuł</label><br />
+                        <input id="active" type="checkbox" name="active" value="1" checked="checked" />
+                        <label for="active">pokazuj podstronę w serwisie</label><br />
+                        {if $CONF.comments_active}
+                            <input type="checkbox" id="comments" name="comments" value="1" />
+                            <label for="comments">użytkownicy mogą komentować</label><br />
+                        {/if}
+                        <input id="auth" type="checkbox" name="auth" value="1" />
+                        <label for="auth"> dostępna tylko dla zalogowanych</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><strong>Galeria:</strong><br /><small>wybrana galeria będzie dołączona do artykułu</small></th>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="gallery_id">
+                            <option value="">- brak -</option>
+                            {section name="g" loop=$galleries}
+                                <option value="{$galleries[g].id}">{$galleries[g].title}</option>
+                            {/section}
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Zdjęcie: <small>[nie większe niż {$scale.width}x{$scale.height} px]</small></th>
+                </tr>
+                <tr>
+                    <td><input class="file" type="file" name="photo" size="80" /></td>
+                </tr>
+            </table>
+        </div>
+        <div id="zakladka-seo" class="zakladka">
+            <table class="special" cellspacing="1" cellpadding="0">
+                <tr>
+                    <td>
+                        <div class="seo-title"><strong>Opcje TITLE:</strong><br /><small>możliwość wyboru odpowiedniego TITLE w nagłówku strony</small></div>
+                        <div style="padding: 6px 0px;">
+                            <input type="radio" id="ot1" name="op_page_title" value="1" {if $opcje.op_page_title=='1'}checked="checked" {/if} />
+                            <label for="ot1">Konfiguracja główna CMS: <b>{$SEOCONF.page_title}</b></label><br />
+                            <input type="radio" id="ot2" name="op_page_title" value="2" {if $opcje.op_page_title=='2'}checked="checked" {/if} />
+                            <label for="ot2">Automatyczna z tytułu strony</label><br />
+                            <input type="radio" id="ot3" name="op_page_title" value="3" {if $opcje.op_page_title=='3'}checked="checked" {/if} />
+                            <label for="ot3">Automatyczna z tytułu strony + Konfiguracja główna CMS</label><br />
+                            <input type="radio" id="ot4" name="op_page_title" value="4" {if $opcje.op_page_title=='4'}checked="checked" {/if} />
+                            <label for="ot4">Ręczna [proszę niżej wpisać tekst]</label><br />
+                            <input type="radio" id="ot5" name="op_page_title" value="5" {if $opcje.op_page_title=='5'}checked="checked" {/if} />
+                            <label for="ot5">Ręczna [proszę niżej wpisać tekst] + Konfiguracja główna CMS</label><br />
+                        </div>
+                        {if $lang_multi}
+                            {section name=j2 loop=$JEZYK}
+                                {if $smarty.section.j2.first}
+                                    <div class="zakladki">
+                                    {/if}
+                                    <div id="zakladka-label-page-title-{$JEZYK[j2].code}" class="zakladka-label{if $smarty.section.j2.first} zakladka-label-selected{/if}">
+                                        <img src="{$TPL_URL}/img/{$JEZYK[j2].directory}/{$JEZYK[j2].code}.gif" alt="{$JEZYK[j2].name}" /> <small>[{$JEZYK[j2].name}]</small>
+                                    </div>
+                                    {if $smarty.section.j2.last}
+                                        <div class="clear"></div>
+                                    </div>
+                                {/if}
+                            {/section}
+                            {section name=j2 loop=$JEZYK}
+                                {assign var=language_id value=$JEZYK[j2].id}
+                                <div id="zakladka-page-title-{$JEZYK[j2].code}" class="zakladka">
+                                    <textarea class="seo-konf-small" name="page_title[{$language_id}]"></textarea>
+                                </div>
+                            {/section}
+                        {else}
+                            <textarea class="seo-konf-small" name="page_title[{$lang_main.id}]"></textarea>
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="seo-title"><strong>Opcje KEYWORDS:</strong><br /><small>możliwość wyboru odpowiedniego KEYWORDS w nagłówku strony</small></div>
+                        <div style="padding: 6px 0px;">
+                            <input type="radio" id="ok1" name="op_page_keywords" value="1" {if $opcje.op_page_keywords=='1'}checked="checked" {/if} />
+                            <label for="ok1">Konfiguracja główna CMS: <b>{$SEOCONF.page_keywords}</b></label><br />
+                            <input type="radio" id="ok2" name="op_page_keywords" value="2" {if $opcje.op_page_keywords=='2'}checked="checked" {/if} />
+                            <label for="ok2">Automatyczna z tytułu strony</label><br />
+                            <input type="radio" id="ok3" name="op_page_keywords" value="3" {if $opcje.op_page_keywords=='3'}checked="checked" {/if} />
+                            <label for="ok3">Automatyczna z tytułu strony + Konfiguracja główna CMS</label><br />
+                            <input type="radio" id="ok4" name="op_page_keywords" value="4" {if $opcje.op_page_keywords=='4'}checked="checked" {/if} />
+                            <label for="ok4">Ręczna [proszę niżej wpisać tekst, frazy odzielone przecinkami]</label><br />
+                            <input type="radio" id="ok5" name="op_page_keywords" value="5" {if $opcje.op_page_keywords=='5'}checked="checked" {/if} />
+                            <label for="ok5">Ręczna [proszę niżej wpisać tekst, frazy odzielone przecinkami] + Konfiguracja główna CMS</label><br />
+                        </div>
+                        {if $lang_multi}
+                            {section name=j2 loop=$JEZYK}
+                                {if $smarty.section.j2.first}
+                                    <div class="zakladki">
+                                    {/if}
+                                    <div id="zakladka-label-page-keywords-{$JEZYK[j2].code}" class="zakladka-label{if $smarty.section.j2.first} zakladka-label-selected{/if}">
+                                        <img src="{$TPL_URL}/img/{$JEZYK[j2].directory}/{$JEZYK[j2].code}.gif" alt="{$JEZYK[j2].name}" /> <small>[{$JEZYK[j2].name}]</small>
+                                    </div>
+                                    {if $smarty.section.j2.last}
+                                        <div class="clear"></div>
+                                    </div>
+                                {/if}
+                            {/section}
+                            {section name=j2 loop=$JEZYK}
+                                {assign var=language_id value=$JEZYK[j2].id}
+                                <div id="zakladka-page-keywords-{$JEZYK[j2].code}" class="zakladka">
+                                    <textarea class="seo-konf-small" name="page_keywords[{$language_id}]"></textarea>
+                                </div>
+                            {/section}
+                        {else}
+                            <textarea class="seo-konf-small" name="page_keywords[{$lang_main.id}]"></textarea>
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="seo-title"><strong>Opcje DESCRIPTION:</strong><br /><small>możliwość wyboru odpowiedniego DESCRIPTION w nagłówku strony</small></div>
+                        <div style="padding: 6px 0px;">
+                            <input type="radio" id="od1" name="op_page_description" value="1" {if $opcje.op_page_description=='1'}checked="checked" {/if} />
+                            <label for="od1">Konfiguracja główna CMS: <b>{$SEOCONF.page_description}</b></label><br />
+                            <input type="radio" id="od2" name="op_page_description" value="2" {if $opcje.op_page_description=='2'}checked="checked" {/if} />
+                            <label for="od2">Automatyczna z tytułu strony</label><br />
+                            <input type="radio" id="od3" name="op_page_description" value="3" {if $opcje.op_page_description=='3'}checked="checked" {/if} />
+                            <label for="od3">Automatyczna z tytułu strony + Konfiguracja główna CMS</label><br />
+                            <input type="radio" id="od4" name="op_page_description" value="4" {if $opcje.op_page_description=='4'}checked="checked" {/if} />
+                            <label for="od4">Automatyczna z treści strony</label><br />
+                            <input type="radio" id="od5" name="op_page_description" value="5" {if $opcje.op_page_description=='5'}checked="checked" {/if} />
+                            <label for="od5">Automatyczna z treści strony + Konfiguracja główna CMS</label><br />
+                            <input type="radio" id="od6" name="op_page_description" value="6" {if $opcje.op_page_description=='6'}checked="checked" {/if} />
+                            <label for="od6">Ręczna [proszę niżej wpisać tekst]</label><br />
+                            <input type="radio" id="od7" name="op_page_description" value="7" {if $opcje.op_page_description=='7'}checked="checked" {/if} />
+                            <label for="od7">Ręczna [proszę niżej wpisać tekst] + Konfiguracja główna CMS</label><br />
+                        </div>
+                        {if $lang_multi}
+                            {section name=j2 loop=$JEZYK}
+                                {if $smarty.section.j2.first}
+                                    <div class="zakladki">
+                                    {/if}
+                                    <div id="zakladka-label-page-description-{$JEZYK[j2].code}" class="zakladka-label{if $smarty.section.j2.first} zakladka-label-selected{/if}">
+                                        <img src="{$TPL_URL}/img/{$JEZYK[j2].directory}/{$JEZYK[j2].code}.gif" alt="{$JEZYK[j2].name}" /> <small>[{$JEZYK[j2].name}]</small>
+                                    </div>
+                                    {if $smarty.section.j2.last}
+                                        <div class="clear"></div>
+                                    </div>
+                                {/if}
+                            {/section}
+                            {section name=j2 loop=$JEZYK}
+                                {assign var=language_id value=$JEZYK[j2].id}
+                                <div id="zakladka-page-description-{$JEZYK[j2].code}" class="zakladka">
+                                    <textarea class="seo-konf-small" name="page_description[{$language_id}]"></textarea>
+                                </div>
+                            {/section}
+                        {else}
+                            <textarea class="seo-konf-small" name="page_description[{$lang_main.id}]"></textarea>
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="seo-title"><strong>Krótki opis:</strong></div>
+                        <div style="padding: 6px 0px;">
+                            <input type="radio" id="ko1" name="op_content_short" value="1" checked="checked" />
+                            <label for="ko1">Automatyczny z treści strony [pierwsze 250 znaków]</label><br />
+                            <input type="radio" id="ko2" name="op_content_short" value="2" />
+                            <label for="ko2">Ręczny [proszę niżej wpisać tekst]</label><br />
+                        </div>
+                        <div>
+                            {if $lang_multi}
+                                {section name=j3 loop=$JEZYK}
+                                    {if $smarty.section.j3.first}
+                                        <div class="zakladki">
+                                        {/if}
+                                        <div id="zakladka-label-content-short-{$JEZYK[j3].code}" class="zakladka-label{if $smarty.section.j3.first} zakladka-label-selected{/if}">
+                                            <img src="{$TPL_URL}/img/{$JEZYK[j3].directory}/{$JEZYK[j3].code}.gif" alt="{$JEZYK[j3].name}" /> <small>[{$JEZYK[j3].name}]</small><br />
+                                        </div>
+                                        {if $smarty.section.j3.last}
+                                            <div class="clear"></div>
+                                        </div>
+                                    {/if}
+                                {/section}
+                                {section name=j3 loop=$JEZYK}
+                                    {assign var=language_id value=$JEZYK[j3].id}
+                                    <div id="zakladka-content-short-{$JEZYK[j3].code}" class="zakladka">
+                                        <textarea class="seo-konf-small" rows="6" name="content_short[{$language_id}]"></textarea><br />
+                                    </div>
+                                {/section}
+                            {else}
+                                <textarea class="seo-konf" rows="6" name="content_short[{$lang_main.id}]"></textarea>
+                            {/if}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="seo-title"><strong>Tagi:</strong><br /><small>tagi odzielone znakiem <b class="important">|</b> wstawiane pod artykułem jako linki</small></div>
+                        <div>
+                            {if $lang_multi}
+                                {section name=j2 loop=$JEZYK}
+                                    {if $smarty.section.j2.first}
+                                        <div class="zakladki">
+                                        {/if}
+                                        <div id="zakladka-label-tagi-{$JEZYK[j2].code}" class="zakladka-label{if $smarty.section.j2.first} zakladka-label-selected{/if}">
+                                            <img src="{$TPL_URL}/img/{$JEZYK[j2].directory}/{$JEZYK[j2].code}.gif" alt="{$JEZYK[j2].name}" /> <small>[{$JEZYK[j2].name}]</small>
+                                        </div>
+                                        {if $smarty.section.j2.last}
+                                            <div class="clear"></div>
+                                        </div>
+                                    {/if}
+                                {/section}
+                                {section name=j2 loop=$JEZYK}
+                                    {assign var=language_id value=$JEZYK[j2].id}
+                                    <div id="zakladka-tagi-{$JEZYK[j2].code}" class="zakladka">
+                                        <input class="text title-small" type="text" name="tagi[{$language_id}]" /><br />
+                                    </div>
+                                {/section}
+                            {else}
+                                <input class="text title" type="text" name="tagi[{$lang_main.id}]" /><br />
+                            {/if}
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="main-buttons">
+            <input class="submit" type="submit" name="action" value="Dodaj pytanie" /> &nbsp;&nbsp;
+            <input class="submit" type="submit" name="action" value="Porzuć zmiany" />
+        </div>
+    </form>
+</div>
+
+{literal}
+    <script type="text/javascript">
+        if ($('#edytor').length > 0) {
+            initTinyMce('edytor');
+        }
+        _editor_url = "{/literal}{$BASE_URL}{literal}/js/tinymce/";
+        var BASE_URL = "{/literal}{$BASE_URL}{literal}";
+        var SERVER_URL = "{/literal}{$CONF.server_addr|default:''}{literal}";
+    </script>
+{/literal}

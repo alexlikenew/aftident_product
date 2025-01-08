@@ -1,0 +1,26 @@
+<div class="contact-main">
+    {if $block.photo}
+    <div class="image">
+        <picture>
+            {if $block.photo.source.photo_webp}
+            <source srcset="{$block.photo.source.webp}" type="image/webp">
+            {/if}
+            <source srcset="{$block.photo.source.photo}" type="{$block.photo.params.type}" >
+            <img loading="lazy" src="{$block.photo.source.photo}" alt="{$block.title}">
+        </picture>
+
+        <div class="contact-frame">
+            <img loading="lazy" src="{$TPL_URL}/img/frames/frame-side-img.svg" alt="Chutor Kozacki">
+        </div>
+    </div>
+    {/if}
+
+    <div class="content">
+        {if $block.title}<h{$block.h_type} class="block-title">{$block.title}</h{$block.h_type}>{/if}
+        {if $block.subtitle}<h3 class="block-subtitle">{$block.subtitle}</h3>{/if}
+
+        <div class="text">
+            {$block.content}
+        </div>
+    </div>
+</div>

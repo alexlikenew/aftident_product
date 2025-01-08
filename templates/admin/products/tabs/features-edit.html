@@ -1,0 +1,27 @@
+<div class="tab{if $tab_selected == 'features'} active{/if}" data-tab="features">
+    <div class="tab-wrapper">
+
+        {foreach from=$all_features item=feature}
+        <div class="content-block">
+            <h4 class="content-block-title">{$feature.title}</h4>
+            {foreach from=$feature.items item=item}
+
+            <div class="form-group">
+                <p>{$item.title}</p>
+                {if $item.type==1}
+                <input type="text" class="form-input" id="title_{$item.id}" name="feature_values[{$item.id}]" value="{$features[$item.id].value}">
+                {else}
+                <label for="yes_{$item.id}">Tak</label>
+                <input type="radio" id="yes_{$item.id}" name="feature_values[{$item.id}]" value="1" {if $features[$item.id].value == 1}checked{/if}>
+                <label for="no_{$item.id}">Nie</label>
+                <input type="radio" id="no_{$item.id}" name="feature_values[{$item.id}]" value="0" {if !$features[$item.id].value }checked{/if}>
+                {/if}
+            </div>
+
+            {/foreach}
+
+        </div>
+        {/foreach}
+
+    </div>
+</div>

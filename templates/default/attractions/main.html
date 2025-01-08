@@ -1,0 +1,106 @@
+<style>@import url("{$TPL_URL}/css/attractions.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+<header class="page-header">
+    <div class="page-header-image">
+        <picture>
+            {if $module.photo.source.photo_webp}
+            <source srcset="{$module.photo.source.photo_webp}" type="image/webp">
+            {/if}
+            <source srcset="{$module.photo.source.photo}" type="{$module.photo.params.type}">
+            <img src="{$module.photo.source.photo}" alt="{$module.title}">
+        </picture>
+    </div>
+
+    <div class="page-header-overlay"></div>
+
+    <h1 class="page-title">{$module.title}</h1>
+
+    {include file="misc/reservation.html"}
+</header>
+
+<main class="page attractions-list-page">
+    <div class="page-frame page-frame--left">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-3-left.svg" alt="Atrakcje - Chutor Kozacki">
+    </div>
+    <div class="page-frame page-frame--right">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-3-right.svg" alt="Atrakcje - Chutor Kozacki">
+    </div>
+
+    <div class="container">
+        {include file="misc/breadcrumbs.html"}
+
+        <div class="block-text">
+            {$module.content}
+        </div>
+
+        <div class="attractions-group">
+            <h3 class="attractions-group-title">Atrakcje hotelu</h3>
+            <div class="attractions-grid">
+                {foreach from=$articles.hotel_attractions item=item}
+                    <div class="attractions-card">
+                        <div class="attractions-card-image">
+                            {if $item.photo}
+                            <picture>
+                                {if $item.photo.source.photo_webp}
+                                <source srcset="{$item.photo.source.photo_webp}" type="image/webp">
+                                {/if}
+                                <source srcset="{$item.photo.source.photo}" type="{$item.photo.params.type}">
+                                <img src="{$item.photo.source.photo}" alt="{$item.title}">
+                            </picture>
+                            {/if}
+
+                            <div class="overlay">
+                                <div class="text">{$item.content_short}</div>
+                                <a href="{$item.url}" class="btn btn-primary btn-small">Zobacz więcej</a>
+
+                                <div class="frame frame-left">
+                                    <img src="{$TPL_URL}/img/hover-left.svg" alt="Atrakcje - Chutor Kozacki">
+                                </div>
+                                <div class="frame frame-right">
+                                    <img src="{$TPL_URL}/img/hover-right.svg" alt="Atrakcje - Chutor Kozacki">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="attractions-card-title">{$item.title}</div>
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+
+        <div class="attractions-group">
+            <h3 class="attractions-group-title">Atrakcje w pobliżu</h3>
+            <div class="attractions-grid">
+                {foreach from=$articles.other_attractions item=item}
+                <div class="attractions-card">
+                    <div class="attractions-card-image">
+                        {if $item.photo}
+                        <picture>
+                            {if $item.photo.source.photo_webp}
+                            <source srcset="{$item.photo.source.photo_webp}" type="image/webp">
+                            {/if}
+                            <source srcset="{$item.photo.source.photo}" type="{$item.photo.params.type}">
+                            <img src="{$item.photo.source.photo}" alt="{$item.title}">
+                        </picture>
+                        {/if}
+
+                        <div class="overlay">
+                            <div class="text">{$item.content_short}</div>
+                            <a href="{$item.url}" class="btn btn-primary btn-small">Zobacz więcej</a>
+
+                            <div class="frame frame-left">
+                                <img src="{$TPL_URL}/img/hover-left.svg" alt="Atrakcje - Chutor Kozacki">
+                            </div>
+                            <div class="frame frame-right">
+                                <img src="{$TPL_URL}/img/hover-right.svg" alt="Atrakcje - Chutor Kozacki">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="attractions-card-title">{$item.title}</div>
+                </div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+</main>

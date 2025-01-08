@@ -1,0 +1,10 @@
+<form method="post" >
+    <div class="form-group search-input">
+        <input type="text" class="form-input" name="keywords" placeholder="Szukaj" {if $keywords}value="{$keywords}"{/if}>
+        <input type="hidden" name="moduleName" value="{$module_name}">
+        <input type="hidden" name="action" value="search">
+        <button class="search-input-btn" >
+            <img src="{$TPL_URL}/img/icons/icon-search.svg" alt="">
+        </button>
+    </div>
+</form>

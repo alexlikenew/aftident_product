@@ -1,0 +1,25 @@
+<ul class="d3">
+    {foreach from=$submenu name=name key=key item=item}
+        <li>
+            <a href="{$item.url}" title="{$item.name}" {if $item.blank==1}target="_blank"{/if}>
+                <span>{$item.name} (</span>
+                {if $item.type == $types.url}
+                    <span>Adres zewnętrzny: </span>
+                {elseif $item.type == $types.page}
+                    <span>Podstrona: </span>
+                {elseif $item.type == $types.module}
+                    <span>Moduł: </span>
+                {/if}
+                {if $item.type == $types.url}
+                    <span>{$item.url}</span>
+                {else}
+                    <span>{$item.select.title}</span>
+                {/if}
+                <span>)</span>
+            </a>
+        </li>
+        {if $item.submenu}
+            {include file="menu/tree_submenu.html" submenu=$item.submenu}
+        {/if}
+    {/foreach}
+</ul>

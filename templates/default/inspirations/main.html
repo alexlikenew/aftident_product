@@ -1,0 +1,43 @@
+<style>@import url("{$TPL_URL}/css/inspirations.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+<style>@import url("{$TPL_URL}/css/news.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+<div class="container-wide">
+    {include file="misc/breadcrumbs.html"}
+</div>
+
+<main class="inspirations container-wide">
+    <h1 class="page-title">{$module.title}</h1>
+
+    <div class="page-top-text">
+        {$module.content_short}
+    </div>
+
+    <div class="inspirations-grid">
+        {if $articles}
+        {foreach from=$articles item=item}
+            <a href="{$item.url}" class="inspirations-grid-item">
+                <div class="image">
+                    {if $item.photo}
+                    <picture>
+                        {if $item.photo.source.photo_webp}
+                        <source srcset="{$item.photo.source.photo_webp}" type="image/webp">
+                        {/if}
+                        <source srcset="{$item.photo.source.photo}" type="{$item.photo.params.type}" >
+                        <img loading="lazy" src="{$item.photo.source.photo}" alt="{$item.title}">
+                    </picture>
+                    {/if}
+                </div>
+
+                <div class="overlay">
+                    <div class="title">{$item.title}</div>
+                </div>
+            </a>
+        {/foreach}
+        {/if}
+
+    </div>
+
+    {include file="misc/pagination.html"}
+
+    {include file="misc/news-other.html"}
+</main>

@@ -1,0 +1,5 @@
+<div class="home-offer" data-aos="fade-in" data-aos-duration="400" data-aos-easing="ease-in-out">
+    {foreach from=$blocks['blok-oferty'] item=offer}
+        {include file="blocks/{$offer.template_file}.html"}
+    {/foreach}
+</div>

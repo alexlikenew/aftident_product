@@ -1,0 +1,100 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+
+        <div class="tab active" data-tab="content">
+            <div class="tab-wrapper">
+                <div class="content-block">
+                    <h2 class="content-block-title">Title:</h2>
+
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="op_page_title">Title:</label>
+                            <select name="op_page_title" id="op_page_title" class="form-select">
+                                <option value="1" {if $opcje.op_page_title=='1'}selected="selected"{/if}>konfiguracja CMS</option>
+                                <option value="2" {if $opcje.op_page_title=='2'}selected="selected"{/if}>z tytułu</option>
+                                <option value="3" {if $opcje.op_page_title=='3'}selected="selected"{/if}>z tytułu + CMS</option>
+                                <option value="4" {if $opcje.op_page_title=='4'}selected="selected"{/if}>ręczna</option>
+                                <option value="5" {if $opcje.op_page_title=='5'}selected="selected"{/if}>ręczna + CMS</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="page_title">Zawartość tagu &lt;title&gt;:</label>
+                            <input type="text" name="page_title[{$lang_main.id}]" id="page_title" class="form-input" value="{$page_title[$lang_main.id]}">
+                        </div>
+                    </div>
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="page_title_prefix">Prefiks:</label>
+                            <input type="text" name="page_title_prefix[{$lang_main.id}]" id="page_title_prefix" class="form-input" value="{$page_title_prefix[$lang_main.id]}">
+                        </div>
+                    </div>
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="page_title_suffix">Suffiks:</label>
+                            <input type="text" name="page_title_suffix[{$lang_main.id}]" id="page_title_suffix" class="form-input" value="{$page_title_suffix[$lang_main.id]}">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <h2 class="content-block-title">Keywords:</h2>
+
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="op_page_keywords">Keywords:</label>
+                            <select name="op_page_keywords" id="op_page_keywords" class="form-select">
+                                <option value="1" {if $opcje.op_page_keywords=='1'}selected="selected"{/if}>konfiguracja CMS</option>
+                                <option value="2" {if $opcje.op_page_keywords=='2'}selected="selected"{/if}>z tytułu</option>
+                                <option value="3" {if $opcje.op_page_keywords=='3'}selected="selected"{/if}>z tytułu + CMS</option>
+                                <option value="4" {if $opcje.op_page_keywords=='4'}selected="selected"{/if}>ręczna</option>
+                                <option value="5" {if $opcje.op_page_keywords=='5'}selected="selected"{/if}>ręczna + CMS</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="page_keywords">Zawartość tagu &lt;keywords&gt;:</label>
+                            <textarea name="page_keywords[{$lang_main.id}]" id="page_keywords" class="form-textarea">{$page_keywords[$lang_main.id]}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <h2 class="content-block-title">Description:</h2>
+
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="op_page_description">Description:</label>
+                            <select name="op_page_description" id="op_page_description" class="form-select">
+                                <option value="1" {if $opcje.op_page_description=='1'}selected="selected"{/if}>konfiguracja CMS</option>
+                                <option value="2" {if $opcje.op_page_description=='2'}selected="selected"{/if}>z tytułu</option>
+                                <option value="3" {if $opcje.op_page_description=='3'}selected="selected"{/if}>z tytułu + CMS</option>
+                                <option value="4" {if $opcje.op_page_description=='4'}selected="selected"{/if}>z treści</option>
+                                <option value="5" {if $opcje.op_page_description=='5'}selected="selected"{/if}>z treści + CMS</option>
+                                <option value="6" {if $opcje.op_page_description=='6'}selected="selected"{/if}>ręczna</option>
+                                <option value="7" {if $opcje.op_page_description=='7'}selected="selected"{/if}>ręczna + CMS</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-grid form-grid-2">
+                        <div class="form-group">
+                            <label for="page_description">Zawartość tagu &lt;description&gt;:</label>
+                            <textarea name="page_description[{$lang_main.id}]" id="page_description" class="form-textarea">{$page_description[$lang_main.id]}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="action" value="zapisz_konfiguracja" />
+            <input type="hidden" name="moduleName" value="{$module_name}">
+            <input type="submit" class="btn btn-save" value="Zapisz">
+        </div>
+    </form>
+</div>

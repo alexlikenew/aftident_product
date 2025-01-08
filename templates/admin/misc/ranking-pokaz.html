@@ -1,0 +1,33 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <div class="info">{$LANG._RANKING_INFO}</div>
+
+    <p><a href="{$BASE_URL}/admin/ranking.php">&laquo; {$LANG.POWROT_DO_SPISU_FRAZ}</a></p>
+    <p>Ranking dla frazy: <strong>{$anchor}</strong></p>	
+    {section name=pp loop=$pozycje}
+        {if $smarty.section.pp.first}
+            <table cellspacing="1" class="special">
+                <thead>
+                    <tr>
+                        <th>{$LANG.LP}</th>
+                        <th>{$LANG.DATA_SPRAWDZANIA}</th>
+                        <th>{$LANG.POZYCJA}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {/if}
+                <tr class="shadow_light">
+                    <td>{$smarty.section.pp.iteration}</td>
+                    <td>{$pozycje[pp].date_add}</td>
+                    <td>{$pozycje[pp].pozycja}</td>
+                </tr>
+                {if $smarty.section.pp.last}
+                </tbody>
+            </table>
+        {/if}
+    {sectionelse}
+        <p class="center error">{$LANG.BRAK_WPISOW_W_BAZIE}</p>
+    {/section}
+
+</div>

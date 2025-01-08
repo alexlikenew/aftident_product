@@ -1,0 +1,171 @@
+<script type="text/javascript" src="{$BASE_URL}/js/template_switch.js" xmlns="http://www.w3.org/1999/html"></script>
+
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+<div id="zakladka-pliki" class="zakladka">
+    <table class="special" cellspacing="1" cellpadding="0">
+        {foreach from=$blocks item=block name=pp}
+        {if $smarty.foreach.pp.first}
+        <thead>
+        <tr>
+            <th colspan="3"></th>
+        </tr>
+        <tr>
+            <th>Ikona</th>
+            <th width="110px">Opcje</th>
+        </tr>
+        </thead> 
+        <tbody>
+        {/if}
+        <tr id="block-item-{$block.id}" class="plik-item shadow_light">
+
+            <td width="570px">{$block.lang_data.2.title}</td>
+            <td width="110px" class="plik-opcje opcje">
+                <a href="?action=delete_block&amp;id={$block.id}" title="Kasuj" onclick="return confirmDelete();">
+                    <img src="{$BASE_URL}/templates/admin/img/delete.png" alt="Usuń" />
+                </a>
+                <img id="block-edit-{$block.id}" class="block-edit" style="cursor: pointer;" src="{$BASE_URL}/templates/admin/img/edit.png" alt="Edytuj" title="Edytuj"/>
+            </td>
+        </tr>
+        {if $smarty.foreach.pp.last}
+        </tbody>
+        {/if}
+        {foreachelse}
+        <tr><td colspan="3">Brak bloków w bazie. Aby dodać plik użyj formularza poniżej.</td></tr>
+        {/foreach}
+    </table>
+    <form method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+        <table class="special" cellspacing="1" cellpadding="0">
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <th>Formularz dodawania bloku:</th>
+            </tr>
+            <tr>
+                <td>Nazwa</td>
+            </tr>
+            <tr>
+                <td>
+                    {if $JEZYK_MULTI}
+                    {section name=j1 loop=$JEZYK}
+                    {if $smarty.section.j1.first}
+                    <div class="zakladki">
+                        {/if}
+                        <div id="zakladka-label-filename-{$JEZYK[j1].code}" class="zakladka-label{if $smarty.section.j1.first} zakladka-label-selected{/if}">
+                            <img src="{$TPL_URL}/img/{$JEZYK[j1].directory}/{$JEZYK[j1].code}.gif" alt="{$JEZYK[j1].name}" title="{$JEZYK[j1].name}" /> <small>[{$JEZYK[j1].name}]</small>
+                        </div>
+                        {if $smarty.section.j1.last}
+                        <div class="clear"></div>
+                    </div>
+                    {/if}
+                    {/section}
+                    {section name=j1 loop=$JEZYK}
+                    {assign var=language_id value=$JEZYK[j1].id}
+                    <div id="zakladka-filename-{$JEZYK[j1].code}" class="zakladka">
+                        <input class="text title-small" type="text" name="name[{$language_id}]" />
+                    </div>
+                    {/section}
+                    {else}
+                    <input class="text title" type="text" name="name[{$JEZYK_MAIN.id}]" style="width: 90%"/>
+                    {/if}
+                </td>
+            </tr>
+            <tr><td>Adresy (rozdzielone ;)</td></tr>
+            <tr>
+                <td>
+                    <textarea rows="5" name="url" style="width: 90%"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>Treść:</th>
+            </tr>
+            <tr>
+                <td>
+                    {if $JEZYK_MULTI}
+                    {section name=j1 loop=$JEZYK}
+                    {if $smarty.section.j1.first}
+                    <div class="zakladki">
+                        {/if}
+                        <div id="zakladka-label-filename-{$JEZYK[j1].code}" class="zakladka-label{if $smarty.section.j1.first} zakladka-label-selected{/if}">
+                            <img src="{$TPL_URL}/img/{$JEZYK[j1].directory}/{$JEZYK[j1].code}.gif" alt="{$JEZYK[j1].name}" title="{$JEZYK[j1].name}" /> <small>[{$JEZYK[j1].name}]</small>
+                        </div>
+                        {if $smarty.section.j1.last}
+                        <div class="clear"></div>
+                    </div>
+                    {/if}
+                    {/section}
+                    {section name=j1 loop=$JEZYK}
+                    {assign var=language_id value=$JEZYK[j1].id}
+                    <div id="zakladka-filename-{$JEZYK[j1].code}" class="zakladka">
+                        <textarea id="edytor_{$language_id}" class="tiny_mce tiny_mce-smallest" name="content[{$language_id}]">{$opis[$language_id].content}</textarea>
+                    </div>
+                    {/section}
+                    {else}
+                        <textarea id="edytor" name="content[{$JEZYK_MAIN.id}]">{$opis[$JEZYK_MAIN.id].content}</textarea>
+                    {/if}
+                </td>
+            </tr>
+            <tr>
+            <tr><th  style="background:#ccc">Parametry</th></tr>
+            <tr>
+                <td>
+                    <div style="display: flex;">
+                        {foreach from=$icons item=icon}
+                        <div id="icon-{$icon.id}" class="icons">
+                            <div style="padding-bottom: 3px;">
+                                <input type="checkbox" name="icons[]" value="{$icon.id}" {if in_array($icon.id, explode(',', $article.icons))} checked {/if} />
+                            </div>
+                            <div id="icon-photo-{$icon.id}" title="{$icon.name}" class="icon-image" >
+                                <img src="{$icon.url}" alt="{$icon.name}" style="width: 50%" />
+                            </div>
+                        </div>
+                        {/foreach}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" name="action" value="add_icon" />
+                    <input class="submit" type="submit" name="submit" value="Dodaj blok" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $(".block-edit").live('click', function() {
+            var id = $(this).attr('id').toString().replace('block-edit-', '');
+
+            $('#preloader').show();
+
+            $.ajax({
+                type: 'post',
+                cache: false,
+                url: BASE_URL + '/admin/blocks.php',
+                data: {
+                    action: "edit_block",
+                    id: id
+                },
+                success: function(data) {
+                    $('#preloader').hide();
+                    {literal}$.fancybox(data, {padding: 0}); {/literal}
+                    }
+                });
+
+        });
+    });
+</script>
+<script type="text/javascript" src="{$BASE_URL}/js/tinymce.init.js"></script>
+{literal}
+<script type="text/javascript">
+    if ($('#edytor').length > 0) {
+        initTinyMce('edytor');
+    }
+    _editor_url = "{/literal}{$BASE_URL}{literal}/js/tinymce/";
+    var BASE_URL = "{/literal}{$BASE_URL}{literal}";
+    var SERVER_URL = "{/literal}{$CONF.server_addr|default:''}{literal}";
+</script>
+{/literal}

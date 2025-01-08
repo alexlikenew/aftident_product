@@ -1,0 +1,39 @@
+<div class="home-realizations">
+    <div class="container">
+        <div id="home-realizations-slider" class="swiper">
+            <div class="swiper-wrapper">
+                {foreach from=$slider.photos item=item}
+                <div class="swiper-slide">
+                    <div class="home-realizations-content">
+                        <h3 class="home-realizations-subtitle">Nasze najnowsze dzieła</h3>
+                        <h4 class="home-realizations-title">{$item.title}</h4>
+
+                        <div class="home-realizations-text">
+                            {$item.content}
+                        </div>
+
+                        <a href="{$item.url}" class="btn" title="{$item.title}">
+                            Sprawdź realizacje
+                            {include file="misc/icons/icon-arrow-btn.html"}
+                        </a>
+                    </div>
+
+                    <div class="home-realizations-image">
+                        <picture>
+                            {if $item.src.source.photo_webp}
+                            <source class="lazy-load" srcset="{$item.src.source.photo_webp}" data-srcset="{$item.src.source.photo_webp}" type="image/webp">
+                            {/if}
+                            <source class="lazy-load" srcset="{$item.src.source.photo}" data-srcset="{$item.src.source.photo}" >
+                            <img class="lazy-load" src="{$item.src.source.photo}" data-src="{$item.src.source.photo}" alt="{$item.title}">
+                        </picture>
+                        {*<img src="{$TPL_URL}/img/home-realization-1.png" alt="Chutor Kozacki">*}
+                    </div>
+                </div>
+                {/foreach}
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+</div>

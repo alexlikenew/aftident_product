@@ -1,0 +1,30 @@
+
+<div class="tab{if $tabActive} active{/if}" data-tab="photo">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">Zdjęcie</h2>
+
+            <div class="drop-container" id="dropContainer">
+                <div class="icon">
+                    <img src="{$TPL_URL}/img/icons/icon-drop.svg" alt="">
+                </div>
+                <div class="text">Upuść plik tutaj <br> lub dodaj z komputera </div>
+                <label class="button" for="photo">
+                    + Dodaj plik
+                    <input type="file" name="photo" id="photo" accept="image/*" >
+                </label>
+            </div>
+
+            <div class="image-preview">
+                <div class="image-preview-item">
+                    <img src="#" alt="" class="image-preview-img">
+
+                    <div class="image-preview-item__delete">
+                        <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

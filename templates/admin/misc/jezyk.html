@@ -1,0 +1,7 @@
+{if $lang_multi}
+    {section name=jj loop=$jezyki}
+        <a href="{$jezyki[jj].url}" title="{$jezyki[jj].name}">
+            <img src="{$TPL_URL}/img/{$jezyki[jj].directory}/{$jezyki[jj].code}.gif" alt="{$jezyki[jj].name}" />
+        </a>
+    {/section}
+{/if}

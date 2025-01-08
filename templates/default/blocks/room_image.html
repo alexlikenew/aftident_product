@@ -1,0 +1,23 @@
+{if $block.photo}
+<div class="room-image">
+    <picture>
+        {if $block.photo.source.photo_webp}
+        <source srcset="{$block.photo.source.photo_webp}" type="image/webp">
+        {/if}
+        <source srcset="{$block.photo.source.photo}" type="{$block.photo.params.type}" >
+        <img loading="lazy" src="{$block.photo.source.photo}" alt="{$block.title}">
+    </picture>
+
+    <div class="overlay"></div>
+    <div class="room-image-info">
+        <div class="title">
+            <img src="{$TPL_URL}/img/icons/icon-room-people.svg" alt="Chutor Kozacki" class="icon">
+            {$block.title}
+        </div>
+        <div class="square">
+            <img src="{$TPL_URL}/img/icons/icon-room-square.svg" alt="Chutor Kozacki" class="icon">
+            {$block.subtitle}
+        </div>
+    </div>
+</div>
+{/if}

@@ -1,0 +1,59 @@
+<form method="post" enctype="multipart/form-data" action="{$smarty.server.PHP_SELF}">
+    <div class="drop-container">
+        <div class="icon">
+            <img src="{$TPL_URL}/img/icons/icon-drop.svg" alt="">
+        </div>
+        <div class="text">Upuść plik tutaj <br> lub dodaj z komputera </div>
+        <label class="button" for="file">
+            + Dodaj plik
+            <input type="file" name="plik" id="file">
+        </label>
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <label for="name_{$lang.id}">Nazwa wyświetlana [{$lang.code}]:</label>
+        <input type="text" class="form-input" id="name_{$lang.id}" name="name[{$lang.id}]" value="{$file.opis[$lang.id].name}">
+        <input type="hidden" name="name_old[{$lang.id}]" value="{$file.opis[$lang.id].name}" />
+    </div>
+    {/foreach}
+
+    <div class="form-group">
+        <label for="language_2">Wersja językowa</label>
+        <select name="language_2" id="language_2" class="form-select" style="text-transform: uppercase">
+            {foreach from=$languages item=lang}
+            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    <div>
+        {foreach from=$languages item=lang}
+        <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+            <input type="checkbox"
+                   name="lang_active[{$lang.id}]"
+                   id="switch_file_edit_{$lang.id}"
+                   class="switch-input switch-active"
+                   {if $file.opis[$lang.id].active}checked="checked"{/if} />
+            <label for="switch_file_edit_{$lang.id}" class="switch"></label>
+            Aktywna
+        </div>
+        {/foreach}
+    </div>
+    <br>
+    <br>
+
+    <div class="btn-row">
+        <input type="hidden" name="id" value="{$file.id}" />
+        <input type="hidden" name="filename_old" value="{$file.filename}" />
+        <input type="hidden" name="parent_type" value="{$file.parent_type}" />
+        <input type="hidden" name="parent_id" value="{$file.parent_id}" />
+        <input type="hidden" name="moduleName" value="{$module_name}"/>
+        <input type="hidden" name="action" value="save_file" />
+        <input class="btn btn-save" type="submit" name="submit" value="Zapisz zmiany" />
+    </div>
+
+</form>
+
+<script type="text/javascript" src="{$BASE_URL}/js/admin/dropUpload.js?{$smarty.now|date_format:'%Y%m%d%H%M'}"></script>
+<script type="text/javascript" src="{$BASE_URL}/js/admin/admin.js?{$smarty.now|date_format:'%Y%m%d%H%M'}"></script>

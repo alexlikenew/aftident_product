@@ -1,0 +1,20 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+        <div class="tabs-nav">
+            <div class="tabs-nav-item active" data-tab-label="content">Treść</div>
+            <div class="tabs-nav-item" data-tab-label="seo">SEO</div>
+        </div>
+
+        <div class="tabs-wrapper">
+            {include file="./tabs/content-add.html" tabActive=true}
+            {include file="root/tabs/seo-add.html"}
+        </div>
+
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="moduleName" value="{$module_name}">
+            <input type="hidden" name="action" value="create" /> &nbsp;&nbsp;
+            <input type="submit" class="btn btn-save" id="save" value="Dodaj">
+            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+        </div>
+    </form>
+</div>

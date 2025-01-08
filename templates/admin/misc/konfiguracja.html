@@ -1,0 +1,53 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <form method="post" action="{$smarty.server.PHP_SELF}">
+        <input type="image" src="{$BASE_URL}/templates/admin/img/zapisz.png" />
+
+        {section name=cc loop=$config}
+            <div class="conf-w">
+                <div class="conf-l"><strong>{$config[cc].name}</strong> / {$config[cc].description}</div>
+                <div class="conf-z">
+                    <input type="hidden" name="conf_name[{$smarty.section.cc.iteration}]" value="{$config[cc].name}" />
+                </div>
+                <div class="conf-t"><textarea name="conf_value[{$smarty.section.cc.iteration}]">{$config[cc].value}</textarea></div>
+            </div>
+        {sectionelse}
+            <p class="center error">{$LANG.ADMIN_BRAK_OPCJI}</p>
+        {/section}
+
+        <input type="hidden" name="action" value="save_all" />
+        <input type="image" src="{$BASE_URL}/templates/admin/img/zapisz.png" />
+    </form>
+    <br />
+    {if $user.admin==1}
+        <form method="post" action="{$smarty.server.PHP_SELF}">
+            <table class="special" cellspacing="1" cellpadding="0">
+                <tr>
+                    <th align="center" colspan="2">{$LANG.ADMIN_DODAJ_NOWA_OPCJE}</th>
+                </tr>
+                <tr>
+                    <th>{$LANG.ADMIN_NAZWA_OPCJI}:</th>
+                    <td><input class="text" type="text" name="conf_name" /></td>
+                </tr>
+                <tr>
+                    <th>{$LANG.ADMIN_WARTOSC_OPCJI}:</th>
+                    <td><textarea class="conf-d" name="conf_value"></textarea></td>
+                </tr>
+                <tr>
+                    <th>{$LANG.ADMIN_KROTKI_OPIS_OPCJI}:</th>
+                    <td><textarea class="conf-d" name="conf_description"></textarea></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="center">
+                        <input type="hidden" value="dodaj" />
+                        <input type="hidden" name="action" value="new_option" />
+                        <input type="hidden" name="conf_table" value="config" />
+                        <input type="image" src="{$BASE_URL}/templates/admin/img/dodaj.png" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    {/if}
+</div>

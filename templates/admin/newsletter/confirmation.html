@@ -1,0 +1,50 @@
+<div class="content">
+	<form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+
+		<div class="tab active" data-tab="content">
+			<div class="tab-wrapper">
+				<div class="content-block">
+					<div class="form-group-label">Czy na pewno chcesz wysłać biuletyn?</div>
+
+					<div style="margin-bottom: 40px">
+						{if $smarty.post.send==one}
+							Biuletyn wysyłany na adres: <strong>{$smarty.post.email}</strong>
+						{else}
+							Biuletyn wysyłany na <strong>{$stats.active|default:"0"}</strong> aktywnych adresów e-mail.
+						{/if}
+					</div>
+
+					<div class="form-grid form-grid-2">
+						<div class="form-group">
+							<label for="mailing_subject">Tytuł biuletynu:</label>
+							<input type="text" class="form-input" id="mailing_subject" name="mailing_subject" value="{$template_subject}" readonly>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div style="height:300px; overflow:auto; border:1px solid #ccc; padding:5px;">
+							{$template_content}
+						</div>
+<!--						<input type="hidden" name="mailing_content" value="{$template_id}"/>-->
+						<input type="hidden" name="mailing_content" value="{$template_encoded_content}" />
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="btn-row btn-row-bottom">
+			<input type="hidden" name="send" value="{$smarty.post.send}" />
+			<input type="hidden" name="email" value="{$smarty.post.email}" />
+			<input type="hidden" name="mailing_start_date" value="{$smarty.post.mailing_start_date}" />
+			<input type="hidden" name="group" value="{$smarty.post.grupa}" />
+			<input type="hidden" name="action" value="send_mailing" />
+			<input type="hidden" name="id" value="{$smarty.post.id}" />
+			<input type="hidden" name="date_add" value="{$smarty.post.date_add}" />
+			<input class="btn btn-save" type="submit" value="Wyślij biuletyn" />
+			<div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+		</div>
+	</form>
+</div>

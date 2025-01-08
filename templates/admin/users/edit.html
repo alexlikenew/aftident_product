@@ -1,0 +1,14 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+
+        {include file="./tabs/content-edit.html" tabActive=true}
+
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="action" value="save_user" />
+            <input type="hidden" name="moduleName" value="{$module_name}">
+            <input type="hidden" name="id" value="{$u.id}" />
+            <input type="submit" class="btn btn-save" id="save" value="Zapisz">
+            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+        </div>
+    </form>
+</div>

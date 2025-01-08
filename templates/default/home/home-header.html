@@ -1,0 +1,49 @@
+<header class="home-header">
+    <div id="home-header-slider" class="swiper">
+        <div class="swiper-wrapper">
+            {foreach from=$slider.photos item=slide}
+            <div class="swiper-slide">
+                <div class="home-header-image">
+                    <picture>
+                        {if $slide.src.source.photo_webp}
+                        <source srcset="{$slide.src.source.photo_webp}" type="image/webp">
+                        {/if}
+                        <source srcset="{$slide.src.source.photo}" type="{$slide.src.params.type}">
+                        <img src="{$slide.src.source.photo}" alt="{$page.title}">
+                    </picture>
+                </div>
+
+                <div class="container">
+                    <h1 class="title">{$slide.title}</h1>
+                    <div class="text">
+                        {$slide.content}
+                    </div>
+
+                    {if $slide.url}
+                    <div class="btn-row">
+                        <a href="{$slide.url}" class="btn">
+                            Dowiedz się więcej
+                            {include file="misc/icons/icon-more.html"}
+                        </a>
+                    </div>
+                    {/if}
+                </div>
+            </div>
+            {/foreach}
+        </div>
+
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="home-header-labels">
+        <div class="item">
+            <img src="{$TPL_URL}/img/label-eu.png" alt="Chutor Kozacki">
+        </div>
+        <div class="item">
+            <img src="{$TPL_URL}/img/label-safe-house.png" alt="Chutor Kozacki">
+        </div>
+        <div class="item">
+            <img src="{$TPL_URL}/img/label-forbes.png" alt="Chutor Kozacki">
+        </div>
+    </div>
+</header>

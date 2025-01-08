@@ -1,0 +1,32 @@
+<div class="content">
+    <form id="edit_form" class="form" method="post" action="{$smarty.server.PHP_SELF}?moduleName={$module_name}" enctype="multipart/form-data">
+        <div class="tabs-nav">
+            <div class="tabs-nav-item active" data-tab-label="content">Treść</div>
+            <div class="tabs-nav-item" data-tab-label="photo">Zdjęcie</div>
+        </div>
+
+        <div class="tabs-wrapper">
+            {include file="./tabs/content-edit.html" tabActive=true}
+            {include file="root/tabs/photo-edit.html"}
+        </div>
+
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="id" value="{$item.id}" />
+            <input type="hidden" name="pid" value="{$item.parent_id}" />
+            <input type="hidden" name="group" value="{$item.group}" />
+            {if $item.has_image}
+            <input type="hidden" name="deleteImage" id="deleteImage" value="0" />
+            {/if}
+            {foreach from=$languages item=lang}
+                <input type="hidden" name="target_id[{$lang.id}]" value="{$opis[$lang.id].target_id}" />
+            {/foreach}
+            <input type="hidden" name="moduleName" value="{$module_name}">
+
+            <input type="submit" class="btn btn-primary save_item" id="save_and_continue" name="action" data-module="{$module_name}" value="Zapisz i kontynuuj edycję">
+            <input type="submit" class="btn btn-save" id="save" name="action" value="Zapisz">
+            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="{$BASE_URL}/js/admin/menu.js?v={$smarty.now|date_format:'%Y%m%d%H%M'}"></script>

@@ -1,0 +1,136 @@
+<div class="tab{if $tab_selected=='content'} active{/if}" data-tab="content">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">Opis</h2>
+            <div class="form-grid form-grid-2">
+                <div class="form-group">
+                    <label for="title_{$lang.id}">Nazwa</label>
+                    <input type="text" class="form-input" id="name" name="name" value="{$item->getName()}">
+                </div>
+
+                {foreach from=$languages item=lang}
+                <div class="form-group">
+                    <label for="title_{$lang.id}">Tytuł [{$lang.code}]</label>
+                    <input type="text" class="form-input" id="title_{$lang.id}" name="title[{$lang.id}]" value="{$titles[$lang.id]}">
+                </div>
+                {/foreach}
+            </div>
+            {foreach from=$languages item=lang}
+            <div class="form-grid form-grid-3" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                {foreach from=$item->getConfig() item=attribute key=key}
+                {if $attribute.by_lang}
+                <div class="form-group">
+                    <label for="{$key}_{$lang.id}">{$lang_config[$key]} [{$lang.code}]</label>
+                    <input type="text" class="form-input" id="{$key}_{$lang.id}" name="{$key}[{$lang.id}]" value="{$attribute.value}">
+                </div>
+                {/if}
+                {/foreach}
+            </div>
+            {/foreach}
+
+        {foreach from=$item->getConfig() item=attribute key=key}
+        {if !$attribute.by_lang}
+        <div class="form-group">
+            {if $attribute.is_bool}
+            <label class="checkbox-item">
+                {$lang_config[$key]}
+                <input type="checkbox" id="{$key}" name="{$key}" value="1" {if isset($attribute.value) && $attribute.value}checked{/if} />
+                <span class="checkmark"></span>
+            </label>
+            {else}
+            <label for="{$key}">{$lang_config[$key]}</label>
+            <input type="text" class="form-input" id="{$key}" name="{$key}" value="{if isset($attribute.value) && $attribute.value}{$attribute.value}{/if}">
+            {/if}
+        </div>
+        {/if}
+        {/foreach}
+
+
+
+    </div>
+    {if $item->hasContent()}
+    <div class="content-block">
+        <div class="form-group">
+            Opcje
+            <div class="form-grid form-grid-3"  >
+                <div class="form-group">
+                    <label for="option1_title">Tytuł</label>
+                    <input type="text" class="form-input" id="option1_title" name="options[1][1][title]" value="{if isset($content[0]['title'])}{$content[0]['title']}{/if}">
+                </div>
+                <div class="form-group">
+                    <label for="option1_value">Wartość</label>
+                    <input type="text" class="form-input" id="option1_value" name="options[1][1][value]" value="{if isset($content[0]['value'])}{$content[0]['value']}{/if}">
+                </div>
+
+            </div>
+            <div class="form-grid form-grid-3"  >
+                <div class="form-group">
+                    <label for="option2_title">Tytuł</label>
+                    <input type="text" class="form-input" id="option2_title" name="options[1][2][title]" value="{if isset($content[1]['title'])}{$content[1]['title']}{/if}">
+                </div>
+                <div class="form-group">
+                    <label for="option2_value">Wartość</label>
+                    <input type="text" class="form-input" id="option2_value" name="options[1][2][value]" value="{if isset($content[1]['value'])}{$content[1]['value']}{/if}">
+                </div>
+
+
+            </div>
+            <div class="form-grid form-grid-3"  >
+                <div class="form-group">
+                    <label for="option3_title">Tytuł</label>
+                    <input type="text" class="form-input" id="option3_title" name="options[1][3][title]" value="{if isset($content[2]['title'])}{$content[2]['title']}{/if}">
+                </div>
+                <div class="form-group">
+                    <label for="option3_value">Wartość</label>
+                    <input type="text" class="form-input" id="option3_value" name="options[1][3][value]" value="{if isset($content[2]['value'])}{$content[2]['value']}{/if}">
+                </div>
+
+
+            </div>
+            <div class="form-grid form-grid-3"  >
+                <div class="form-group">
+                    <label for="option4_title">Tytuł</label>
+                    <input type="text" class="form-input" id="option4_title" name="options[1][4][title]" value="{if isset($content[3]['title'])}{$content[3]['title']}{/if}">
+                </div>
+                <div class="form-group">
+                    <label for="option3_value">Wartość</label>
+                    <input type="text" class="form-input" id="option4_value" name="options[1][4][value]" value="{if isset($content[3]['value'])}{$content[3]['value']}{/if}">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    {/if}
+</div>
+
+</div>
+{if $languages|count > 1}
+<div class="content-panel{if $tabActive || $tab_selected=='content'} active{/if}" data-tab="content">
+    <div class="content-block-title">Ustawienia</div>
+
+    <div class="form-group">
+        <label for="language">Wersja językowa</label>
+        <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+            {foreach from=$languages item=lang}
+            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+    <input type="checkbox"
+           name="lang_active[{$lang.id}]"
+           id="switch_active_{$lang.id}"
+           class="switch-input switch-active"
+           {if $opis[$lang.id].active}checked="checked"{/if} />
+    <label for="switch_active_{$lang.id}" class="switch"></label>
+    Aktywna
+</div>
+{/foreach}
+
+</div>
+{else}
+<input type="hidden" name="lang_active[{$languages[0].id}]" value="1">
+{/if}

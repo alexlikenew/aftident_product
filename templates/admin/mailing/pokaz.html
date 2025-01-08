@@ -1,0 +1,24 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <div class="info">{$LANG.WYBIERZ_SZABLON_KTORY_CHCESZ_EDYTOWAC}:</div>
+
+    <p>
+    <table class="special" cellspacing="1" cellpadding="0">
+        <tbody>
+            {section name=m loop=$mail_tpl}
+		{if $smarty.section.m.index is odd}
+		<tr class="shadow_dark">
+		{else}
+		<tr class="shadow_light">
+		{/if}
+                <td><a href="?action=edit&amp;id={$mail_tpl[m].name}">{$mail_tpl[m].title}</a></td>
+                <td class="opcje"><a href="?action=edit&amp;id={$mail_tpl[m].name}" title="{$LANG.EDYTUJ}"><img src="{$BASE_URL}/templates/admin/img/edit.png" alt="{$LANG.EDYTUJ}" /></a></td>
+            </tr>
+            {sectionelse}
+            <tr><td colspan="2">{$LANG.BRAK_SZABLONOW_W_BAZIE}</td></tr>
+            {/section}
+        </tbody>
+    </table>
+</p>
+</div>

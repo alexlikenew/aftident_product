@@ -1,0 +1,98 @@
+<div class="content">
+    <div class="tab tab-list active">
+        <div class="tab-list-top">
+            <a href="module.php?moduleName={$module_name}&action=add" class="btn btn-primary">+ Dodaj nową podstronę</a>
+            {include file="misc/search.html"}
+        </div>
+        <div class="list-top-panel">
+            {include file="misc/breadcrumbs.html"}
+        </div>
+        <div class="list">
+            <form method="post" id="items_list" action="">
+                {if $articles}
+                <div class="list-top">
+                    <div class="list-top-panel">
+                        &nbsp;<div class="form-grid">
+                            <div class="list-top-panel-count btn-row">
+                                <div style="margin-right: 20px">Wybrano: <span class="checked-count"></span></div>
+                                <input type="button" name="action" value="Usuń" class="btn btn-cancel" onclick="return confirmMassDelete();">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-top-filter">
+                        <div class="list-top-filter__item">
+                            <span class="label">Sortuj:</span>
+                            <select class="list-top-filter__select">
+                                <option value="newest">Najnowsze</option>
+                                <option value="oldest">Najstarsze</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <table class="list-table" >
+                    <thead>
+                        <tr class="list-table-row list-table-head">
+                            <th style="width: 70px">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="1" name="mark_all" class="checkbox-mark-all"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </th>
+                            <th style="width: 30%;">Tytuł i krótka treść</th>
+                            <th>Data dodania</th>
+                            <th>Widoczna</th>
+                            <th>Opcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {foreach from=$articles item=item name=aa}
+                        <tr class="list-table-row">
+                            <td>
+                                <label class="checkbox-item list-check-item">
+                                    <input type="checkbox" value="{$item.id}" name="list_items[]"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <a href="?moduleName={$module_name}&action=edit&amp;id={$item.id}">{$item.title}</a>
+                            </td>
+                            <td>{$item.date_add}</td>
+                            <td>
+                                <input type="checkbox"
+                                       id="switch_{$item.id}"
+                                       class="switch-input switch-active"
+                                       data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}"
+                                       data-id="{$item.id}"
+                                       {if $item.active}checked="checked"{/if} />
+                                <label for="switch_{$item.id}" class="switch"></label>
+                            </td>
+                            <td>
+                                <a href="{if $module_name != 'strony'}/{$module_name}{/if}/{$item.title_url}" class="list-table-icon" title="Podgląd online" target="_blank">
+                                    <img src="{$TPL_URL}/img/icons/icon-list-search.svg" alt="Podgląd online">
+                                </a>
+                                <a href="?moduleName={$module_name}&action=duplicate&amp;id={$item.id}" class="list-table-icon" title="Duplikuj" target="_blank">
+                                    <img src="{$TPL_URL}/img/icons/icon-copy.svg" alt="Duplikuj">
+                                </a>
+                                <a href="?moduleName={$module_name}&action=edit&amp;id={$item.id}" data-module="{$menu_selected}" data-id="{$item.id}" class="list-table-icon " title="Edytuj">
+                                    <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                                </a>
+                                <div class="list-table-icon delete-item" title="Kasuj" onclick="return confirmDelete('{$item.title}', '?moduleName={$module_name}&action=delete&amp;id={$item.id}');">
+                                    <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                                </div>
+                            </td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+                {/if}
+                <input type="hidden" name="action" id="action" >
+            </form>
+        </div>
+        {if $pages>1}
+        {include file="misc/pagination.html"}
+        {/if}
+    </div>
+</div>
+
+{include file="modals/modal-delete.html"}

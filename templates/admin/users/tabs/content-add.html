@@ -1,0 +1,127 @@
+<div class="tab{if $tabActive} active{/if}" data-tab="content">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">
+                Login i hasło <br>
+                <small>*Pola oznaczone gwiazdką są obowiązkowe</small>
+            </h2>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="login">Login*</label>
+                    <input type="text" class="form-input" id="login" name="login" value="{$smarty.post.login|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="pass1">Hasło*</label>
+                    <input type="password" class="form-input" id="pass1" name="pass1" value="{$smarty.post.pass1|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="pass2">Powtórz hasło*</label>
+                    <input type="password" class="form-input" id="pass2" name="pass2" value="{$smarty.post.pass2|default:''}">
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2 class="content-block-title">
+                Dane <br>
+                <small>*Pola oznaczone gwiazdką są obowiązkowe</small>
+            </h2>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="first_name">Imię*</label>
+                    <input type="text" class="form-input" id="first_name" name="first_name" value="{$smarty.post.first_name|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Nazwisko*</label>
+                    <input type="text" class="form-input" id="last_name" name="last_name" value="{$smarty.post.last_name|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Adres e-mail*</label>
+                    <input type="email" class="form-input" id="email" name="email" value="{$smarty.post.email|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefon</label>
+                    <input type="number" class="form-input" id="phone" name="phone" value="{$smarty.post.phone|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="firm_name">Firma</label>
+                    <input type="text" class="form-input" id="firm_name" name="firm_name" value="{$smarty.post.firm_name|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="street">Ulica</label>
+                    <input type="text" class="form-input" id="street" name="street" value="{$smarty.post.street|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="nr_bud">Nr budynku/lokalu</label>
+                    <input type="text" class="form-input" id="nr_bud" name="nr_bud" value="{$smarty.post.nr_bud|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="post_code">Kod pocztowy</label>
+                    <input type="text" class="form-input" id="post_code" name="post_code" value="{$smarty.post.post_code|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Miasto</label>
+                    <input type="text" class="form-input" id="city" name="city" value="{$smarty.post.city|default:''}">
+                </div>
+
+                <div class="form-group">
+                    <label for="nip">NIP</label>
+                    <input type="number" class="form-input" id="nip" name="nip" value="{$smarty.post.nip|default:''}">
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2 class="content-block-title">
+                Uprawnienia <br>
+                <small>*Pola oznaczone gwiazdką są obowiązkowe</small>
+            </h2>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="login">Wybierz status*</label>
+                    <select name="active" class="form-select">
+                        <option value="1" {if isset($smarty.post.active) and $smarty.post.active==1}selected="true"{/if}>Aktywne</option>
+                        <option value="0" {if isset($smarty.post.active) and $smarty.post.active==0}selected="true"{/if}>Nieaktywne</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="login">Rola na stronie*</label>
+                    <select name="group_id" class="form-select" style="text-transform: capitalize">
+                        {foreach from=$groups item=item}
+                        <option value="{$item.id}"{if isset($smarty.post.group_id) and $item.id==$smarty.post.group_id} selected="true"{/if}>{$item.name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="login">Logowanie do panelu administratora*</label>
+                    <select name="admin_login" class="form-select">
+                        <option value="0" {if isset($smarty.post.admin_login) && $smarty.post.admin_login==0}selected="true"{/if}>Nie</option>
+                        <option value="1" {if isset($smarty.post.admin_login) && $smarty.post.admin_login==1}selected="true"{/if}>Tak</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="discount">Rabat</label>
+                    <input type="text" class="form-input" id="discount" name="discount" value="{$smarty.post.discount|default:''}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

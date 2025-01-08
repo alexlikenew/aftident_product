@@ -1,0 +1,56 @@
+<div class="content">
+    <div class="tab tab-list active">
+        <div class="content-block">
+            Automatyczna wysyłka newslettera jest:
+
+            {if $CONF.newsletter_sending_active}
+            <strong>AKTYWNA</strong>
+            <br>
+            <br>
+            <div class="btn-row">
+                <a href="?action=queue_stop" class="btn btn-primary">Wstrzymaj</a>
+            </div>
+            {else}
+            <strong>WSTRZYMANA</strong>
+            <br>
+            <br>
+            <div class="btn-row">
+                <a href="?action=queue_start" class="btn btn-primary">Wznów</a>
+            </div>
+            {/if}
+        </div>
+
+
+        <div class="list">
+            {if $newsletter_queue}
+            <div class="list-top">
+                <div class="list-top-panel">
+                    &nbsp;
+                </div>
+            </div>
+
+            <table class="list-table">
+                <thead>
+                <tr class="list-table-row list-table-head">
+                    <th>Lp.</th>
+                    <th>Szablon</th>
+                    <th>Email</th>
+                    <th>Start</th>
+                </tr>
+                </thead>
+                <tbody>
+                {foreach from=$newsletter_queue item=item name=aa}
+                <tr class="list-table-row">
+                    <td>{$smarty.foreach.aa.iteration}</td>
+                    <td>{$item.name}</td>
+                    <td>{$item.email}</td>
+                    <td>{$item.start_date}</td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+            {/if}
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="page-title"><h1>{$pageTitle} | <span class="important">potwierdzenie wysyłania biuletynu</span></h1></div>
+
+<div class="page-content">
+	<p><a href="javascript: history.back(-1);" title="Powrót">&laquo; Powrót</a></p>
+	
+		<div class="info">{if $smarty.post.send==one}Biuletyn wysyłany na adres: <b>{$smarty.post.email}</b>
+		{else}Biuletyn wysyłany na <b>{$stats.active|default:"0"}</b> aktywnych adresów e-mail.{/if}</div>
+
+	<p><b class="important">Czy na pewno chcesz wysłać biuletyn?</b></p>
+	<br />
+
+	<form method="post">
+			<b>Tytuł biuletynu:</b>&nbsp;&nbsp;&nbsp; <span class="green_font"><strong>{$smarty.post.mailing_subject}</strong></span><br />
+			<input type="hidden" name="mailing_subject" value="{$smarty.post.mailing_subject}" />
+			<br />
+                        <div style="width:750px; height:300px; overflow:auto; border:1px solid #ccc; padding:5px;">
+                            {$template}
+                        </div>
+                        <textarea name="mailing_content" style="display:none">{$template}</textarea>
+		
+		<input type="hidden" name="send" value="{$smarty.post.send}" />
+		<input type="hidden" name="email" value="{$smarty.post.email}" />
+		<input type="hidden" name="mailing_start_date" value="{$smarty.post.mailing_start_date}" />	
+		<br /><br />
+                <input type="hidden" name="group" value="{$smarty.post.grupa}" />	
+		<input type="hidden" name="action" value="send_mailing" />	
+		<input type="hidden" name="id" value="{$smarty.post.id}" />
+		<input type="hidden" name="date_add" value="{$smarty.post.date_add}" />
+		<input class="submit" type="submit" value="Wyślij biuletyn" />
+	</form>
+</div>
+
+	<script type="text/javascript" src="{$BASE_URL}/js/tinymce/tiny_mce.js"></script>
+	<script type="text/javascript" src="{$BASE_URL}/js/tinymce.init.js"></script>
+	<script type="text/javascript">
+		// <![CDATA[
+			_editor_url  = "{$BASE_URL}/js/tinymce/";
+			var BASE_URL = "{$BASE_URL}";
+			var SERVER_URL = "{$CONF.server_addr|default:''}";
+		// ]]>
+	</script>

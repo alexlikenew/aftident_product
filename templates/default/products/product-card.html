@@ -1,0 +1,25 @@
+<a href="{$item.url}" class="product-card" title="{$item.title}">
+    {if $sale}
+        <span class="label-sale">{$LANG.SALE}</span>
+    {/if}
+    <div class="image">
+        {if $item.photo}
+        <picture>
+            {if $item.photo.source.photo_webp}
+            <source srcset="{$item.photo.source.photo_webp}" type="image/webp">
+            {/if}
+            <source srcset="{$item.photo.source.photo}" type="{$item.photo.params.type}">
+            <img src="{$item.photo.source.photo}" alt="{$item.title}">
+        </picture>
+        {else}
+        <img loading="lazy" src="{$TPL_URL}/img/product-card.png" alt="{$item.title}">
+        {/if}
+    </div>
+
+    <div class="content">
+        <div class="title">
+            {$item.title}
+            {*Domek dla nietoperzy - 25x15x60*}
+        </div>
+    </div>
+</a>

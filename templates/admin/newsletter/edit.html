@@ -1,0 +1,63 @@
+<div class="content">
+	<form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+
+		<div class="tab active" data-tab="content">
+			<div class="tab-wrapper">
+				<div class="content-block">
+					<h2 class="content-block-title">Dane</h2>
+
+					<div class="form-grid form-grid-2">
+						<div class="form-group">
+							<label for="first_name">Imię:</label>
+							<input type="text" class="form-input" id="first_name" name="first_name" value="{$u.first_name}">
+						</div>
+					</div>
+
+					<div class="form-grid form-grid-2">
+						<div class="form-group">
+							<label for="last_name">Nazwisko:</label>
+							<input type="text" class="form-input" id="last_name" name="last_name" value="{$u.last_name}">
+						</div>
+					</div>
+
+					<div class="form-grid form-grid-2">
+						<div class="form-group">
+							<label for="email">E-mail:</label>
+							<input type="email" class="form-input" id="email" name="email" value="{$u.email}">
+						</div>
+					</div>
+
+					<div class="form-grid form-grid-2">
+						<div class="form-group">
+							<label for="group">Grupa:</label>
+							<select name="grupa" id="group" class="form-select">
+								{foreach from=$grupy item=val key=k}
+								<option value='{$k}' {if $k==$u.grupa}selected{/if} >{$val}</option>
+								{/foreach}
+							</select>
+						</div>
+					</div>
+
+					<div class="form-grid form-grid-2">
+						<div class="form-group">
+							<label for="active">Status konta:</label>
+							<select name="active" id="active" class="form-select">
+								<option value="0"{if $u.active==0} selected="true"{/if}>nieaktywne</option>
+								<option value="1"{if $u.active==1} selected="true"{/if}>aktywne</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="btn-row btn-row-bottom">
+			<input type="hidden" name="action" value="save_user" />
+			<input type="hidden" name="id" value="{$u.id}" /><br />
+			<input type="submit" class="btn btn-save" value="Zapisz">
+			<div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+		</div>
+	</form>
+</div>

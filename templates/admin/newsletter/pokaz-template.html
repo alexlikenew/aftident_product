@@ -1,0 +1,72 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <div class="info">Wybierz szablon, który chcesz edytować:</div>
+    <p class="center">
+        <a href="#" onclick="return showHide('szablon-add');">
+            <img src="{$TPL_URL}/img/article.png" alt="Dodaj szablon" />
+            <strong>Dodaj nowy szablon</strong>
+        </a>
+    </p>
+
+    <div>
+        <table class="special" cellspacing="1">
+            <tr class="shadow_dark">
+                <th>Lp.</th>
+                <th>Tytuł</th>
+                <th>Wysłano</th>
+                <th>Odebrano</th>
+                <th>W kolejce</th>
+            </tr>
+            {section name=m loop=$mail_tpl}
+            <tr class="shadow_dark">
+                <td>{$smarty.section.m.iteration}.</td>
+                <td><a href="?action=edit&amp;id={$mail_tpl[m].id}">{$mail_tpl[m].name}</a></td>
+                <td>{$mail_tpl[m].send|default:0}</td>
+                <td>{$mail_tpl[m].odebrano|default:0}</td>
+                <td>{$mail_tpl[m].queue_count|default:0}</td>
+                <td>
+                    <a href="?action=edit&amp;id={$mail_tpl[m].id}" title="Edytuj"><img src="{$BASE_URL}/templates/admin/img/edit.png" alt="Edytuj" /></a>
+                </td>
+            </tr>
+            {/section}
+        </table>
+        
+        
+        {*
+        {section name=m loop=$mail_tpl}
+        <div>
+            <span>{$smarty.section.m.iteration}. </span>
+            <a href="?action=edit&amp;id={$mail_tpl[m].id}">{$mail_tpl[m].name} - {$mail_tpl[m].description|nl2br|truncate:60}</a>
+        </div>
+        {sectionelse}
+            <p class="center error">Brak szablonów w bazie!</p>
+        {/section}
+        *}
+    </div>
+
+<div id="szablon-add" style="display: none;">
+    <form method="post" action="{$smarty.server.PHP_SELF}">
+        <table class="special" cellspacing="1" cellpadding="0">
+            <tr>
+                <td>Nazwa: </td>
+                <td>
+                    <input class="text" type="text" name="name" size="20" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td>Opis: </td>
+                <td>
+                    <input class="text" type="text" name="description" size="30" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input class="submit" type="submit" name="action" value="Dodaj szablon" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</div>

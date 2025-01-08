@@ -1,0 +1,54 @@
+<style>@import url("{$TPL_URL}/css/catalogs.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+<div class="container-wide">
+    {include file="misc/breadcrumbs.html"}
+</div>
+
+<main class="catalogs container-wide">
+    <h1 class="page-title">{$module.title}</h1>
+
+    <div class="page-top-text">
+        {$module.content_short}
+    </div>
+
+    <div class="catalogs-nav">
+        <a href="/{$module['title_url']}" class="catalogs-nav-item {if !isset($category) || !$category}active{/if}">{$LANG.all}</a>
+        {foreach from=$main_categories.categories item=cat}
+        <a href="{$cat.url}" class="catalogs-nav-item {if isset($category) && $category && $cat.id==$category.id}active{/if}">{$cat.title}</a>
+        {/foreach}
+    </div>
+
+    <div class="catalogs-grid">
+        {if $articles}
+        {foreach from=$articles item=item}
+        <div class="catalogs-grid-item">
+            <div class="image">
+                <picture>
+                    <img src="{$item.photo.source.photo_webp}" alt="{$item.title}">
+                </picture>
+            </div>
+
+            <div class="overlay">
+                <div class="title">{$item.title}</div>
+                <a href="{$item.files[0].url}" class="btn btn-primary">
+                    {$LANG.KATALOGI_POBIERZ_BUTTON}
+                    <img src="{$TPL_URL}/img/icons/icon-download.svg" alt="{$item.files[0].filename}">
+                </a>
+            </div>
+        </div>
+        {/foreach}
+        {/if}
+
+    </div>
+
+    {include file="misc/pagination.html"}
+
+</main>
+
+{if $module.content}
+<div class="page-bottom">
+    <div class="container">
+        {$module.content}
+    </div>
+</div>
+{/if}

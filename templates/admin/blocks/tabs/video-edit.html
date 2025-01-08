@@ -1,0 +1,58 @@
+<div class="tab{if $tab_selected=='video'} active{/if}" data-tab="video">
+    <div class="tab-wrapper">
+       <div class="content-block">
+            <h2 class="content-block-title">Wideo</h2>
+            <form method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data" >
+                <div class="form-grid form-grid-2">
+                    <div class="form-group">
+                        <label for="video_title">Tytuł wideo</label>
+                        <input type="text" class="form-input" id="video_title" name="video_title" value="{$item.video_title}" >
+                    </div>
+                </div>
+                <div class="drop-container">
+                    <div class="icon">
+                        <img src="{$TPL_URL}/img/icons/icon-drop.svg" alt="">
+                    </div>
+                    <div class="text">Upuść plik tutaj <br> lub dodaj z komputera </div>
+                    <label class="button" for="video">
+                        + Dodaj plik
+                        <input type="file" name="video" id="video" >
+                    </label>
+                </div>
+
+                <div class="btn-row" style="margin-left: 0; margin-bottom: 40px">
+                    <input type="hidden" name="id" value="{$item.id}" />
+                    <input type="hidden" name="moduleName" value="{$module_name}">
+                    <input class="btn btn-save" type="submit" name="action" value="Dodaj wideo" />
+                </div>
+            </form>
+
+            {if $item.video}
+            <video width="320" height="240" controls style="margin-bottom: 40px">
+                <object data="{$item.video.source}" width="320" height="240">
+                    <embed src="{$item.video.source}" width="320" height="240">
+                </object>
+                <source src="{$item.video.source}" type="video/mp4">
+            </video>
+
+            <div class="btn-row" style="margin-left: 0">
+                <a href="?moduleName={$module_name}&action=delete_video&amp;id={$item.id}" class="btn btn-cancel" onclick="return confirmDelete();">
+                    <span> Usuń z serwera</span>
+                </a>
+            </div>
+            {/if}
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal modal-thumb">
+    <div class="modal-bg"></div>
+    <div class="modal-content">
+        <div class="modal-close"></div>
+        <div class="modal-title">Edytuj</div>
+        <div class="modal-dynamic"></div>
+    </div>
+</div>

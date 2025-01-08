@@ -1,0 +1,29 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+	{*
+    {if $show_writable_error}
+    <div class="error center">UWAGA!!. Nie masz uprawnień do edycji pliku robots.txt</div>
+    {/if}
+	*}
+    
+    <form class="formularz" method="post" action="{$smarty.server.PHP_SELF}">
+        <table class="special" cellspacing="1" cellpadding="0">
+            <tr>
+                <td>
+
+                        <textarea id="edytor" readonly name="value">{$value}</textarea>
+
+                </td>
+            </tr>
+            {*<tr>
+                <td>
+                    <input type="hidden" name="action" value="save" />
+                    <input class="submit" type="submit" value="{$LANG.ZAPISZ_ZMIANY}" />
+                </td>
+            </tr>*}
+        </table>
+    </form>
+</div>
+
+

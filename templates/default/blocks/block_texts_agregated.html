@@ -1,0 +1,12 @@
+<!-- SECTION INFORMATION -->
+<section class="information">
+    <div class="wrapper">
+        {foreach from=$block.items item=element}
+        <div class="information__element">
+            <h{$element.h_type}>{$element.title}</h{$element.h_type}>
+            <p class="information__element__turkus-title">{$element.subtitle}</p>
+            <p class="information__element__info">{$element.content}</p>
+        </div>
+        {/foreach}
+    </div>
+</section>

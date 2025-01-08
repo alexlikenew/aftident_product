@@ -1,0 +1,67 @@
+<div class="content">
+    <div class="tab tab-list active">
+        <div class="tab-list-top">
+            <a href="module.php?moduleName={$module_name}&action=add" class="btn btn-primary">+ Dodaj nowego użytkownika</a>
+            {include file="misc/search.html"}
+        </div>
+
+        <div class="list">
+            <div class="list-top">
+                <div class="list-top-panel">
+                    &nbsp;
+                </div>
+
+                <div class="list-top-filter">
+                    <div class="list-top-filter__item">
+                        <span class="label">Sortuj:</span>
+                        <select class="list-top-filter__select">
+                            <option value="newest">Najnowsze</option>
+                            <option value="oldest">Najstarsze</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            {if $users}
+            <table class="list-table">
+                <thead>
+                    <tr class="list-table-row list-table-head">
+                        <th style="width: 70px">ID</th>
+                        <th style="width: 280px">Login</th>
+                        <th style="width: 200px;">Imię i Nazwisko</th>
+                        <th>Rola</th>
+                        <th>Status</th>
+                        <th>Logowanie do panelu</th>
+                        <th>Opcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {foreach from=$users item=item name=aa}
+                    <tr class="list-table-row">
+                        <td>{$item.id}</td>
+                        <td><a href="module.php?moduleName={$module_name}&action=edit&amp;id={$item.id}">{$item.login}</a></td>
+                        <td>{$item.first_name} {$item.last_name}</td>
+                        <td>{$item.group_name}</td>
+                        <td>{if $item.active==1}Aktywny{else}Nieaktywny{/if}</td>
+                        <td>{if $item.admin_login==1}Tak{else}Nie{/if}</td>
+                        <td>
+                            <a href="module.php?moduleName={$module_name}&action=edit&amp;id={$item.id}" class="list-table-icon" title="Edytuj">
+                                <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                            </a>
+                            <a href="module.php?moduleName={$module_name}&action=delete&amp;id={$item.id}" class="list-table-icon" title="Kasuj" onclick="return confirmDelete()">
+                                <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                            </a>
+                        </td>
+                    </tr>
+                {/foreach}
+                </tbody>
+            </table>
+            {else}
+                <div>Brak</div>
+            {/if}
+        </div>
+        {if $pages>1}
+        {include file="misc/pagination.html"}
+        {/if}
+    </div>
+</div>

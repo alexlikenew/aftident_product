@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language-pack>
+	<header>
+		<author>Menadżer plików Moxiecode Systems AB</author>
+		<version minor="2" major="0" releasedate="2005-10-28" />
+		<description>
+			Jest to język polski Pack dla MCFileManager.
+		</description>
+	</header>
+
+	<language code="pl" title="Polish" dir="ltr">
+		<group target="error">
+			<item name="tofile_exists">Plik już istnieje.</item> 
+			<item name="no_from_file">Plik nie istnieje.</item> 
+			<item name="demo">Czynność zakazana w wersji demo.</item> 
+			<item name="invalid_filename">Nazwa pliku nie jest poprawna.</item>
+			<item name="no_read_access">Brak dostępu do odczytu pliku / folderu.</item> 
+			<item name="no_write_access">Brak prawa zapisu do tego pliku/katalogu.</item> 
+			<item name="copy_failed">Kopiowanie nie powiodło się.</item> 
+			<item name="move_failed">Czynność nie powiodła się.</item> 
+			<item name="template_missing">Nie znaleziono szablonu.</item> 
+			<item name="createdoc_failed">Stworzenie dokumentu nie powiodło się.</item> 
+			<item name="no_access">Nie masz dostępu, żeby wykonać tą operację.</item> 
+			<item name="file_exists">Plik już istnieje.</item> 
+			<item name="upload_failed">Ładowanie nie powiodło się, sprawdź swoje prawa zapisu.</item> 
+			<item name="error_to_large">Max rozmiar pliku został osiągnięty.</item> 
+			<item name="file_not_exists">Plik nie istnieje.</item> 
+			<item name="delete_failed">Usuwanie nie powiodło się.</item> 
+			<item name="folder_exists">Katalog już istnieje.</item> 
+			<item name="no_filesystem">Nie znaleziono plików systemowych</item> 
+			<item name="createdir_failed">Stworzenie katalogu nie powiodło się.</item> 
+			<item name="createzip_failed">Stworzenie pliku zip nie powiodło się.</item> 
+			<item name="rename_failed">Zmiana nazwy nie powiodła się.</item>
+			<item name="savecontent_failed">Zapisz treści się nie powiódł.</item>
+		</group>
+		<group target="message">
+			<item name="zip_success">Pakowanie powiodło się.</item> 
+			<item name="copy_success">Kopiowanie powiodło się.</item> 
+			<item name="move_success">Przeniesienie powiodło się.</item> 
+			<item name="createdoc_success">Utworzenie dokumentu powiodło się.</item> 
+			<item name="delete_success">Usuwanie powiodło się.</item> 
+			<item name="directory_ok">Utworzenie katalogu powiodło się.</item> 
+			<item name="keepalive">Połączenie aktywne</item> 
+			<item name="upload_ok">Wgrywanie powiodło się.</item> 
+			<item name="confirm_cut">Jesteś pewien, że chcesz wyciąć zaznaczone pliki?</item> 
+			<item name="confirm_copy">Jesteś pewien, że chcesz skopiować zaznaczone pliki?</item> 
+			<item name="confirm_paste">Jesteś pewien, że chcesz wkleić wycięte/skopiowane pliki?</item> 
+			<item name="confirm_delete">Jesteś pewien, że chcesz usunąć zaznaczone pliki?</item> 
+			<item name="insert">Pobieranie informacji o pliku, proszę czekać...</item> 
+			<item name="paste_in_progress">Operacja wklejenia w toku, proszę czekać...</item>
+		</group>
+		<group target="common">
+			<item name="createdir">Utwórz katalog</item> 
+			<item name="createfile">Nowy plik</item> 
+			<item name="help">Pomoc</item> 
+			<item name="refresh">Odśwież</item> 
+			<item name="upload">Załaduj</item> 
+			<item name="directory">Wybrany katalog</item> 
+			<item name="imagemanager">Menadżer obrazków</item> 
+			<item name="title">Menadżer plikw - Moxiecode</item> 
+			<item name="alert_ok">Ok</item> 
+			<item name="confirm_yes">Tak</item>
+			<item name="confirm_no">Nie</item> 
+		</group>
+		<group target="button">
+			<item name="create">Utwórz</item>
+			<item name="cancel">Anuluj</item>
+			<item name="save">Zapisz</item>
+		</group>
+		<group target="panel">
+			<item name="categories">Kategorie</item> 
+			<item name="preview">Poprzedni</item>
+			<!-- Legacy items --> 
+			<item name="favorites">Ulubione</item> 
+			<item name="history">Historia</item>
+		</group>
+		<group target="edit">
+			<item name="title">Edytuj plik</item>
+			<item name="description">Edytuj zawartość pliku.</item>
+			<item name="loading_wait">Ładowanie treści proszę czekać.</item>
+			<item name="saving_wait">Zapisywanie zawartości proszę czekać.</item>
+			<item name="file_path">Ścieżka pliku:</item>
+		</group>
+		<group target="actions">
+			<item name="insert">Wstaw</item> 
+			<item name="download">Pobierz</item> 
+			<item name="rename">Zmień nazwę</item> 
+			<item name="cut">Wytnij</item> 
+			<item name="copy">Kopiuj</item> 
+			<item name="paste">Wklej</item> 
+			<item name="deleteit">Usuń</item>
+			<item name="edit">Edytuj</item>
+			<item name="zip">Zip</item> 
+			<item name="view">Widok</item> 
+			<item name="select_all">Zaznacz</item> 
+			<item name="unselect_all">Odznacz</item>
+			<!-- Legacy items -->
+			<item name="addfavorites">Dodaj ulubione</item> 
+			<item name="removefavorites">Usuń ulubione</item>
+		</group>
+		<group target="filelist">
+			<item name="filename">Nazwa pliku</item> 
+			<item name="size">Rozmiar</item> 
+			<item name="type">Typ</item> 
+			<item name="modified">Zmiana daty</item> 
+			<item name="with_selected">Zaznaczone:</item> 
+			<item name="info_dirs">Katalogi:</item> 
+			<item name="info_files">Pliki:</item> 
+			<item name="info_size">Całkowity rozmiar pliku:</item> 
+			<item name="info_access">Dostęp:</item> 
+			<item name="loading">Ładowanie...</item>
+		</group>
+		<group target="createdir">
+			<item name="title">Utwórz folderr</item> 
+			<item name="description">Wstaw nazwę dla pliku, który chcesz utworzyć.</item> 
+			<item name="template">Szablon:</item> 
+			<item name="select_template">-- Wybierz szablon --</item> 
+			<item name="directory_name">Nazwa katalogu:</item> 
+			<item name="create_in">Utwórz w:</item> 
+			<item name="progress">Tworzenie katalogu odczytu, proszę czekać...</item> 
+		</group>
+		<group target="createdoc">
+			<item name="title">Utwórz dokument</item> 
+			<item name="description">Wypełnij formularz, aby utworzyć nowy dokument z szablonu.</item> 
+			<item name="template">Szablon:</item> 
+			<item name="select_template">-- Select template --</item> 
+			<item name="name">Nazwa</item> 
+			<item name="path">Ścieżka</item> 
+			<item name="preview">Podgląd</item>
+			<item name="preview_title">Podgląd w: {file}</item>
+		</group>
+		<group target="upload">
+			<item name="title">Załaduj</item> 
+			<item name="description">Użyj formularza, żeby załadować pliki.</item> 
+			<item name="valid_extensions">Ważne rozszerzenie:</item> 
+			<item name="max_upload_size">Max rozmiar załadowania:</item> 
+			<item name="file_to_upload">Plik do załadowania:</item> 
+			<item name="as_file_name">Jako nazwa pliku:</item> 
+			<item name="path">Ścieżka:</item> 
+			<item name="button_upload">Załaduj</item> 
+			<item name="browse">Dodaj plik</item> 
+			<item name="progress">Ładowanie pliku, proszę czekać...</item>
+			<item name="upload_warn">Pliki są przekazywane, na pewno chcesz anulować przesyłanie?</item>
+			<item name="statusrow">Pliki {files} o łącznej wielkości {size} z niecierpliwością czekają na upload.</item>
+			<item name="progressinfo">Załadowano {loaded} z {total} z prędkością {speed}/s.</item>
+			<item name="abort">Przesłać</item>
+			<item name="add_more">Dodać więcej?</item>
+			<item name="upload_to_server">Przeslij na serwer</item>
+			<item name="cancelled">Przesyłanie zostało anulowane</item>
+			<item name="choose_files">Wybierz pliki</item>
+			<item name="basic_upload">Jeśli masz problemy z przesyłaniem zawsze możesz skorzystać z {a}zawansowanych opcji{/a}.</item>
+			<item name="remove">Usuń</item>
+			<item name="file">Plik</item>
+			<item name="size">Rozmiar</item>
+			<item name="status">Stan</item>
+			<item name="no_valid_files">Niepoprawny identyfikator wybranych plikw, spróbuj ponownie.</item>
+		</group>
+		<group target="createzip">
+			<item name="title">Utwrz zip</item> 
+			<item name="description">Wstaw nazwę pliku zip, ktry chcesz utworzyć.</item> 
+			<item name="name">Nazwa:</item> 
+			<item name="path">Ścieżka</item>
+		</group>
+		<group target="tinymce">
+			<item name="insertfile_desc">Wstaw plik</item> 
+		</group>
+		<group target="favorites">
+			<item name="special_folder_title">Ulubione</item>
+			<item name="addfavorites">Dodaj do ulubionych</item>
+			<item name="removefavorites">Usuń ulubione</item>
+			<item name="confirm_remove_favorite">Czy na pewno chcesz usunąć element z listy ulubionych?</item>
+			<item name="remove_favorite_failed">Nie można usunąć z listy ulubionych.</item>
+		</group>
+		<group target="history">
+			<item name="special_folder_title">Historia</item>
+		</group>
+	</language>
+</language-pack>

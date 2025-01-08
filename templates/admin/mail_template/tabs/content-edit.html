@@ -1,0 +1,74 @@
+<div class="tab active" data-tab="content">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">Opis</h2>
+            <div class="form-grid form-grid-2">
+                <div class="form-group">
+                    <label for="name">Nazwa</label>
+                    <input type="text" class="form-input" id="name" name="name" value="{$item.name}">
+                </div>
+            </div>
+
+            {foreach from=$languages item=lang}
+            <div class="form-grid form-grid-2" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                <div class="form-group">
+                    <label for="title">Tytuł [{$lang.code}]</label>
+                    <input type="text" class="form-input" id="title" name="title[{$lang.id}]" value="{$opis[$lang.id].title}">
+                </div>
+            </div>
+
+            <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                <label for="content">Treść [{$lang.code}] (zmienne powinny zanczynać sie od znaku #, np. #NAZWA)</label>
+                <textarea name="content[{$lang.id}]" id="content" class="text-editor">{$opis[$lang.id].content}</textarea>
+            </div>
+            {/foreach}
+            <div class="form-grid form-grid-2" >
+                <div class="form-group">
+                    <label for="variables">Zmienne (oddzielone ",")</label>
+                    <input type="text" class="form-input" id="variables" name="variables" value="{$item.variables}">
+                </div>
+            </div>
+            <div class="form-grid">
+                <label class="checkbox-item">
+                    Wyślij do klienta
+                    <input type="checkbox" value="1" name="send_to_user" {if $item.user} checked {/if} />
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-grid">
+                <label class="checkbox-item">
+                    Wyślij do administratora
+                    <input type="checkbox" value="1" name="send_to_admin" {if $item.admin} checked {/if} />
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content-panel active" data-tab="content">
+    <div class="content-block-title">Ustawienia</div>
+
+    <div class="form-group">
+        <label for="language">Wersja językowa</label>
+        <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+            {foreach from=$languages item=lang}
+            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+    <input type="checkbox"
+           name="lang_active[{$lang.id}]"
+           id="switch_active_{$lang.id}"
+           class="switch-input switch-active"
+           {if $opis[$lang.id].active}checked="checked"{/if} />
+    <label for="switch_active_{$lang.id}" class="switch"></label>
+    Aktywna
+</div>
+{/foreach}
+
+</div>

@@ -1,0 +1,104 @@
+<div class="content">
+    <div class="tab tab-list active">
+        <div class="tab-list-top">
+            <a href="module.php?moduleName={$module_name}&action={if $feature_id}add_value&feature_id={$feature_id}{else}add{/if}" class="btn btn-primary">+ Dodaj nową {if isset($feature_id) && $feature_id}cechę{else}grupę{/if}</a>
+            {include file="misc/search.html"}
+        </div>
+
+        <div class="list">
+            <form method="post" action="">
+
+                {if $articles}
+                <div class="list-top">
+                    <div class="list-top-panel">
+                        {if isset($feature_id) && $feature_id}
+                        <a href="module.php?moduleName={$module_name}" class="list-top-panel-back" style="margin-right: 40px">
+                            <img src="{$TPL_URL}/img/icons/icon-arrow-back.svg" alt="">
+                            Przejdź do listy cech
+                        </a>
+                        {/if}
+
+                        &nbsp;<div class="form-grid">
+                            <div class="list-top-panel-count btn-row">
+                                <div style="margin-right: 20px">Wybrano: <span class="checked-count"></span></div>
+                                <input type="submit" name="action" value="{if isset($feature_id) && $feature_id}delete_value{else}Usuń{/if}" class="btn btn-cancel" onclick="return confirmDelete();">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-top-filter">
+                        <div class="list-top-filter__item">
+                            <span class="label">Sortuj:</span>
+                            <select class="list-top-filter__select">
+                                <option value="newest">Najnowsze</option>
+                                <option value="oldest">Najstarsze</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <table class="list-table" >
+                    <thead>
+                        <tr class="list-table-row list-table-head">
+                            <th style="width: 70px">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="1" name="mark_all" class="checkbox-mark-all"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </th>
+                            <th style="width: 30%;">Tytuł</th>
+                            {if isset($feature_id)}<th>Typ</th>{/if}
+                            <th>Data dodania</th>
+                            <th>Widoczna</th>
+                            <th>Opcje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sortableList" data-url="/admin/module.php?moduleName={$module_name}" data-action="{if isset($feature_id) && $feature_id}move_value{else}move{/if}">
+                    {foreach from=$articles item=item name=aa}
+                        <tr class="list-table-row" data-id="{$item.id}">
+                            <td>
+                                <label class="checkbox-item list-check-item">
+                                    <input type="checkbox" value="{$item.id}" name="list_items[]"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>
+                                {if !isset($feature_id)}<a href="?moduleName={$module_name}&feature_id={$item.id}">{$item.title}</a>{else}{$item.title}{/if}
+                            </td>
+                            {if isset($feature_id)}<td>{if $item.type == 1}Pole tekstowe{else}checkbox{/if}</td>{/if}
+                            <td>{$item.date_add}</td>
+                            <td>
+                                <input type="checkbox"
+                                       id="switch_{$item.id}"
+                                       class="switch-input switch-active"
+                                       data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}{if isset($feature_id) && $feature_id}&action={/if}"
+                                       data-id="{$item.id}"
+                                       {if $item.parent_id}data-valueid="{$item.id}"{/if}
+                                       {if $item.active}checked="checked"{/if} />
+                                <label for="switch_{$item.id}" class="switch"></label>
+                            </td>
+                            <td>
+                               {* <a href="?moduleName={$module_name}&action={if isset($feature_id) && $feature_id}duplicate_value{else}duplicate{/if}&amp;id={$item.id}" class="list-table-icon" title="Duplikuj" target="_blank">
+                                    <img src="{$TPL_URL}/img/icons/icon-copy.svg" alt="Duplikuj">
+                                </a>*}
+                                <a href="?moduleName={$module_name}&action={if isset($feature_id) && $feature_id}edit_value{else}edit{/if}&amp;id={$item.id}" data-module="{$menu_selected}" data-id="{$item.id}" class="list-table-icon " title="Edytuj">
+                                    <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                                </a>
+                                <div class="list-table-icon delete-item" title="Kasuj" onclick="return confirmDelete('{$item.title}', '?moduleName={$module_name}&action={if isset($feature_id) && $feature_id}delete_value&feature_id={$feature_id}{else}delete{/if}&amp;id={$item.id}');">
+                                    <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                                </div>
+                            </td>
+                        </tr>
+                    {/foreach}
+
+                    </tbody>
+                </table>
+                {/if}
+            </form>
+        </div>
+        {if $pages>1}
+        {include file="misc/pagination.html"}
+        {/if}
+    </div>
+</div>
+
+{include file="modals/modal-delete.html"}

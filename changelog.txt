@@ -1,0 +1,9 @@
+2014.10.16 : Usuniêto kilka mniejszych robaków. Usuniêto u¿ytkowników administratorów.
+2014.07.23 : Dodane zmiany od Kamila, czyli naprawione dzia³anie DEBUG_MODE
+2014.07.11 : zmieniona obs³uga serwera pocztowego SMTP. Dodano zarz¹dzanie konfiguracj¹ ustawieñ poczty do konfiguracji CMS.
+2014.12.01 : dodany .htaccess do filemanager wy³¹czaj¹cy wyœwietlanie b³êdów
+2014.12.09 : poprawiony b³¹d showEdit w /modules/admin/uzytkownicy.inc.php
+2014.12.10 : dodane angielskie t³umaczenie istat5
+2014.12.17 : zmiana w config.class.php - make_unique_url()
+2015.03.09 : dodany w szablonie galerii rel="galeria"
+2015.03.10 : usuniêto iStats5

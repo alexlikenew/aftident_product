@@ -1,0 +1,112 @@
+<style>@import url("{$TPL_URL}/css/products.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+
+<header class="products-header">
+    <div class="image">
+        {if $module.photo}
+        <picture>
+            {if $module.photo.source.photo_webp}
+            <source srcset="{$module.photo.source.photo_webp}" type="image/webp">
+            {/if}
+            <source srcset="{$module.photo.source.photo}" type="{$module.photo.params.type}">
+            <img src="{$module.photo.source.photo}" alt="{$module.title}">
+        </picture>
+        {else}
+        <picture>
+            <img src="{$TPL_URL}/img/products-header.png" alt="Chutor Kozacki">
+        </picture>
+        {/if}
+    </div>
+
+    <div class="overlay">
+        <div class="container">
+            {include file="misc/breadcrumbs.html"}
+
+            <h1 class="title">{$category.title}</h1>
+        </div>
+    </div>
+</header>
+
+<main class="products container">
+    <div class="products-sidebar">
+        <div class="products-sidebar-row column row-head">
+            <a href="/produkty" class="link-back">
+                {include file="misc/icons/icon-back.html"}
+                {$LANG.PRODUKTY_POWROT}
+            </a>
+            <div class="title head">
+                {$LANG.PRODUKTY_KATEGORIE}
+                <img src="{$TPL_URL}/img/icons/icon-triangle-menu.svg" class="products-sidebar-icon" alt="Chutor Kozacki">
+            </div>
+        </div>
+
+        <div class="products-sidebar-sub">
+            {foreach from=$categories.categories item=cat}
+            {if $category.id == $cat.id || $category.parent_id == $cat.id}
+            <div class="products-sidebar-row column">
+                <a href="{$cat.url}" class="title {if $category.id == $cat.id || $category.parent_id == $cat.id}active"{/if}>{$cat.title}</a>
+                {if $cat.subcategories}
+                {foreach from=$cat.subcategories item=subcat}
+                <div class="subcategories">
+                    <div class="products-sidebar-row">
+                        <a href="{$subcat.url}" class="title">{$subcat.title}</a>
+                        <span class="number">{if isset($categories.products_quantity[$subcat.id]) && $categories.products_quantity[$subcat.id]}{$categories.products_quantity[$subcat.id]}{else}0{/if}</span>
+                    </div>
+                </div>
+                {/foreach}
+                {/if}
+            </div>
+            {else}
+            <div class="products-sidebar-row">
+                <a href="{$cat.url}" class="title">{$cat.title}</a>
+                <span class="number">{if isset($categories.products_quantity[$cat.id]) && $categories.products_quantity[$cat.id]}{$categories.products_quantity[$cat.id]}{else}0{/if}</span>
+            </div>
+            {/if}
+            {/foreach}
+
+        </div>
+
+    </div>
+
+    <div class="products-main">
+        <div class="products-subcategories">
+            {foreach from=$subcategories item=subcategory}
+            <a href="{$subcategory.url}" class="item" title="{$subcategory.title}">
+                <div class="title">{$subcategory.title}</div>
+
+                <div class="image">
+                    <picture>
+                        {if $subcategory.photo.source.photo_webp}
+                        <source srcset="{$subcategory.photo.source.photo_webp}" type="image/webp">
+                        {/if}
+                        <source srcset="{$subcategory.photo.source.photo}" type="{$subcategory.photo.params.type}">
+                        <img src="{$subcategory.photo.source.photo}" alt="{$subcategory.title}">
+                    </picture>
+                </div>
+            </a>
+            {/foreach}
+        </div>
+        <div class="products-list grid-3">
+            {if $articles}
+            {foreach from=$articles item=item}
+                {include file="products/product-card.html"}
+            {/foreach}
+            {/if}
+        </div>
+
+        {include file="misc/pagination.html"}
+    </div>
+
+</main>
+
+<div class="container">
+    {include file="misc/inspirations-other.html"}
+</div>
+
+{if $category.content}
+<div class="page-bottom">
+    <div class="container">
+        {$category.content}
+    </div>
+</div>
+{/if}

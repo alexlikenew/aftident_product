@@ -1,0 +1,56 @@
+<div class="page-title"><h1>{$pageTitle} | <span class="important">Biuletyn</span></h1></div>
+
+<div class="page-content">
+
+    <p>
+        Automatyczna wysyłka newslettera jest:  
+        {if $CONF.newsletter_sending_active}
+            <strong>AKTYWNA</strong> - <a href="?action=queue_stop" title=''>wstrzymaj</a>
+        {else}
+            <strong>WSTRZYMANA</strong> - <a href="?action=queue_start" title=''>wznów</a>
+        {/if}
+    </p>
+    <br/><br/>
+
+    {foreach from=$newsletter_queue item=val name=aa}
+        {if $smarty.foreach.aa.first}
+        <table class="special" cellspacing="1">
+            <tbody>
+                <tr>
+                    <th>Lp.</th>
+                    <th>Szablon</th>
+                    <th>Email</th>
+                    <th>Start</th>
+                </tr>
+        {/if}
+        
+            {if $smarty.foreach.aa.index is odd}
+                <tr class="shadow_dark">
+                {else}
+                <tr class="shadow_light">
+            {/if}
+                    <td>
+                        {$smarty.foreach.aa.iteration}
+                    </td>
+                    <td>
+                        {$val.name}
+                    </td>
+                    <td>
+                        {$val.email}
+                    </td>
+                    <td>
+                        {$val.start_date}
+                    </td>
+            
+                </tr>
+        {if $smarty.foreach.aa.last}
+            </tbody>
+        </table>
+        {/if}
+        
+    {foreachelse}   
+    <p class="center error">Kolejka wysyłania jest obecnie pusta.</p>
+    {/foreach}
+    
+
+</div>

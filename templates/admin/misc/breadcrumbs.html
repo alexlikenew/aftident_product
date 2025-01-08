@@ -1,0 +1,15 @@
+{if isset($path) && $path}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-list">
+        <a href="module.php?moduleName={$module_name}&cat={$upperPid}" class="breadcrumbs-item">
+            Główna
+        </a>
+        {foreach from=$path item=parent}
+        <span class="breadcrumbs-item">/</span>
+        <a href="module.php?moduleName={$module_name}&cat={$parent.id}" class="breadcrumbs-item">
+            {$parent.title}
+        </a>
+        {/foreach}
+    </div>
+</div>
+{/if}

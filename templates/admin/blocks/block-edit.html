@@ -1,0 +1,57 @@
+<form method="post" enctype="multipart/form-data" action="{$smarty.server.PHP_SELF}" style="width: 450px;">
+    <div class="content-block-title">Tytuł</div>
+    <div class="form-group">
+        <label for="language">Wersja językowa</label>
+        <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+            {foreach from=$languages item=lang}
+            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="form-group">
+        <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <input type="checkbox"
+               name="lang_active[{$lang.id}]"
+               id="switch_lang_{$lang.id}"
+               class="switch-input"
+               {if $descriptions[$lang.id].active}checked="checked"{/if} />
+        <label for="switch_lang_{$lang.id}" class="switch"></label>
+        Aktywna
+    </div>
+    </div>
+
+    <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <label for="blockTitle">Tytuł [{$lang.code}]:</label>
+        <input type="text" class="form-input" id="blockTitle" name="blockTitle[{$lang.id}]" value="{$descriptions[$lang.id].title}">
+    </div>
+    {if $block.has_subtitle}
+        <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+            <label for="subtitle_{$lang.id}">Podtytuł [{$lang.code}]:</label>
+            <input type="text" class="form-input" id="subtitle_{$lang.id}" name="subtitle[{$lang.id}]" value="{$opis[$lang.id].subtitle}">
+        </div>
+    {/if}
+    {if $block.has_url}
+    <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <label for="url_{$lang.id}">URL [{$lang.code}]:</label>
+        <input type="text" class="form-input" id="url_{$lang.id}" name="url[{$lang.id}]" value="{$opis[$lang.id].url}">
+    </div>
+    {/if}
+    <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+    <label for="content_{$lang.id}">Treść [{$lang.code}]</label>
+    <textarea name="content[{$lang.id}]" id="content_{$lang.id}" class="text-editor">{$descriptions[$lang.id].content}</textarea>
+    </div>
+    {/foreach}
+
+    <div class="btn-row">
+        <input type="hidden" name="parent_id" value="{$block.id_product}" />
+        <input type="hidden" name="id" value="{$block.id}" />
+        <input type="hidden" name="action" value="save_block" />
+        <input type="hidden" name="moduleName" value="{$module_name}">
+        <input class="btn btn-save" type="submit" name="submit" value="Zapisz" />
+    </div>
+
+</form>
+
+<script type="text/javascript" src="{$BASE_URL}/js/admin/vendor/tinymce/tinymce.min.js?{$smarty.now|date_format:'%Y%m%d%H%M'}"></script>

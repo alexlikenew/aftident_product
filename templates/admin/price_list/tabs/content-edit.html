@@ -1,0 +1,219 @@
+<div class="tab{if $tab_selected == 'content'} active{/if}" data-tab="content">
+    <div class="tab-wrapper">
+        <div class="content-block">
+           {* <div class="form-group">
+                <label for="name">Nazwa </label>
+                <input type="text" class="form-input" id="name" name="name" value="{$item.name}">
+            </div>
+            *}
+            {foreach from=$languages item=lang}
+            <div class="form-grid form-grid-2" data-lang="{$lang.id}" style="{if $lang.id != $LANG_MAIN.id}display: none;{/if}">
+                <div class="form-group">
+                    <label for="title_{$lang.id}">Tytuł [{$lang.code}]:</label>
+                    <input type="text" class="form-input" id="title_{$lang.id}" name="title[{$lang.id}]" value="{$opis[$lang.id].title}">
+                </div>
+
+                {if $item.has_subtitle}
+                <div class="form-group" data-lang="{$lang.id}" style="{if $lang.id != $LANG_MAIN.id}display: none;{/if}">
+                    <label for="subtitle_{$lang.id}">Podtytuł [{$lang.code}]:</label>
+                    <input type="text" class="form-input" id="subtitle_{$lang.id}" name="subtitle[{$lang.id}]" value="{$opis[$lang.id].subtitle}">
+                </div>
+                {/if}
+            </div>
+            {/foreach}
+            <div class="form-grid form-grid-2">
+                <div class="form-group">
+                    <label for="h_type">Wielkość nagłówka :</label>
+                    <select name="h_type" id="h_type" class="form-select">
+                        <option value="1" {if $opis[$LANG_MAIN.id].h_type == 1} selected {/if}>H1</option>
+                        <option value="2" {if $opis[$LANG_MAIN.id].h_type == 2} selected {/if}>H2</option>
+                        <option value="3" {if $opis[$LANG_MAIN.id].h_type == 3} selected {/if}>H3</option>
+                        <option value="4" {if $opis[$LANG_MAIN.id].h_type == 4} selected {/if}>H4</option>
+                        <option value="5" {if $opis[$LANG_MAIN.id].h_type == 5} selected {/if}>H5</option>
+                        <option value="6" {if $opis[$LANG_MAIN.id].h_type == 6} selected {/if}>H6</option>
+                    </select>
+                </div>
+            </div>
+
+            {if $item.has_module}
+            <div class="form-grid form-grid-2">
+                <div class="form-group">
+                    <label for="h_type">Moduł :</label>
+                    <select name="module" id="module" class="form-select">
+                        <option value="0">- wybierz moduł -</option>
+                        {foreach from=$modules item=option}
+                        <option value="{$option.id}" {if $item.module_id  == $option.id} selected="selected"{/if}>{$option.name}</option>
+                        {/foreach}
+                    </select>
+                    <label for="module_quantity">Ilość elementów</label>
+                    <input type="text" id="module_quantity" name="module_quantity" value="{if $item.quantity_to_load}{$item.quantity_to_load}{/if}">
+                    <label for="module_products">Produkty</label>
+                    <input type="radio" id="module_products" name="items_type" value="1" {if $item.items_type == 1}checked{/if}>
+                    <label for="module_category">{$LANG.PRODUKTY_KATEGORIE}</label>
+                    <input type="radio" id="module_category" name="items_type" value="2" {if $item.items_type == 2}checked{/if}>
+                </div>
+            </div>
+            {/if}
+            {foreach from=$languages item=lang}
+            {if $item.has_url}
+            <div class="form-group-label" style="{if $lang.id != $LANG_MAIN.id}display: none;{/if}">Element wskazuje na:</div>
+
+            <div class="form-grid" style="{if $lang.id != $LANG_MAIN.id}display: none;{/if}">
+                <label class="radio-item">
+                    zewnętrzny adres
+                    <input type="radio" name="type" value="{$types.url}" data-target="url" {if $item.url_type==$types.url} checked="checked"{/if}/>
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="radio-item">
+                    podstronę na serwerze
+                    <input type="radio" name="type" value="{$types.page}" data-target="page" {if $item.url_type==$types.page} checked="checked"{/if}/>
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="radio-item">
+                    moduł na serwerze
+                    <input type="radio" name="type" value="{$types.module}" data-target="module" {if $item.url_type==$types.module} checked="checked"{/if}/>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="radio-item">
+                    ofertę
+                    <input type="radio" name="type" value="{$types.offer}" data-target="offer" {if $item.url_type==$types.offer} checked="checked"{/if}/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                <label for="url_name{$lang.id}">Nazwa wyświetlana [{$lang.code}]</label>
+                <input type="text" class="form-input" id="url_title{$lang.id}" name="url_title[{$lang.id}]" value="{$opis[{$lang.id}].url_title}">
+            </div>
+            <div class="form-grid form-grid-2" data-type="url" {if $item.url_type !== $types.url}style="display: none"{/if}>
+                <div class="form-group" data-type="url" {if $item.url_type !== $types.url}style="display: none"{/if}>
+                <div data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                <label for="url_{$lang.id}">Podaj zewnętrzny URL, rozpocznij od https:// [{$lang.code}]</label>
+                <input type="text" class="form-input" id="url_{$lang.id}" name="url[{$lang.id}]" value="{$opis[{$lang.id}].url}">
+                <label class="checkbox-item" style="font-weight: 400; margin-top: 10px">
+                    wyświetlaj stronę w nowym oknie <em>_blank</em>
+                    <input type="checkbox" name="blank" value="1" {if $item.blank} checked="checked"{/if}/>
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="checkbox-item" style="font-weight: 400; margin-top: 10px">
+                    link z atrybutem <em>nofollow</em>
+                    <input type="checkbox" name="nofollow" value="1" {if $item.nofollow} checked="checked"{/if}/>
+                    <span class="checkmark"></span>
+                </label>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div class="form-grid form-grid-2" data-type="page" {if $item.url_type !== $types.page}style="display: none"{/if}>
+
+<div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+<label for="page_{$lang.id}">Wybierz stronę, na którą ma odsyłać element [{$lang.code}]</label>
+<select class="form-select menu-select" id="page_{$lang.id}" data-lang="{$lang.id}">
+    <option value="0">- wybierz stronę -</option>
+    {foreach from=$pages[$lang.id] item=option}
+    <option value="{$option.id}" {if $item.url_type == $types.page and $opis[{$lang.id}].url_target1_id == $option.id} selected="selected"{/if}>{$option.title}</option>
+    {/foreach}
+</select>
+</div>
+
+</div>
+
+<div class="form-grid form-grid-2" data-type="module" {if $item.url_type !== $types.module}style="display: none"{/if}>
+
+<div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+<label for="module">Wybierz moduł, do którego ma odsyłać element [{$lang.code}]</label>
+<select class="form-select menu-select" id="module" data-lang="{$lang.id}">
+    <option value="0">- wybierz moduł -</option>
+    {foreach from=$modules item=option}
+    <option value="{$option.id}" {if $item.url_type == $types.module and $opis[{$lang.id}].url_target1_id == $option.id} selected="selected"{/if}>{$option.name}</option>
+    {/foreach}
+</select>
+</div>
+
+</div>
+
+
+
+<div class="form-grid form-grid-2" data-type="offer" {if $item.url_type !== $types.offer}style="display: none"{/if}>
+
+<div class="form-group" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+<label for="offer_{$lang.id}">Wybierz ofertę, do której ma odsyłać element</label>
+<select class="form-select menu-select" id="offer_{$lang.id}" data-lang="{$lang_main.id}">
+    <option value="0">- wybierz ofertę -</option>
+    {foreach from=$offers item=option}
+    <option value="{$option.id}" {if $item.url_type == $types.offer && $opis[{$lang.id}].url_target1_id == $option.id} selected="selected"{/if}>{$option.title}</option>
+    {/foreach}
+</select>
+</div>
+
+</div>
+
+{/if}
+{if $item.has_text}
+<div class="form-group" data-lang="{$lang.id}"  style="{if $lang.id != $LANG_MAIN.id}display: none;{/if}">
+    <label for="content_{$lang.id}">Treść [{$lang.code}]:</label>
+    <textarea id="content_{$lang.id}" class="text-editor" name="content[{$lang.id}]">{{$opis[$lang.id].content}}</textarea>
+</div>
+{/if}
+{if $item.has_quote}
+<div class="form-group" data-lang="{$lang.id}"  style="{if $lang.id != $LANG_MAIN.id}display: none;{/if}">
+    <label for="content_{$lang.id}">Cytat (teść dolna) [{$lang.code}]:</label>
+    <textarea id="content_{$lang.id}" class="text-editor" name="quote[{$lang.id}]">{{$opis[$lang.id].quote}}</textarea>
+</div>
+{/if}
+
+{/foreach}
+
+{if $item.has_gallery}
+<div class="form-grid">
+    <div class="form-group">
+        <label for="gallery_id">Galeria</label>
+        <select name="gallery_id" id="gallery_id" class="form-select">
+            <option value="">- brak -</option>
+            {foreach from=$galleries item=gallery}
+            <option value="{$gallery.id}" {if $gallery.id == $item.gallery_id}selected{/if}>{$gallery.title}</option>
+            {/foreach}
+        </select>
+    </div>
+</div>
+{/if}
+{if isset($parent_block) && $parent_block}
+<div class="form-grid">
+    <div class="form-group">
+        Blok rodzica: <span>{$parent_block.name}</span>
+    </div>
+</div>
+{/if}
+</div>
+</div>
+</div>
+
+<div class="content-panel{if $tab_selected == 'content'} active{/if}" data-tab="content">
+    <div class="content-block-title">Ustawienia</div>
+
+    <div class="form-group">
+        <label for="language">Wersja językowa</label>
+        <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+            {foreach from=$languages item=lang}
+            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="checkbox-switch" data-lang="{$lang.id}" style="{if $lang.id != $LANG_MAIN.id}display: none;{/if}">
+        <input type="checkbox"
+               name="lang_active[{$lang.id}]"
+               id="switch_active_{$lang.id}"
+               class="switch-input switch-active"
+               {if $opis[$lang.id].active}checked="checked"{/if} />
+        <label for="switch_active_{$lang.id}" class="switch"></label>
+        Aktywna
+    </div>
+    {/foreach}
+</div>

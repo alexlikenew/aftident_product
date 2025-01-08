@@ -1,0 +1,29 @@
+<form method="post" enctype="multipart/form-data" action="{$smarty.server.PHP_SELF}">
+    <div class="drop-container">
+        <div class="icon">
+            <img src="{$TPL_URL}/img/icons/icon-drop.svg" alt="">
+        </div>
+        <div class="text">Upuść plik tutaj <br> lub dodaj z komputera </div>
+        <label class="button" for="file">
+            + Dodaj plik
+            <input type="file" name="plik" id="file">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label for="colorTitle">Nazwa wyświetlana:</label>
+        <input type="text" class="form-input" id="colorTitle" name="name[{$LANG_MAIN.id}]" value="{$file.opis[$LANG_MAIN.id].name}">
+        <input type="hidden" name="name_old[{$LANG_MAIN.id}]" value="{$file.opis[$LANG_MAIN.id].name}" />
+    </div>
+
+    <div class="btn-row">
+        <input type="hidden" name="id" value="{$file.id}" />
+        <input type="hidden" name="filename_old" value="{$file.filename}" />
+        <input type="hidden" name="parent_type" value="{$file.parent_type}" />
+        <input type="hidden" name="parent_id" value="{$file.parent_id}" />
+        <input type="hidden" name="moduleName" value="{$module_name}"/>
+        <input type="hidden" name="action" value="save_file" />
+        <input class="btn btn-save" type="submit" name="submit" value="Zapisz zmiany" />
+    </div>
+
+</form>

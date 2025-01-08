@@ -1,0 +1,88 @@
+<div class="tab{if $tab_selected == 'photo'} active{/if}" data-tab="photo">
+    <form method="post" enctype="multipart/form-data" action="{$smarty.server.PHP_SELF}">
+        <div class="tab-wrapper">
+            <div class="content-block">
+                <h2 class="content-block-title">Zdjęcie</h2>
+
+                <div class="drop-container" id="dropContainer">
+                    <div class="icon">
+                        <img src="{$TPL_URL}/img/icons/icon-drop.svg" alt="">
+                    </div>
+                    <div class="text">Upuść plik tutaj <br> lub dodaj z komputera </div>
+                    <label class="button" for="photo">
+                        + Dodaj plik
+                        <input type="file" name="photo" id="photo" accept="image/*" >
+                    </label>
+                </div>
+
+                <div class="image-preview">
+                    <div class="image-preview-item">
+                        <img src="#" alt="" class="image-preview-img">
+
+                        <div class="image-preview-item__delete">
+                            <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="btn-row" style="margin-left: 0">
+                        <input type="hidden" name="id" value="{$item.id}" />
+                        <input type="hidden" name="moduleName" value="{$module_name}">
+                        <input class="btn btn-save" type="submit" name="action" value="Dodaj zdjęcie" />
+                    </div>
+                </div>
+
+            </div>
+
+            {if $item.photo}
+            <div class="content-block">
+                <h3 class="content-block-title">Kadrowanie</h3>
+
+                <div class="btn-row" style="margin-left: 0">
+                    <a href="?moduleName={$module_name}&action=delete_photo&amp;id={$item.id}" class="btn btn-cancel" onclick="return confirmDelete();">
+                        <span>Usuń z serwera</span>
+                    </a>
+                </div>
+                <br>
+
+
+                <div class="image-editor">
+                    <div class="form-group-label">Zdjęcie normalne</div>
+                    <br>
+                    {if $item.photo.source.photo}
+                    <div class="image-editor-item">
+                        <img style="max-width: 500px;" src="{$item.photo.source.photo_webp}" alt="{$item.title}" />
+                    </div>
+                    {/if}
+
+                    <div class="form-group-label">Miniatura na listę</div>
+                    <br>
+                    {if $item.photo.source.list}
+                    <div class="image-editor-item edit-thumb" data-id="{$item.id}" data-module="{$module_name}" data-type="list" data-url="/admin/module.php?moduleName={$module_name}&action=edit_thumb">
+                        <img style="max-width: 500px;" src="{$item.photo.source.list}" alt="{$item.title}" />
+                    </div>
+                    {/if}
+
+                    <div class="form-group-label">Miniatura do szczegółów</div>
+                    <br>
+                    {if $item.photo.detail}
+                    <div class="image-editor-item edit-thumb" data-id="{$item.id}" data-module="{$module_name}" data-type="detail" data-url="/admin/module.php?moduleName={$module_name}&action=edit_thumb">
+                        <img style="max-width: 500px;" src="{$item.photo.source.detail}" alt="{$item.title}" />
+                    </div>
+                    {/if}
+                </div>
+            </div>
+            {/if}
+        </div>
+    </form>
+
+
+</div>
+
+<div class="modal modal-thumb">
+    <div class="modal-bg"></div>
+    <div class="modal-content">
+        <div class="modal-close"></div>
+        <div class="modal-title">Edytuj</div>
+        <div class="modal-dynamic"></div>
+    </div>
+</div>

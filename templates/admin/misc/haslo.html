@@ -1,0 +1,31 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <div class="info">{$LANG._HASLO_INFO}</div>
+    {if $pass_error}
+        <p class="error center">{$pass_error}</p>
+    {/if}
+    <form class="formularz" method="post" action="{$smarty.server.PHP_SELF}">
+        <table align="center">
+            <tr>
+                <td>{$LANG.STARE_HASLO}:</td>
+                <td><input type="password" class="text" size="20" name="old" /></td>
+            </tr>
+            <tr>
+                <td>{$LANG.NOWE_HASLO}:</td>
+                <td><input type="password" class="text" size="20" name="new1" /></td>
+            </tr>
+            <tr>
+                <td>{$LANG.POWTORZ_NOWE_HASLO}:</td>
+                <td><input type="password" class="text" size="20" name="new2" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="hidden" name="action" value="save_pass" />
+                    <input class="submit" type="submit" value="{$LANG.ZMIEN_HASLO}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

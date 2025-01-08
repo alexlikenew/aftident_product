@@ -1,0 +1,98 @@
+<div class="nav-sidebar">
+    <div class="nav-sidebar-logo">
+        <img src="{$TPL_URL}/img/app/logo-white.svg" alt="">
+    </div>
+
+    <div class="nav-sidebar-menu">
+        <div class="nav-item">
+            <a href="/" target="_blank" class="nav-item-head">
+                <div class="icon">
+                    {include file="components/icons/zoom_in.html"}
+                </div>
+                Podgląd strony
+            </a>
+        </div>
+        {*<div class="nav-item {if $menu_group == 'offer'}active{/if}">
+            <div class="nav-item-head">
+                <div class="icon">
+                    {include file="components/icons/deals.html"}
+                </div>
+                Oferta
+            </div>
+
+            <div class="nav-item-submenu">
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=produkty" class="nav-item-submenu__link{if $module_name=='produkty'} active{/if}">Pakiety</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=cechy" class="nav-item-submenu__link{if $module_name=='cechy'} active{/if}">Zakres usług</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=progi-kwotowe" class="nav-item-submenu__link{if $module_name=='progi-kwotowe'} active{/if}">Progi kwotowe</a>
+            </div>
+        </div>*}
+
+        <div class="nav-item {if $menu_group == 'pages'}active{/if}">
+            <div class="nav-item-head">
+                <div class="icon">
+                    {include file="components/icons/deals.html"}
+                </div>
+                Zarządanie stroną
+            </div>
+
+            <div class="nav-item-submenu">
+                {*<a href="{$CONF.base_url}/admin/module.php?moduleName=kadra" class="nav-item-submenu__link{if $module_name=='kadra'} active{/if}">Kadra</a>*}
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=menu" class="nav-item-submenu__link{if $module_name=='menu'} active{/if}">Zarządzanie menu</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=blog" class="nav-item-submenu__link{if $module_name=='blog'} active{/if}">Blog</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=bloki" class="nav-item-submenu__link{if $module_name=='bloki'} active{/if}">Bloki</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=strony" class="nav-item-submenu__link{if $module_name=='strony' && !$main_page} active{/if}">Podstrony</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=atrakcje" class="nav-item-submenu__link{if $module_name=='atrakcje' && !$main_page} active{/if}">Atrakcje</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=pakiety" class="nav-item-submenu__link{if $module_name=='pakiety' && !$main_page} active{/if}">Pakiety</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=pokoje" class="nav-item-submenu__link{if $module_name=='pokoje' && !$main_page} active{/if}">Pokoje</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=formularze" class="nav-item-submenu__link{if $module_name=='formularze'} active{/if}">Ankiety</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=strony&action=editMain" class="nav-item-submenu__link{if $module_name=='strony' && $main_page} active{/if}">Strona główna</a>
+                {*<a href="{$CONF.base_url}/admin/module.php?moduleName=aktualnosci" class="nav-item-submenu__link{if $module_name=='aktualnosci'} active{/if}">Aktualności</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=inspiracje" class="nav-item-submenu__link{if $module_name=='inspiracje'} active{/if}">Inspiracje</a>*}
+                {if $user.privileges.galeria_administration}
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=galeria" class="nav-item-submenu__link{if $module_name=='galeria'} active{/if}">Galerie</a>
+                {/if}
+                {if $user.privileges.galeria_administration}
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=zmieniarka" class="nav-item-submenu__link{if $module_name=='zmieniarka'} active{/if}">Zmieniarki</a>
+                {/if}
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=faq" class="nav-item-submenu__link{if $module_name=='faq'} active{/if}">FAQ</a>
+            </div>
+        </div>
+
+        <div class="nav-item {if $menu_group == 'users'}active{/if}">
+            <div class="nav-item-head">
+                <div class="icon">
+                    {include file="components/icons/contacts.html"}
+                </div>
+                Użytkownicy
+            </div>
+
+            <div class="nav-item-submenu">
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=uzytkownicy" class="nav-item-submenu__link{if $module_name=='uzytkownicy'} active{/if}">Zarządzanie użytkownikami</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=uzytkownicy-grupy" class="nav-item-submenu__link{if $module_name=='uzytkownicy-grupy'} active{/if}">Zarządzanie grupami</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=uzytkownicy-uprawnienia" class="nav-item-submenu__link{if $module_name=='uzytkownicy-uprawnienia'} active{/if}">Zarządzanie uprawnieniami</a>
+            </div>
+        </div>
+        <div class="nav-item {if $menu_group == 'settings'}active{/if}">
+            <div class="nav-item-head">
+                <div class="icon">
+                    {include file="components/icons/settings.html"}
+                </div>
+                Ustawienia
+            </div>
+
+            <div class="nav-item-submenu">
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=moduly" class="nav-item-submenu__link{if $module_name=='moduly'} active{/if}">Moduły</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=kontakt" class="nav-item-submenu__link{if $module_name=='kontakt'} active{/if}">Kontakt</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=konfiguracja" class="nav-item-submenu__link{if $module_name=='konfiguracja'} active{/if}">Konfiguracja strony</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=szablony-wiadomosci" class="nav-item-submenu__link{if $module_name=='szablony-wiadomosci'} active{/if}">Szablony wiadomości</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=konfiguracja-lang" class="nav-item-submenu__link{if $module_name=='konfiguracja-lang'} active{/if}">Konfiguracja opcji językowych</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=seo-konfiguracja" class="nav-item-submenu__link{if $module_name=='seo-konfiguracja'} active{/if}">Konfiguracja SEO</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=jezyki" class="nav-item-submenu__link{if $module_name=='jezyki'} active{/if}">Języki</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=slownik" class="nav-item-submenu__link{if $module_name=='slownik'} active{/if}">Słownik</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=redirects" class="nav-item-submenu__link{if $module_name=='redirects'} active{/if}">Przekierowania</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=haslo" class="nav-item-submenu__link{if $module_name=='haslo'} active{/if}">Zmiana hasła</a>
+                <a href="{$CONF.base_url}/admin/module.php?moduleName=rejestr-zmian" class="nav-item-submenu__link{if $module_name=='rejestr-zmian'} active{/if}">Rejestr zmian</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{if $block.photo}
+<div class="block-image">
+    <figure>
+        <picture>
+            {if $block.photo.source.photo_webp}
+            <source srcset="{$block.photo.source.photo_webp}" type="image/webp">
+            {/if}
+            <source srcset="{$block.photo.source.photo}" type="{$block.photo.params.type}" >
+            <img loading="lazy" src="{$block.photo.source.photo}" alt="{$block.title}">
+        </picture>
+
+        <figcaption>{$block.title}</figcaption>
+    </figure>
+
+
+</div>
+{/if}

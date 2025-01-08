@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+  }
+  /*
+    3. Allow percentage-based heights in the application
+  */
+  html, body {
+    height: 100%;
+  }
+  /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+  /*
+  6. Improve media defaults
+  */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  /*
+    7. Remove built-in form typography styles
+  */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  /*
+    8. Avoid text overflows
+  */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  /*
+    9. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+  :root{
+    --clr-primary: #FB2F39; 
+    --clr-primary-dark: #c9262e;
+    --clr-primary-light: #fd8288;
+    --clr-green: #01A7B7; 
+    --clr-grey: #E5E9ED;
+    --clr-bg: #FDFEFF;
+    --clr-text: #18212A;
+    //     red: {
+    //         100: "#fed5d7",
+    //         200: "#fdacb0",
+    //         300: "#fd8288",
+    //         400: "#fc5961",
+    //         500: "#fb2f39",
+    //         600: "#c9262e",
+    //         700: "#971c22",
+    //         800: "#641317",
+    //         900: "#32090b"
+    // },
+
+    --ff-primary: 'Montserrat', sans-serif;
+    --fs-h1: 64px;
+    --fs-h2: 48px;
+    --fs-h3: 36px;
+    --fs-h4: 24px;
+    --fs-h5: 26px;
+    --fs-h6: 26px;
+    --fs-xl: 128px;
+  }
+  @media(max-width: 900px){
+    :root{
+      --fs-h1: 40px;
+      --fs-h2: 34px;
+      --fs-h3: 28px;
+      --fs-h4: 24px;
+      --fs-h5: 26px;
+      --fs-h6: 18px;
+      --fs-xl: 64px
+    }
+  }
+
+  .text-h1{
+    font-size: var(--fs-h1);
+    line-height: 78.02px;
+  }
+
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+
+    font-family: var(--ff-primary);
+    background-color: var(--clr-bg);
+    min-height: 100vh;
+    font-size: 16px;
+  }
+
+  h1, h2, h3, h4, h5, h6{
+    color: var(--clr-text);
+    font-weight: bold;
+  }
+  h1{font-size: var(--fs-h1);}
+  h2{font-size: var(--fs-h2);}
+  h3{font-size: var(--fs-h3);}
+  h4{font-size: var(--fs-h4);}
+  h5{font-size: var(--fs-h5);}
+  h6{font-size: var(--fs-h6);}
+
+  //utils
+  .container{
+    width: min(90%, 1420px);
+    margin-inline: auto;
+  }
+  @media(min-width: 900px){
+    .container{
+      width: min(80%, 1420px);
+    }
+  }
+
+  .default-btn{
+    background-color: var(--clr-primary);
+    color: #FFF;
+    padding: 7px 20px;
+    border-radius: 33px;
+    transition: all .4s ease;
+
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .default-btn:hover{
+    background-color: var(--clr-primary-dark);
+  }
+
+  .outline-btn{
+    padding: 7px 20px;
+    border: 2px solid var(--clr-text);
+    color: var(--clr-text);
+    text-decoration: none;
+    border-radius: 33px;
+    background: none;
+    font-weight: bold;
+  }
+
+  //styles
+  .logo{
+    color: var(--clr-primary);
+    display: flex;
+    align-items: flex-start;
+    font-weight: bold;
+    font-size: 32px;
+    padding: 0;
+  }
+
+  //nav
+  .nav-container{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
+    padding: 24px 0;
+  }
+
+  .primary-nav{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .nav-link{
+    text-decoration: none;
+    color: black;
+    position: relative;
+    padding-bottom: 2px;
+    overflow-x: hidden;
+  }
+
+  .nav-link.active::after{
+    content: "";
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--clr-green);
+  }
+  .nav-link:not(.active)::before{
+    content: "";
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--clr-green);
+    opacity: .5;
+    transform: translateX(-110%);
+    transition: transform .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+ .nav-link:not(.active):hover::before{
+    transform: translateX(0);
+ }

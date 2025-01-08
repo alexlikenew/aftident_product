@@ -1,0 +1,1523 @@
+/* line 1, templates/admin/scss/base/_base.scss */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+/* line 9, templates/admin/scss/base/_base.scss */
+html {
+  height: 100%;
+  overflow-x: hidden; }
+
+/* line 15, templates/admin/scss/base/_base.scss */
+body {
+  box-sizing: border-box;
+  display: flex;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100%; }
+  @media only screen and (max-width: 992px) {
+    /* line 15, templates/admin/scss/base/_base.scss */
+    body {
+      padding: 0; } }
+
+/* line 31, templates/admin/scss/base/_base.scss */
+::-webkit-scrollbar {
+  width: 10px; }
+  @media only screen and (max-width: 768px) {
+    /* line 31, templates/admin/scss/base/_base.scss */
+    ::-webkit-scrollbar {
+      width: 5px; } }
+
+/* line 39, templates/admin/scss/base/_base.scss */
+::-webkit-scrollbar-track {
+  background-color: #ffffff; }
+
+/* line 44, templates/admin/scss/base/_base.scss */
+::-webkit-scrollbar-thumb {
+  background: #a7a9ac;
+  border-radius: 5px; }
+
+/* line 49, templates/admin/scss/base/_base.scss */
+::-webkit-scrollbar-thumb:hover {
+  background: #a7a9ac; }
+
+/* line 53, templates/admin/scss/base/_base.scss */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+/* line 59, templates/admin/scss/base/_base.scss */
+.hidden {
+  display: none; }
+
+/* line 63, templates/admin/scss/base/_base.scss */
+.main {
+  width: calc(100vw - 260px);
+  background-color: white; }
+
+/* line 68, templates/admin/scss/base/_base.scss */
+.color-primary {
+  color: #109CF1; }
+
+/* line 72, templates/admin/scss/base/_base.scss */
+.color-grey {
+  color: #6f6f6f; }
+
+/* ----- FOR IE ----- */
+/* ----- FOR IOS DEVICES ----- */
+/* line 87, templates/admin/scss/base/_base.scss */
+:root {
+  --blue:#007bff;
+  --indigo:#6610f2;
+  --purple:#6f42c1;
+  --pink:#e83e8c;
+  --red:#dc3545;
+  --orange:#fd7e14;
+  --yellow:#ffc107;
+  --green:#28a745;
+  --teal:#20c997;
+  --cyan:#17a2b8;
+  --white:#fff;
+  --gray:#6c757d;
+  --gray-dark:#343a40;
+  --primary:#007bff;
+  --secondary:#6c757d;
+  --success:#28a745;
+  --info:#17a2b8;
+  --warning:#ffc107;
+  --danger:#dc3545;
+  --light:#f8f9fa;
+  --dark:#343a40;
+  --breakpoint-xs:0;
+  --breakpoint-sm:576px;
+  --breakpoint-md:768px;
+  --breakpoint-lg:992px;
+  --breakpoint-xl:1200px;
+  --font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  --font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; }
+
+/* line 90, templates/admin/scss/base/_base.scss */
+*, ::after, ::before {
+  box-sizing: border-box; }
+
+/* line 94, templates/admin/scss/base/_base.scss */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent; }
+
+/* line 100, templates/admin/scss/base/_base.scss */
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block; }
+
+/* line 104, templates/admin/scss/base/_base.scss */
+body {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  background-color: #fff; }
+
+/* line 111, templates/admin/scss/base/_base.scss */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: .5rem; }
+
+/* line 116, templates/admin/scss/base/_base.scss */
+p {
+  margin-top: 0;
+  margin-bottom: 10px; }
+
+/* line 120, templates/admin/scss/base/_base.scss */
+b, strong {
+  font-weight: bolder; }
+
+/* line 123, templates/admin/scss/base/_base.scss */
+a {
+  color: #000;
+  text-decoration: none;
+  background-color: transparent; }
+
+/* line 129, templates/admin/scss/base/_base.scss */
+a:hover {
+  text-decoration: none; }
+
+/* line 133, templates/admin/scss/base/_base.scss */
+a:not([href]):not([tabindex]) {
+  text-decoration: none; }
+
+/* line 136, templates/admin/scss/base/_base.scss */
+img {
+  vertical-align: middle;
+  border-style: none; }
+
+/* line 141, templates/admin/scss/base/_base.scss */
+svg {
+  overflow: hidden;
+  vertical-align: middle; }
+
+/* line 145, templates/admin/scss/base/_base.scss */
+label {
+  display: inline-block; }
+
+/* line 148, templates/admin/scss/base/_base.scss */
+button {
+  border-radius: 0; }
+
+/* line 151, templates/admin/scss/base/_base.scss */
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit; }
+
+/* line 158, templates/admin/scss/base/_base.scss */
+button, input {
+  overflow: visible; }
+
+/* line 162, templates/admin/scss/base/_base.scss */
+button, select {
+  text-transform: none; }
+
+/* line 165, templates/admin/scss/base/_base.scss */
+[type=button], [type=reset], [type=submit], button {
+  -webkit-appearance: button; }
+
+/* line 169, templates/admin/scss/base/_base.scss */
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer; }
+
+/* line 172, templates/admin/scss/base/_base.scss */
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0; }
+
+/* line 176, templates/admin/scss/base/_base.scss */
+textarea {
+  overflow: auto;
+  resize: vertical; }
+
+/* line 180, templates/admin/scss/base/_base.scss */
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto; }
+
+/* line 184, templates/admin/scss/base/_base.scss */
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2; }
+
+/* line 190, templates/admin/scss/base/_base.scss */
+.h1, h1 {
+  font-size: 25px; }
+
+/* line 194, templates/admin/scss/base/_base.scss */
+.h2, h2 {
+  font-size: 20px; }
+
+/* line 198, templates/admin/scss/base/_base.scss */
+.h3, h3 {
+  font-size: 17px; }
+
+/* line 201, templates/admin/scss/base/_base.scss */
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; }
+
+@media (max-width: 360px) {
+  /* line 210, templates/admin/scss/base/_base.scss */
+  .container {
+    padding-left: 10px;
+    padding-right: 10px; } }
+
+@media (min-width: 576px) {
+  /* line 217, templates/admin/scss/base/_base.scss */
+  .container {
+    max-width: 540px;
+    padding-left: 20px;
+    padding-right: 20px; } }
+
+@media (min-width: 768px) {
+  /* line 225, templates/admin/scss/base/_base.scss */
+  .container {
+    max-width: 720px; } }
+
+@media (min-width: 992px) {
+  /* line 231, templates/admin/scss/base/_base.scss */
+  .container {
+    max-width: 960px; } }
+
+@media (min-width: 1100px) {
+  /* line 237, templates/admin/scss/base/_base.scss */
+  .container {
+    max-width: 1080px; } }
+
+@media (min-width: 1260px) {
+  /* line 243, templates/admin/scss/base/_base.scss */
+  .container {
+    max-width: 1200px; } }
+
+@media (min-width: 1440px) {
+  /* line 249, templates/admin/scss/base/_base.scss */
+  .container {
+    max-width: 1360px; } }
+
+@media (min-width: 1800px) {
+  /* line 255, templates/admin/scss/base/_base.scss */
+  .container {
+    max-width: 1470px; } }
+
+/* line 1, templates/admin/scss/base/_buttons.scss */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 130px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  padding: 0 14px;
+  transition: background-color .3s; }
+  /* line 12, templates/admin/scss/base/_buttons.scss */
+  .btn:hover {
+    cursor: pointer; }
+  /* line 14, templates/admin/scss/base/_buttons.scss */
+  .btn.disabled {
+    opacity: .5;
+    pointer-events: none; }
+
+/* line 20, templates/admin/scss/base/_buttons.scss */
+.btn-primary {
+  background-color: #109CF1;
+  box-shadow: 0px 4px 10px rgba(16, 156, 241, 0.24); }
+  /* line 24, templates/admin/scss/base/_buttons.scss */
+  .btn-primary:hover {
+    background-color: #0b7dc3;
+    box-shadow: 0px 4px 6px rgba(16, 156, 241, 0.2); }
+
+/* line 30, templates/admin/scss/base/_buttons.scss */
+.btn-save {
+  background-color: #4E67EC; }
+  /* line 32, templates/admin/scss/base/_buttons.scss */
+  .btn-save:hover {
+    background-color: #203fe7; }
+
+/* line 35, templates/admin/scss/base/_buttons.scss */
+.btn-cancel {
+  background-color: #D34A6B; }
+  /* line 37, templates/admin/scss/base/_buttons.scss */
+  .btn-cancel:hover {
+    background-color: #bc2e50; }
+
+/* line 40, templates/admin/scss/base/_buttons.scss */
+.btn-row {
+  display: flex;
+  align-items: center; }
+  /* line 44, templates/admin/scss/base/_buttons.scss */
+  .btn-row-bottom {
+    margin-left: 30px; }
+  /* line 48, templates/admin/scss/base/_buttons.scss */
+  .btn-row .btn {
+    margin-right: 20px; }
+  /* line 52, templates/admin/scss/base/_buttons.scss */
+  .btn-row.justify-end {
+    justify-content: flex-end; }
+  /* line 56, templates/admin/scss/base/_buttons.scss */
+  .btn-row-text {
+    margin-right: 30px; }
+
+/* line 61, templates/admin/scss/base/_buttons.scss */
+.btn-signout {
+  background-color: #F7685B;
+  border-radius: 4px;
+  padding: 4px 18px;
+  color: white !important;
+  font-size: 14px;
+  transition: background-color .3s; }
+  /* line 69, templates/admin/scss/base/_buttons.scss */
+  .btn-signout:hover {
+    color: white;
+    background-color: #f53b2a; }
+
+/* line 75, templates/admin/scss/base/_buttons.scss */
+.btn-red {
+  background-color: red; }
+
+/* line 79, templates/admin/scss/base/_buttons.scss */
+.btn-white {
+  background-color: white;
+  border: 1px solid #ccc;
+  color: black; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+/* line 1, templates/admin/scss/components/_navigation.scss */
+.nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  background-color: #F2F2F2;
+  padding: 0 40px; }
+  /* line 10, templates/admin/scss/components/_navigation.scss */
+  .nav-top-user {
+    margin-right: 20px; }
+  /* line 14, templates/admin/scss/components/_navigation.scss */
+  .nav-top-title {
+    font-size: 20px;
+    font-weight: 300; }
+  /* line 19, templates/admin/scss/components/_navigation.scss */
+  .nav-top-panel {
+    display: flex;
+    align-items: center; }
+
+/* line 25, templates/admin/scss/components/_navigation.scss */
+.nav-sidebar {
+  width: 260px;
+  height: 100vh;
+  background: #1B1A24;
+  box-shadow: 6px 0px 18px rgba(0, 0, 0, 0.06);
+  position: relative; }
+  /* line 32, templates/admin/scss/components/_navigation.scss */
+  .nav-sidebar-logo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    padding-left: 40px; }
+    /* line 39, templates/admin/scss/components/_navigation.scss */
+    .nav-sidebar-logo img {
+      width: 130px; }
+  /* line 44, templates/admin/scss/components/_navigation.scss */
+  .nav-sidebar-menu {
+    color: #334D6E;
+    font-size: 14px;
+    padding-top: 40px;
+    height: calc(100vh - 60px);
+    overflow-y: scroll; }
+    /* line 51, templates/admin/scss/components/_navigation.scss */
+    .nav-sidebar-menu::-webkit-scrollbar {
+      width: 0; }
+    /* line 55, templates/admin/scss/components/_navigation.scss */
+    .nav-sidebar-menu::-webkit-scrollbar-track {
+      width: 0;
+      background-color: transparent; }
+    /* line 60, templates/admin/scss/components/_navigation.scss */
+    .nav-sidebar-menu::-webkit-scrollbar-thumb {
+      width: 0;
+      background-color: transparent; }
+    /* line 65, templates/admin/scss/components/_navigation.scss */
+    .nav-sidebar-menu::-webkit-scrollbar-thumb:hover {
+      background: transparent; }
+    /* line 71, templates/admin/scss/components/_navigation.scss */
+    .nav-sidebar-menu .nav-item-head {
+      display: flex;
+      align-items: center;
+      padding: 10px 24px;
+      color: white;
+      font-size: 16px;
+      font-weight: 300; }
+      /* line 79, templates/admin/scss/components/_navigation.scss */
+      .nav-sidebar-menu .nav-item-head:hover {
+        cursor: pointer; }
+      /* line 83, templates/admin/scss/components/_navigation.scss */
+      .nav-sidebar-menu .nav-item-head .icon {
+        margin-right: 10px; }
+    /* line 90, templates/admin/scss/components/_navigation.scss */
+    .nav-sidebar-menu .nav-item.active .nav-item-submenu {
+      display: block; }
+    /* line 94, templates/admin/scss/components/_navigation.scss */
+    .nav-sidebar-menu .nav-item.active .nav-item-head {
+      font-weight: 400; }
+    /* line 99, templates/admin/scss/components/_navigation.scss */
+    .nav-sidebar-menu .nav-item-submenu {
+      display: none;
+      width: 100%; }
+      /* line 103, templates/admin/scss/components/_navigation.scss */
+      .nav-sidebar-menu .nav-item-submenu__link {
+        display: block;
+        width: 100%;
+        color: white;
+        font-size: 14px;
+        font-weight: 300;
+        padding: 7px 0 7px 54px; }
+        /* line 111, templates/admin/scss/components/_navigation.scss */
+        .nav-sidebar-menu .nav-item-submenu__link.active {
+          color: #109CF1;
+          font-weight: 400; }
+
+/* line 1, templates/admin/scss/components/_pagination.scss */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 60px; }
+  /* line 7, templates/admin/scss/components/_pagination.scss */
+  .pagination-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 19px;
+    min-width: 19px;
+    background-color: #F2F2F2;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0 8px;
+    padding: 0 4px; }
+    /* line 18, templates/admin/scss/components/_pagination.scss */
+    .pagination-item.inactive {
+      opacity: .5; }
+    /* line 22, templates/admin/scss/components/_pagination.scss */
+    .pagination-item.active {
+      background-color: #109CF1;
+      color: white; }
+
+/* line 1, templates/admin/scss/components/_layout.scss */
+.content {
+  height: calc(100vh - 60px);
+  overflow-y: scroll;
+  background-color: #F2F2F2;
+  padding-bottom: 80px; }
+  /* line 7, templates/admin/scss/components/_layout.scss */
+  .content-block {
+    padding: 25px 35px; }
+    /* line 10, templates/admin/scss/components/_layout.scss */
+    .content-block:not(:last-of-type) {
+      border-bottom: 2px solid #F2F2F2; }
+    /* line 14, templates/admin/scss/components/_layout.scss */
+    .content-block-title {
+      color: rgba(27, 26, 36, 0.5);
+      font-size: 20px;
+      font-weight: 300;
+      margin-bottom: 20px; }
+      /* line 20, templates/admin/scss/components/_layout.scss */
+      .content-block-title small {
+        font-size: 12px; }
+  /* line 26, templates/admin/scss/components/_layout.scss */
+  .content-panel {
+    display: none;
+    width: 300px;
+    background-color: white;
+    height: max-content;
+    padding: 20px; }
+    /* line 33, templates/admin/scss/components/_layout.scss */
+    .content-panel.active {
+      display: block; }
+
+/* line 39, templates/admin/scss/components/_layout.scss */
+.tabs-nav {
+  display: flex; }
+  /* line 42, templates/admin/scss/components/_layout.scss */
+  .tabs-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 195px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    font-weight: 300;
+    margin-right: 3px; }
+    /* line 51, templates/admin/scss/components/_layout.scss */
+    .tabs-nav-item:hover {
+      cursor: pointer; }
+    /* line 53, templates/admin/scss/components/_layout.scss */
+    .tabs-nav-item.active {
+      background-color: white;
+      font-weight: 700; }
+
+/* line 60, templates/admin/scss/components/_layout.scss */
+.tabs-wrapper {
+  display: flex;
+  justify-content: space-between; }
+
+/* line 65, templates/admin/scss/components/_layout.scss */
+.tab {
+  display: none;
+  background-color: white;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+  margin-right: 20px;
+  flex: 1; }
+  /* line 73, templates/admin/scss/components/_layout.scss */
+  .tab-wrapper {
+    max-width: 1200px; }
+  /* line 77, templates/admin/scss/components/_layout.scss */
+  .tab.active {
+    display: block; }
+
+/* line 82, templates/admin/scss/components/_layout.scss */
+.tab-list {
+  display: block; }
+  /* line 85, templates/admin/scss/components/_layout.scss */
+  .tab-list-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 30px;
+    border-bottom: 1px solid #F2F2F2; }
+
+/* line 93, templates/admin/scss/components/_layout.scss */
+#module-response {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 80px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #00ff80;
+  color: white; }
+
+/* line 104, templates/admin/scss/components/_layout.scss */
+.breadcrumbs {
+  padding: 10px 30px; }
+  /* line 107, templates/admin/scss/components/_layout.scss */
+  .breadcrumbs-list {
+    display: flex;
+    align-items: center; }
+  /* line 112, templates/admin/scss/components/_layout.scss */
+  .breadcrumbs-item {
+    display: inline-block;
+    margin-right: 5px; }
+
+/* line 1, templates/admin/scss/components/_modal.scss */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -100;
+  visibility: hidden;
+  opacity: 0;
+  overflow-y: scroll;
+  transition: visibility .1s; }
+  @media only screen and (max-width: 768px) {
+    /* line 1, templates/admin/scss/components/_modal.scss */
+    .modal {
+      align-items: flex-start; } }
+  /* line 20, templates/admin/scss/components/_modal.scss */
+  .modal.open {
+    visibility: visible;
+    opacity: 1;
+    z-index: 100; }
+  /* line 26, templates/admin/scss/components/_modal.scss */
+  .modal-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity .2s; }
+  /* line 37, templates/admin/scss/components/_modal.scss */
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    max-height: 100vh;
+    height: auto;
+    min-height: 100px;
+    overflow-y: scroll;
+    padding: 30px 40px;
+    background-color: #fff;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all .3s .3s; }
+    @media screen and (max-height: 400px) {
+      /* line 37, templates/admin/scss/components/_modal.scss */
+      .modal-content {
+        height: 100vh;
+        overflow-y: scroll; } }
+    @media only screen and (max-width: 992px) {
+      /* line 37, templates/admin/scss/components/_modal.scss */
+      .modal-content {
+        width: 100vw; } }
+    @media only screen and (max-width: 768px) {
+      /* line 37, templates/admin/scss/components/_modal.scss */
+      .modal-content {
+        width: 100%;
+        min-height: 200px;
+        height: auto;
+        padding: 20px;
+        overflow-y: scroll; } }
+  /* line 73, templates/admin/scss/components/_modal.scss */
+  .modal.open .modal-bg {
+    opacity: 1; }
+  /* line 77, templates/admin/scss/components/_modal.scss */
+  .modal.open .modal-content {
+    opacity: 1;
+    transform: translateY(0); }
+  /* line 83, templates/admin/scss/components/_modal.scss */
+  .modal-close {
+    width: 11px;
+    height: 11px;
+    background: url("../img/icons/icon-close.svg") no-repeat center;
+    background-size: cover;
+    position: absolute;
+    top: 10px;
+    right: 10px; }
+    /* line 92, templates/admin/scss/components/_modal.scss */
+    .modal-close:hover {
+      cursor: pointer; }
+  /* line 97, templates/admin/scss/components/_modal.scss */
+  .modal-title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 20px; }
+  /* line 104, templates/admin/scss/components/_modal.scss */
+  .modal-text {
+    font-size: 16px;
+    margin-bottom: 20px; }
+  /* line 109, templates/admin/scss/components/_modal.scss */
+  .modal-success {
+    font-size: 2rem; }
+  /* line 113, templates/admin/scss/components/_modal.scss */
+  .modal-buttons {
+    display: flex;
+    justify-content: center; }
+    @media only screen and (max-width: 480px) {
+      /* line 113, templates/admin/scss/components/_modal.scss */
+      .modal-buttons {
+        flex-direction: column;
+        align-items: center; } }
+    /* line 122, templates/admin/scss/components/_modal.scss */
+    .modal-buttons .btn {
+      padding: 0 20px; }
+      /* line 125, templates/admin/scss/components/_modal.scss */
+      .modal-buttons .btn:first-child {
+        margin-right: 20px; }
+        @media only screen and (max-width: 480px) {
+          /* line 125, templates/admin/scss/components/_modal.scss */
+          .modal-buttons .btn:first-child {
+            margin-right: 0;
+            margin-bottom: 10px; } }
+      /* line 134, templates/admin/scss/components/_modal.scss */
+      .modal-buttons .btn-confirm {
+        background-color: #109CF1; }
+      /* line 138, templates/admin/scss/components/_modal.scss */
+      .modal-buttons .btn-cancel {
+        border: 1px solid black;
+        background-color: #fff;
+        color: black; }
+
+/* line 148, templates/admin/scss/components/_modal.scss */
+.modal-register .modal-content {
+  max-width: 700px; }
+
+/* line 152, templates/admin/scss/components/_modal.scss */
+.modal-register .row {
+  display: flex;
+  border-bottom: 1px solid #F2F2F2;
+  padding: 10px 0; }
+  /* line 157, templates/admin/scss/components/_modal.scss */
+  .modal-register .row-title {
+    width: 320px;
+    font-size: 15px;
+    font-weight: 500; }
+
+/* line 1, templates/admin/scss/components/_list.scss */
+.list-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 65px;
+  padding: 15px 30px; }
+  /* line 8, templates/admin/scss/components/_list.scss */
+  .list-top-panel {
+    display: flex;
+    align-items: center; }
+    /* line 12, templates/admin/scss/components/_list.scss */
+    .list-top-panel-back {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 300; }
+      /* line 18, templates/admin/scss/components/_list.scss */
+      .list-top-panel-back img {
+        margin-right: 10px; }
+    /* line 21, templates/admin/scss/components/_list.scss */
+    .list-top-panel-count {
+      display: none; }
+      /* line 24, templates/admin/scss/components/_list.scss */
+      .list-top-panel-count.show {
+        display: flex; }
+  /* line 33, templates/admin/scss/components/_list.scss */
+  .list-top-filter__select {
+    border: none;
+    color: #109CF1; }
+
+/* line 40, templates/admin/scss/components/_list.scss */
+.list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px; }
+  /* line 45, templates/admin/scss/components/_list.scss */
+  .list-table .center {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  /* line 48, templates/admin/scss/components/_list.scss */
+  .list-table thead th {
+    color: #848484;
+    font-size: 13px;
+    font-weight: 300;
+    padding: 5px 0; }
+    /* line 54, templates/admin/scss/components/_list.scss */
+    .list-table thead th:first-child {
+      padding-left: 30px; }
+    /* line 55, templates/admin/scss/components/_list.scss */
+    .list-table thead th:last-child {
+      padding-right: 30px; }
+  /* line 59, templates/admin/scss/components/_list.scss */
+  .list-table-row {
+    border-bottom: 1px solid #F2F2F2; }
+    /* line 62, templates/admin/scss/components/_list.scss */
+    .list-table-row td {
+      height: 60px;
+      font-size: 14px;
+      padding: 5px 0; }
+      /* line 67, templates/admin/scss/components/_list.scss */
+      .list-table-row td:first-child {
+        padding-left: 30px; }
+      /* line 68, templates/admin/scss/components/_list.scss */
+      .list-table-row td:last-child {
+        padding-right: 30px; }
+  /* line 72, templates/admin/scss/components/_list.scss */
+  .list-table-image {
+    width: 55px;
+    height: 55px;
+    border: 1px solid #F2F2F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; }
+    /* line 79, templates/admin/scss/components/_list.scss */
+    .list-table-image img {
+      max-width: 90%;
+      max-height: 90%; }
+    /* line 84, templates/admin/scss/components/_list.scss */
+    .list-table-image__zoom {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 10;
+      width: 150px;
+      height: 150px;
+      border: 1px solid #F2F2F2;
+      background-color: white;
+      filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.15));
+      display: none;
+      align-items: center;
+      justify-content: center; }
+      /* line 98, templates/admin/scss/components/_list.scss */
+      .list-table-image__zoom img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; }
+    /* line 101, templates/admin/scss/components/_list.scss */
+    .list-table-image:hover {
+      cursor: pointer; }
+    /* line 102, templates/admin/scss/components/_list.scss */
+    .list-table-image:hover > .list-table-image__zoom {
+      display: flex; }
+  /* line 107, templates/admin/scss/components/_list.scss */
+  .list-table-icon {
+    display: inline-block; }
+    /* line 110, templates/admin/scss/components/_list.scss */
+    .list-table-icon:hover {
+      cursor: pointer; }
+    /* line 111, templates/admin/scss/components/_list.scss */
+    .list-table-icon:not(:last-child) {
+      margin-right: 10px; }
+    /* line 115, templates/admin/scss/components/_list.scss */
+    .list-table-icon img {
+      width: 24px; }
+
+/* line 121, templates/admin/scss/components/_list.scss */
+.label-action {
+  display: inline-block;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  padding: 5px 10px; }
+  /* line 128, templates/admin/scss/components/_list.scss */
+  .label-action-add {
+    background: #5BAC4F; }
+  /* line 132, templates/admin/scss/components/_list.scss */
+  .label-action-edit {
+    background: #EE821E; }
+  /* line 136, templates/admin/scss/components/_list.scss */
+  .label-action-delete {
+    background: #B71C1C; }
+
+/* line 2, templates/admin/scss/components/_images.scss */
+.image-editor-item {
+  margin-bottom: 30px; }
+
+/* line 7, templates/admin/scss/components/_images.scss */
+.edit-thumb {
+  display: inline-block;
+  max-width: 500px; }
+  /* line 11, templates/admin/scss/components/_images.scss */
+  .edit-thumb:hover {
+    cursor: pointer; }
+  /* line 13, templates/admin/scss/components/_images.scss */
+  .edit-thumb-container {
+    display: flex;
+    margin-bottom: 20px; }
+    /* line 17, templates/admin/scss/components/_images.scss */
+    .edit-thumb-container__left {
+      margin-right: 30px; }
+
+/* line 23, templates/admin/scss/components/_images.scss */
+.gallery-grid {
+  display: grid;
+  grid-template: auto/repeat(4, 1fr);
+  grid-gap: 25px;
+  position: relative; }
+  /* line 29, templates/admin/scss/components/_images.scss */
+  .gallery-grid-panel {
+    display: none;
+    align-items: center;
+    position: absolute;
+    top: -44px;
+    right: 0; }
+    /* line 36, templates/admin/scss/components/_images.scss */
+    .gallery-grid-panel.show {
+      display: flex; }
+  /* line 41, templates/admin/scss/components/_images.scss */
+  .gallery-grid-item {
+    height: 250px;
+    position: relative; }
+    /* line 45, templates/admin/scss/components/_images.scss */
+    .gallery-grid-item .image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; }
+    /* line 47, templates/admin/scss/components/_images.scss */
+    .gallery-grid-item__check {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10; }
+    /* line 54, templates/admin/scss/components/_images.scss */
+    .gallery-grid-item__panel {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 10;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background-color: #F2F2F2;
+      overflow: hidden; }
+      /* line 67, templates/admin/scss/components/_images.scss */
+      .gallery-grid-item__panel .title {
+        flex: 1;
+        width: 100%;
+        overflow: hidden; }
+
+/* line 1, templates/admin/scss/components/_chart.scss */
+.ct-series-a .ct-bar,
+.ct-series-a .ct-line,
+.ct-series-a .ct-point,
+.ct-series-a .ct-slice-donut {
+  stroke: #4E67EC !important; }
+
+/* line 1, templates/admin/scss/components/form/_form.scss */
+.form-grid {
+  display: grid;
+  grid-template: auto/repeat(4, 1fr);
+  grid-gap: 0 30px;
+  align-items: flex-end; }
+  /* line 7, templates/admin/scss/components/form/_form.scss */
+  .form-grid-2 {
+    grid-template: auto/repeat(2, 1fr); }
+  /* line 11, templates/admin/scss/components/form/_form.scss */
+  .form-grid-6 {
+    grid-template: auto/repeat(6, 1fr); }
+
+/* line 16, templates/admin/scss/components/form/_form.scss */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px; }
+  /* line 22, templates/admin/scss/components/form/_form.scss */
+  .form-group.grid-2 {
+    grid-column: span 2; }
+  /* line 26, templates/admin/scss/components/form/_form.scss */
+  .form-group label, .form-group-label {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 5px; }
+  /* line 33, templates/admin/scss/components/form/_form.scss */
+  .form-group-label {
+    margin-bottom: 10px; }
+  /* line 37, templates/admin/scss/components/form/_form.scss */
+  .form-group.checkboxes {
+    display: flex;
+    flex-direction: row; }
+    /* line 41, templates/admin/scss/components/form/_form.scss */
+    .form-group.checkboxes .checkbox-item {
+      align-self: center; }
+      /* line 44, templates/admin/scss/components/form/_form.scss */
+      .form-group.checkboxes .checkbox-item-add .checkmark {
+        top: 0; }
+
+/* line 51, templates/admin/scss/components/form/_form.scss */
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  height: 30px;
+  border: 1px solid #D5D5D5;
+  border-radius: 4px;
+  font-size: 14px;
+  padding-left: 14px;
+  transition: border-color .2s; }
+  /* line 62, templates/admin/scss/components/form/_form.scss */
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: #109CF1; }
+
+/* line 69, templates/admin/scss/components/form/_form.scss */
+.form-select.multiple {
+  height: auto; }
+
+/* line 74, templates/admin/scss/components/form/_form.scss */
+.form-textarea {
+  height: 80px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  padding: 7px 14px; }
+
+/* line 81, templates/admin/scss/components/form/_form.scss */
+.search-input {
+  position: relative;
+  width: 290px; }
+  /* line 85, templates/admin/scss/components/form/_form.scss */
+  .search-input button {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%); }
+
+/* line 97, templates/admin/scss/components/form/_form.scss */
+.icons-grid .checkbox-item .checkmark {
+  top: 50%;
+  transform: translateY(-50%); }
+
+/* line 1, templates/admin/scss/components/form/_checkbox.scss */
+.checkbox-item {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  color: black;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  user-select: none; }
+  /* line 13, templates/admin/scss/components/form/_checkbox.scss */
+  .checkbox-item a, .checkbox-item strong {
+    font-family: "DM Sans Bold", sans-serif;
+    color: black; }
+  /* line 18, templates/admin/scss/components/form/_checkbox.scss */
+  .checkbox-item input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0; }
+  /* line 26, templates/admin/scss/components/form/_checkbox.scss */
+  .checkbox-item .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #fff;
+    border: 2px solid #D5D5D5;
+    border-radius: 4px; }
+    /* line 36, templates/admin/scss/components/form/_checkbox.scss */
+    .checkbox-item .checkmark.white {
+      background-color: white; }
+    /* line 40, templates/admin/scss/components/form/_checkbox.scss */
+    .checkbox-item .checkmark.check-error {
+      border-color: red; }
+    /* line 44, templates/admin/scss/components/form/_checkbox.scss */
+    .checkbox-item .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 4px;
+      top: 0;
+      width: 5px;
+      height: 10px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg); }
+  /* line 58, templates/admin/scss/components/form/_checkbox.scss */
+  .checkbox-item-add {
+    padding-left: 18px; }
+    /* line 61, templates/admin/scss/components/form/_checkbox.scss */
+    .checkbox-item-add .checkmark {
+      top: 8px; }
+  /* line 66, templates/admin/scss/components/form/_checkbox.scss */
+  .checkbox-item input:checked ~ .checkmark {
+    background: #109CF1;
+    border-color: #109CF1; }
+  /* line 71, templates/admin/scss/components/form/_checkbox.scss */
+  .checkbox-item input:checked ~ .checkmark:after {
+    display: block; }
+  /* line 75, templates/admin/scss/components/form/_checkbox.scss */
+  .checkbox-item-col {
+    display: flex;
+    flex-direction: column; }
+
+/* line 81, templates/admin/scss/components/form/_checkbox.scss */
+.switch-btn {
+  display: flex;
+  align-items: center; }
+  /* line 85, templates/admin/scss/components/form/_checkbox.scss */
+  .switch-btn input {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: absolute; }
+  /* line 92, templates/admin/scss/components/form/_checkbox.scss */
+  .switch-btn label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 26px;
+    height: 16px;
+    background: white;
+    display: block;
+    border-radius: 13px;
+    position: relative;
+    border: 1px solid #B8BBBC;
+    margin-bottom: 0; }
+  /* line 105, templates/admin/scss/components/form/_checkbox.scss */
+  .switch-btn label:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background: #B8BBBC;
+    border-radius: 50%;
+    transition: 0.3s; }
+  /* line 117, templates/admin/scss/components/form/_checkbox.scss */
+  .switch-btn input:checked + label {
+    background: white; }
+  /* line 121, templates/admin/scss/components/form/_checkbox.scss */
+  .switch-btn input:checked + label:after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%); }
+
+/* line 131, templates/admin/scss/components/form/_checkbox.scss */
+.check-icon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px !important;
+  font-weight: 400 !important; }
+  /* line 139, templates/admin/scss/components/form/_checkbox.scss */
+  .check-icon input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0; }
+  /* line 147, templates/admin/scss/components/form/_checkbox.scss */
+  .check-icon-img {
+    width: 180px;
+    height: 100px;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    margin-bottom: 7px; }
+    /* line 155, templates/admin/scss/components/form/_checkbox.scss */
+    .check-icon-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; }
+  /* line 158, templates/admin/scss/components/form/_checkbox.scss */
+  .check-icon input:checked ~ .check-icon-img {
+    border: 1px solid #1B1A24; }
+
+/* line 1, templates/admin/scss/components/form/_radio.scss */
+.radio-item {
+  align-self: end;
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: black;
+  font-size: 14px;
+  line-height: 18px;
+  user-select: none; }
+  /* line 12, templates/admin/scss/components/form/_radio.scss */
+  .radio-item a, .radio-item strong {
+    font-family: "DM Sans Bold", sans-serif;
+    color: black; }
+  /* line 17, templates/admin/scss/components/form/_radio.scss */
+  .radio-item input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0; }
+  /* line 25, templates/admin/scss/components/form/_radio.scss */
+  .radio-item .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #fff;
+    border: 2px solid #D5D5D5;
+    border-radius: 50%; }
+    /* line 35, templates/admin/scss/components/form/_radio.scss */
+    .radio-item .checkmark.white {
+      background-color: white; }
+    /* line 39, templates/admin/scss/components/form/_radio.scss */
+    .radio-item .checkmark.check-error {
+      border-color: red; }
+    /* line 43, templates/admin/scss/components/form/_radio.scss */
+    .radio-item .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 4px;
+      top: 1px;
+      width: 5px;
+      height: 8px;
+      border: solid #fff;
+      border-width: 0 1px 1px 0;
+      transform: rotate(45deg); }
+  /* line 57, templates/admin/scss/components/form/_radio.scss */
+  .radio-item input:checked ~ .checkmark {
+    background: #109CF1;
+    border-color: #109CF1; }
+  /* line 62, templates/admin/scss/components/form/_radio.scss */
+  .radio-item input:checked ~ .checkmark:after {
+    display: block; }
+  /* line 66, templates/admin/scss/components/form/_radio.scss */
+  .radio-item-col {
+    display: flex;
+    flex-direction: column; }
+
+/* line 72, templates/admin/scss/components/form/_radio.scss */
+.switch-btn {
+  display: flex;
+  align-items: center; }
+  /* line 76, templates/admin/scss/components/form/_radio.scss */
+  .switch-btn input {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: absolute; }
+  /* line 83, templates/admin/scss/components/form/_radio.scss */
+  .switch-btn label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 26px;
+    height: 16px;
+    background: white;
+    display: block;
+    border-radius: 13px;
+    position: relative;
+    border: 1px solid #B8BBBC;
+    margin-bottom: 0; }
+  /* line 96, templates/admin/scss/components/form/_radio.scss */
+  .switch-btn label:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background: #B8BBBC;
+    border-radius: 50%;
+    transition: 0.3s; }
+  /* line 108, templates/admin/scss/components/form/_radio.scss */
+  .switch-btn input:checked + label {
+    background: white; }
+  /* line 112, templates/admin/scss/components/form/_radio.scss */
+  .switch-btn input:checked + label:after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%); }
+
+/* line 1, templates/admin/scss/components/form/_switch.scss */
+.switch {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 24px;
+  height: 15px;
+  background: grey;
+  display: block;
+  border-radius: 10px;
+  position: relative;
+  margin-right: 10px; }
+  /* line 12, templates/admin/scss/components/form/_switch.scss */
+  .switch:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    width: 9px;
+    height: 9px;
+    background: #fff;
+    border-radius: 9px;
+    transition: .1s; }
+  /* line 24, templates/admin/scss/components/form/_switch.scss */
+  .switch-input {
+    height: 0;
+    width: 0;
+    visibility: hidden; }
+
+/* line 31, templates/admin/scss/components/form/_switch.scss */
+.switch-input:checked + .switch {
+  background: green; }
+
+/* line 35, templates/admin/scss/components/form/_switch.scss */
+.switch-input:checked + .switch:after {
+  left: calc(100% - 2px);
+  transform: translateX(-100%); }
+
+/* line 40, templates/admin/scss/components/form/_switch.scss */
+.checkbox-switch {
+  display: flex;
+  align-items: center; }
+
+/* line 1, templates/admin/scss/components/form/_upload-file.scss */
+.drop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  background: #F2F2F2;
+  border: 1px dashed #8D8C91;
+  padding: 30px;
+  margin-bottom: 20px;
+  transition: background-color .3s; }
+  /* line 14, templates/admin/scss/components/form/_upload-file.scss */
+  .drop-container.dragover {
+    background: #ccc; }
+  /* line 18, templates/admin/scss/components/form/_upload-file.scss */
+  .drop-container .icon {
+    margin-bottom: 20px; }
+  /* line 22, templates/admin/scss/components/form/_upload-file.scss */
+  .drop-container .text {
+    color: #86868B;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 20px; }
+  /* line 30, templates/admin/scss/components/form/_upload-file.scss */
+  .drop-container .button {
+    color: #86868B;
+    border: 1px solid #86868B;
+    border-radius: 4px;
+    padding: 2px 14px; }
+    /* line 36, templates/admin/scss/components/form/_upload-file.scss */
+    .drop-container .button:hover {
+      cursor: pointer; }
+    /* line 38, templates/admin/scss/components/form/_upload-file.scss */
+    .drop-container .button input {
+      display: none; }
+
+/* line 42, templates/admin/scss/components/form/_upload-file.scss */
+.image-preview {
+  display: none;
+  flex-wrap: wrap; }
+  /* line 46, templates/admin/scss/components/form/_upload-file.scss */
+  .image-preview-item {
+    width: 160px;
+    height: 160px;
+    border: 1px solid #F2F2F2;
+    position: relative;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    /* line 55, templates/admin/scss/components/form/_upload-file.scss */
+    .image-preview-item__delete {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      z-index: 10;
+      background-color: #FFFFFF;
+      border: 1px solid #D5D5D5;
+      border-radius: 4px;
+      padding: 2px;
+      transition: background-color .3s; }
+      /* line 66, templates/admin/scss/components/form/_upload-file.scss */
+      .image-preview-item__delete:hover {
+        cursor: pointer;
+        background-color: #e8e8e8; }
+  /* line 74, templates/admin/scss/components/form/_upload-file.scss */
+  .image-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; }
+
+/* line 1, templates/admin/scss/pages/_login.scss */
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  font-family: "Poppins", sans-serif; }
+  /* line 9, templates/admin/scss/pages/_login.scss */
+  .login-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(129.79% 125.81% at 50% 73.26%, rgba(242, 242, 242, 0) 0%, #C4C4C4 100%);
+    transform: rotate(-180deg); }
+  /* line 19, templates/admin/scss/pages/_login.scss */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    width: 470px;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 50px 40px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 100; }
+    /* line 31, templates/admin/scss/pages/_login.scss */
+    .login-form-title {
+      color: black;
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 35px; }
+    /* line 38, templates/admin/scss/pages/_login.scss */
+    .login-form .form-group {
+      height: 60px;
+      margin-bottom: 10px;
+      position: relative; }
+      /* line 43, templates/admin/scss/pages/_login.scss */
+      .login-form .form-group input {
+        height: 100%;
+        font-size: 18px;
+        padding-left: 60px; }
+      /* line 49, templates/admin/scss/pages/_login.scss */
+      .login-form .form-group .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%); }
+    /* line 60, templates/admin/scss/pages/_login.scss */
+    .login-form .btn {
+      width: 140px;
+      height: 40px;
+      align-self: flex-end;
+      background-color: black;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase; }
+  /* line 72, templates/admin/scss/pages/_login.scss */
+  .login-remind {
+    color: #C9C9C9;
+    font-size: 14px; }
+  /* line 77, templates/admin/scss/pages/_login.scss */
+  .login-ip {
+    font-size: 16px; }
+  /* line 81, templates/admin/scss/pages/_login.scss */
+  .login-error {
+    color: red;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 40px; }
+  /* line 89, templates/admin/scss/pages/_login.scss */
+  .login-logo {
+    position: absolute;
+    bottom: 80px;
+    z-index: 20; }
+
+/* line 3, templates/admin/scss/pages/_orders.scss */
+.order-block .list-table {
+  margin-bottom: 40px; }
+
+/* line 7, templates/admin/scss/pages/_orders.scss */
+.order-block .list-table-row td {
+  height: 44px; }
+
+/* line 12, templates/admin/scss/pages/_orders.scss */
+.order-block-customer {
+  background: #FAFCFC;
+  border: 1px solid #F2F2F2;
+  padding: 15px 20px;
+  margin-bottom: 30px; }
+  /* line 18, templates/admin/scss/pages/_orders.scss */
+  .order-block-customer .row {
+    display: flex;
+    flex-flow: row wrap;
+    font-size: 14px;
+    margin-bottom: 10px; }
+    /* line 24, templates/admin/scss/pages/_orders.scss */
+    .order-block-customer .row .label {
+      width: 220px;
+      font-weight: 700; }
+
+/* line 30, templates/admin/scss/pages/_orders.scss */
+.order-block .form-grid {
+  margin-bottom: 0; }
+  /* line 33, templates/admin/scss/pages/_orders.scss */
+  .order-block .form-grid .btn-row {
+    align-items: flex-end; }

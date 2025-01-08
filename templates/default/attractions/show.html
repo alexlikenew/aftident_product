@@ -1,0 +1,46 @@
+<style>@import url("{$TPL_URL}/css/attractions.css?v={$smarty.now|date_format:'%Y%m%d%H%M'}");</style>
+
+<main class="page attractions-page">
+    <div class="page-frame page-frame--left">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-3-left.svg" alt="{$article.title} - Chutor Kozacki">
+    </div>
+    <div class="page-frame page-frame--right">
+        <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-3-right.svg" alt="{$article.title} - Chutor Kozacki">
+    </div>
+
+    <div class="container">
+        {include file="misc/breadcrumbs.html"}
+
+        <div class="attractions-page-top">
+            <div class="article-frame">
+                <img loading="lazy" src="{$TPL_URL}/img/frames/frame-article.svg" alt="{$article.title} - Chutor Kozacki">
+            </div>
+
+            <div class="content">
+                <h1 class="attractions-title">{$article.title}</h1>
+
+                <div class="text">{$article.content}</div>
+            </div>
+
+            <div class="image">
+                <picture>
+                    {if $article.photo.source.photo_webp}
+                    <source srcset="{$article.photo.source.photo_webp}" type="image/webp">
+                    {/if}
+                    <source srcset="{$article.photo.source.photo}" type="{$article.photo.params.type}">
+                    <img src="{$article.photo.source.photo}" alt="{$article.title}">
+                </picture>
+            </div>
+        </div>
+
+        <div class="attractions-blocks">
+            {if $article.blocks}
+            {foreach from=$article.blocks item=block}
+            {include file="blocks/{$block.template_file}.html"}
+            {/foreach}
+            {/if}
+        </div>
+    </div>
+</main>
+
+{include file="news/news-other.html" }

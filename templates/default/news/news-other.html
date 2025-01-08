@@ -1,0 +1,45 @@
+<div class="block-articles">
+    <div class="block-articles-bg">
+        <picture>
+            <source srcset="{$TPL_URL}/img/home-bg-tree.avif" type="image/avif">
+            <source srcset="{$TPL_URL}/img/home-bg-tree.png" type="image/png">
+            <img src="{$TPL_URL}/img/home-bg-tree.png" alt="Chutor Kozacki">
+        </picture>
+    </div>
+
+    <div class="container">
+        <div class="block-articles-top">
+            <h3 class="block-articles-title">Pakiety</h3>
+
+            <a href="/pakiety" class="btn btn-outline">Zobacz wszystkie pakiety</a>
+        </div>
+
+        <div class="block-articles-grid">
+            {foreach from=$articles item=item}
+            <div class="article-card">
+                <div href="{$item.url}" class="image">
+                    {if $item.photo}
+                    <picture>
+                        {if $item.photo.source.photo_webp}
+                        <source srcset="{$item.photo.source.photo_webp}" type="image/webp">
+                        {/if}
+                        <source srcset="{$item.photo.source.photo}" type="{$item.photo.params.type}" >
+                        <img loading="lazy" src="{$item.photo.source.photo}" alt="{$item.title}">
+                    </picture>
+                    {/if}
+                </div>
+
+                <a href="{$item.url}" class="overlay" title="{$item.title}"></a>
+                <div class="content">
+                    <div class="title">{$item.title}</div>
+                    <div class="hidden">
+                        <div class="text">{$item.content_short}</div>
+                        <a href="{$item.url}" class="btn btn-primary">Zobacz więcej</a>
+                    </div>
+                </div>
+            </div>
+            {/foreach}
+        </div>
+    </div>
+
+</div>

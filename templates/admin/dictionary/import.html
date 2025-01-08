@@ -1,0 +1,62 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data" {*onsubmit="return checkLabel();"*}>
+
+        <div class="tab active" data-tab="content">
+            <div class="tab-wrapper">
+                <div class="content-block">
+                    <h2 class="content-block-title">Plik:</h2>
+
+                    <div class="drop-container" id="dropContainer">
+                        <div class="icon">
+                            <img src="{$TPL_URL}/img/icons/icon-drop.svg" alt="">
+                        </div>
+                        <div class="text">Upuść plik tutaj <br> lub dodaj z komputera </div>
+                        <label class="button" for="file">
+                            + Dodaj plik
+                            <input type="file" name="file" id="file">
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="action" value="import" /> &nbsp;&nbsp;
+            <button class="btn btn-save" id="save">Importuj</button>
+            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+        </div>
+    </form>
+</div>
+{*
+{literal}
+<script type="text/javascript">
+  var return_string;
+  function checkLabel() {
+    var label = $('#label').val();
+    console.log(label);
+    return_string = '';
+    $.ajax({
+      type: 'post',
+      url: BASE_URL + '/admin/slownik',
+      async: false,
+      data: {
+        action: "check_label",
+        label: label
+      },
+      success: function(data) {
+        return_string = data;
+      }
+    });
+
+    if (return_string == 'nie ma etykiety w slowniku') {
+      return true;
+    } else {
+      alert('Wyraz o etykiecie: "' + label + '" istnieje już w słowniku.\nJego treść to:\n"' + return_string + '"');
+      return false;
+    }
+  }
+</script>
+{/literal}
+*}

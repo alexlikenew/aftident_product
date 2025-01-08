@@ -1,0 +1,24 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" id="edit_form" enctype="multipart/form-data">
+        <div class="tabs-nav">
+            <div class="tabs-nav-item active" data-tab-label="content">Treść</div>
+            <div class="tabs-nav-item" data-tab-label="photo">Zdjęcie</div>
+            <div class="tabs-nav-item" data-tab-label="seo">SEO</div>
+        </div>
+
+        <div class="tabs-wrapper">
+            {include file="./tabs/content-edit.html" tabActive=true}
+            {include file="./tabs/photo-edit.html"}
+            {include file="./tabs/seo-edit.html"}
+        </div>
+
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="id" value="{$item.id}" />
+            <input type="hidden" name="moduleName" value="{$module_name}">
+            <input type="hidden" name="action" value="category_save">
+            {if isset($duplicate) && !$duplicate}<input type="submit" class="btn btn-primary save_item" id="save_and_continue" name="action" data-module="{$module_name}" value="Zapisz i kontynuuj edycję">{/if}
+            <input type="submit" class="btn btn-save" id="save" data-module="{$module_name}"   value="Zapisz">
+            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+        </div>
+    </form>
+</div>

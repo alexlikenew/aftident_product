@@ -1,0 +1,70 @@
+{literal}
+    <script type="text/javascript">
+        function loaddiv() {
+            document.getElementById('container').style.filter = "Alpha(Opacity=30)";
+            document.getElementById('container').style.opacity = ".30";
+            document.getElementById('preloader').style.display = "block";
+            document.getElementById('preloader').style.filter = "Alpha(Opacity=100)";
+            document.getElementById('preloader').style.opacity = "1.0";
+        }
+    </script>
+{/literal}
+
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <div class="info">{$LANG._BAZA_MYSQL_INFO}</div>
+    <br />
+    <form class="formularz" method="post" action="{$smarty.server.PHP_SELF}">
+        <input class="submit" type="submit" onclick="loaddiv();" value="{$LANG.EXPORTUJ}" />	
+        <input type="hidden" name="action" value="export" />
+    </form>
+    <br /><hr /><br />
+
+    <p>{$LANG._BAZA_MYSQL_INFO2}</p>
+
+    {section name=f loop=$file}
+        {if $smarty.section.f.first}
+            <table cellpadding="5" cellspacing="5">
+                <tr>
+                    <td valign="top">
+                    {/if}
+                    {if $smarty.section.f.index!=0 and $smarty.section.f.index%20==0}
+                    </td>
+                    <td valign="top">
+                    {/if}
+                    <a href="?action=pobierz&amp;name={$file[f].name}" target="_blank" title="{$file[f].name}">{$file[f].name}</a>
+                    <span> [{$file[f].size} kB]</span>
+                    <br />
+                    {if $smarty.section.f.last}
+                    </td>
+                </tr>
+            </table>
+        {/if}
+    {/section}
+
+    {*
+    <br /><hr /><br />
+    <p>
+    Import danych z pliku do bazy, należy wybrać odpowiedni plik i użyć funkcji IMPORT.
+    </p>
+    
+    <br />
+    {section name=ff loop=$file}
+    {if $smarty.section.ff.first}
+    <form class="formularz" method="post" action="{$smarty.server.PHP_SELF}" onsubmit="if (confirmSubmit('Operacja jest nieodwracalna, wszystkie dane wprowadzone po exporcie wybranej bazy zostaną utracone.')) {literal}{
+    javascript:loaddiv();
+    return true;
+    } else {
+    return false;
+    }{/literal}">
+    <select name="name_file"><option value="0">Wybierz plik</option>{/if}
+    <option value="{$file[ff].name}">{$file[ff].name}</option>
+    {if $smarty.section.ff.last}</select>
+    <input class="submit" type="submit" value="Importuj" />	
+    <input type="hidden" name="action" value="import" />
+    </form>{/if}
+    {/section}
+    <br /><hr /><br />
+    </div> 
+    *}

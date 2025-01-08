@@ -1,0 +1,41 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <form method="post" action="{$smarty.server.PHP_SELF}">
+        <input type="image" src="{$BASE_URL}/templates/admin/img/zapisz.png" />
+            <div class="conf-w">
+                <div class="conf-l"><strong>admin_email</strong> / {$LANG.ADMIN_EMAIL_LABEL}</div>
+                <div class="conf-t"><textarea name="admin_email">{$admin_email}</textarea></div>
+            </div>
+            <div class="conf-w">
+                <div class="conf-l"><strong>biuro_email</strong> / {$LANG.BIURO_EMAIL_LABEL}</div>
+                <div class="conf-t"><textarea name="biuro_email">{$biuro_email}</textarea></div>
+            </div>			
+            <div class="conf-w">
+                <div class="conf-l"><strong>auth_email</strong> / {$LANG.AUTH_EMAIL_LABEL}</div>
+                <div class="conf-t"><textarea name="auth_email">{$auth_email}</textarea></div>
+            </div>
+            <div class="conf-w">
+                <div class="conf-l"><strong>auth_pass</strong> / {$LANG.AUTH_PASS_LABEL}</div>
+                <div class="conf-t"><textarea name="auth_pass">{$auth_pass}</textarea></div>
+            </div>
+            <div class="conf-w">
+                <div class="conf-l"><strong>auth_smtp</strong> / {$LANG.AUTH_SMTP_LABEL}</div>
+                <div class="conf-t"><textarea name="auth_smtp">{$auth_smtp}</textarea></div>
+            </div>
+            <div class="conf-w">
+                <div class="conf-l"><strong>auth_port</strong> / {$LANG.AUTH_PORT_LABEL}</div>
+                <div class="conf-t"><textarea name="auth_port">{$auth_port}</textarea></div>
+            </div>
+            <div class="conf-w">
+                <div class="conf-l"><strong>auth_host</strong> / {$LANG.AUTH_HOST_LABEL}</div>
+                <div class="conf-t"><textarea name="auth_host">{$auth_host}</textarea></div>
+            </div>
+            <div class="conf-w">
+                <div class="conf-l"><strong>auth_auth</strong> / {$LANG.AUTH_AUTH_LABEL}</div>
+                <div class="conf-t"><textarea name="auth_auth">{$auth_auth}</textarea></div>
+            </div>		
+        <input type="hidden" name="action" value="save_all" />
+        <input type="image" src="{$BASE_URL}/templates/admin/img/zapisz.png" />
+    </form>
+</div>

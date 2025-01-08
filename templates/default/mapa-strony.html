@@ -1,0 +1,20 @@
+<main>
+    <!-- SECTION PAGE MAP -->
+    <section class="page-map">
+        <div class="wrapper">
+            <h1 class="page-map__title">Mapa strony</h1>
+            <div class="page-map__table">
+                {foreach from=$sitemap item=group}
+                <div class="page-map__table__section">
+                    <h2 class="page-map__table__section__title">{$group.title}</h2>
+                    <ul class="page-map__table__section__list">
+                        {foreach from=$group.items item=site}
+                        <li class="page-map__table__section__list__link"><a href="{$site.url}">{$site.title}</a></li>
+                        {/foreach}
+                    </ul>
+                </div>
+                {/foreach}
+            </div>
+        </div>
+    </section>
+</main>

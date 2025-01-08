@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+  }
+  /*
+    3. Allow percentage-based heights in the application
+  */
+  html, body {
+    height: 100%;
+  }
+  /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+  /*
+  6. Improve media defaults
+  */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  /*
+    7. Remove built-in form typography styles
+  */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  /*
+    8. Avoid text overflows
+  */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  /*
+    9. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+  :root{
+    --clr-primary: #FB2F39; 
+    --clr-green: #01A7B7; 
+    --clr-bg: #FDFEFF;
+    --clr-text: #18212A;
+
+    --ff-primary: 'Montserrat', sans-serif;
+
+    --fs-h1: 64px;
+    --fs-h2: 48px;
+    --fs-h3: 36px;
+    --fs-h4: 24px;
+    --fs-h5: 26px;
+    --fs-h6: 26px;
+  }
+  @media(max-width: 900px){
+    :root{
+      --fs-h1: 40px;
+      --fs-h2: 34px;
+      --fs-h3: 28px;
+      --fs-h4: 24px;
+      --fs-h5: 26px;
+      --fs-h6: 18px;
+    }
+  }
+
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+
+    font-family: var(--ff-primary);
+    background-color: var(--clr-bg);
+  }
+
+  h1, h2, h3, h4, h5, h6{
+    color: var(--clr-text);
+    font-weight: bold;
+  }
+
+  //utils
+  .container{
+    width: min(90%, 1300px);
+    margin-inline: auto;
+  }
+  @media(min-width: 900px){
+    .container{
+      width: min(85%, 1300px);
+    }
+  }
+
+  //styles
+  .logo{
+    color: var(--clr-primary);
+    display: flex;
+    align-items: flex-start;
+    font-weight: bold;
+    font-size: 24px;
+  }

@@ -1,0 +1,150 @@
+<div class="content">
+    <div class="tab tab-list active">
+        <div class="content-block">
+            <div class="content-block-title">Filtr</div>
+            <div class="list-top-panel">
+
+                <form method="post" action="{$smarty.server.PHP_SELF}">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="first_name">Imię:</label>
+                            <input type="text" class="form-input" id="first_name" name="first_name" value="{$filters.first_name|default:''}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_name">Nazwisko:</label>
+                            <input type="text" class="form-input" id="last_name" name="last_name" value="{$filters.last_name|default:''}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="text" class="form-input" id="email" name="email" value="{$filters.email|default:''}">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="active">Pokaż konta:</label>
+                            <select name="active" id="active" class="form-select">
+                                <option value=""{if  $filters.active==""} selected="true"{/if}>- wszystkie -</option>
+                                <option value="inactive"{if $filters.active=="inactive"} selected="true"{/if}>nieaktywne</option>
+                                <option value="active"{if $filters.active=="active"} selected="true"{/if}>aktywne</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="limit">Ilość użytkowników na stronę:</label>
+                            <select name="limit" id="limit" class="form-select">
+                                <option value="25"{if $filters.limit=="25"} selected="true"{/if}>25</option>
+                                <option value="50"{if $filters.limit=="50"} selected="true"{/if}>50</option>
+                                <option value="100"{if $filters.limit=="100"} selected="true"{/if}>100</option>
+                                <option value="150"{if $filters.limit=="150"} selected="true"{/if}>150</option>
+                                <option value="200"{if $filters.limit=="200"} selected="true"{/if}>200</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="order_field">Sortuj według:</label>
+                            <select name="order_field" id="order_field" class="form-select">
+                                <option value="">- wybierz -</option>
+                                <option value="id"{if $filters.order_field=="id"} selected="true"{/if}>id użytkownika</option>
+                                <option value="first_name"{if $filters.order_field=="first_name"} selected="true"{/if}>imię</option>
+                                <option value="last_name"{if $filters.order_field=="last_name"} selected="true"{/if}>nazwiska</option>
+                                <option value="email"{if $filters.order_field=="email"} selected="true"{/if}>adresu e-mail</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="order_type">&nbsp;</label>
+                            <select name="order_type" id="order_type" class="form-select">
+                                <option value="">- wybierz -</option>
+                                <option value="ASC"{if $filters.order_type=="ASC"} selected="true"{/if}>rosnąco</option>
+                                <option value="DESC"{if $filters.order_type=="DESC"} selected="true"{/if}>malejąco</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="btn-row">
+                        <input type="hidden" name="action" value="set_filters" />
+                        <button class="btn btn-primary">Zastosuj</button>
+                        <a href="?action=filters_reset">Pokaż wszystkie konta</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <div class="content-block-title">Dodaj adres email</div>
+
+            <form method="post" action="{$smarty.server.PHP_SELF}?moduleName={$module_name}">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="add_name_value">Imię:</label>
+                        <input type="text" class="form-input" id="add_name_value" name="add_name_value">
+                    </div>
+                    <div class="form-group">
+                        <label for="add_email_value">E-mail:</label>
+                        <input type="text" class="form-input" id="add_email_value" name="add_email_value">
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <input type="hidden" name="action" value="add_email" /><br /><br />
+                    <button class="btn btn-primary">Dodaj</button>
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="list">
+            <table class="list-table">
+                <thead>
+                <tr class="list-table-row list-table-head">
+                    <th>Lp.</th>
+                    <th>Id</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Grupa</th>
+                    <th>Email</th>
+                    <th>Aktywne</th>
+                    <th>Opcje</th>
+                </tr>
+                </thead>
+                <tbody>
+                {foreach from=$users item=item name=aa}
+                <tr class="list-table-row">
+                    <td>{$smarty.foreach.aa.iteration}</td>
+                    <td>{$item.id}</td>
+                    <td>{$item.first_name}</td>
+                    <td>{$item.last_name}</td>
+                    <td>{$item.group_name}</td>
+                    <td>{$item.email}</td>
+                    <td>
+                        <input type="checkbox"
+                               id="switch_{$item.id}"
+                               class="switch-input switch-active"
+                               data-url="{$smarty.server.PHP_SELF}"
+                               data-id="{$item.id}"
+                               {if $item.active}checked="checked"{/if} />
+                        <label for="switch_{$item.id}" class="switch"></label>
+                    </td>
+                    <td>
+                        <a href="?action=edit_user&amp;id={$item.id}&mm={$smarty.get.mm|default:''}" class="list-table-icon" title="Edytuj">
+                            <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                        </a>
+                        <a href="?action=delete_user&amp;id={$item.id}&mm={$smarty.get.mm|default:''}" class="list-table-icon" title="Kasuj" onclick="return confirmDelete();">
+                            <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                        </a>
+                    </td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+        </div>
+        {if $pages>1}
+        {include file="misc/pagination.html"}
+        {/if}
+    </div>
+</div>

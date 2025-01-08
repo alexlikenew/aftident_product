@@ -1,0 +1,33 @@
+<!-- SECTION FAQ -->
+<section class="faq">
+    <div class="wrapper">
+        <div class="faq__title-info">
+            <h{$block.h_type}>{$block.title}<h{$block.h_type}>
+                    <p>{$block.content}</p>
+        </div>
+        <!-- FAQ TABLE -->
+        <div class="faq__table">
+            {foreach from=$faq_items item=question}
+            <!-- SINGLE ELEMENT -->
+            <div class="faq__table__element ">
+                <div class="faq__table__element__visible-text">
+                    <p class="faq__table__element__title">{$question.title}
+                    </p>
+                    <svg class="faq__table__element__plus" xmlns="http://www.w3.org/2000/svg" width="30" height="31"
+                        viewBox="0 0 30 31" fill="none">
+                        <title>Nacisnij przycisk aby zobaczyc podpowiedz</title>
+                        <circle cx="15" cy="15.1697" r="15" fill="#01A7B7" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M16.3945 10.0558C16.3945 9.28556 15.77 8.66113 14.9998 8.66113C14.2295 8.66113 13.6051 9.28556 13.6051 10.0558L13.6051 13.775H9.8859C9.11564 13.775 8.49121 14.3994 8.49121 15.1697C8.49121 15.9399 9.11564 16.5644 9.8859 16.5644H13.6051L13.6051 20.2836C13.6051 21.0538 14.2295 21.6783 14.9998 21.6783C15.77 21.6783 16.3945 21.0538 16.3945 20.2836L16.3945 16.5644H20.1136C20.8839 16.5644 21.5083 15.9399 21.5083 15.1697C21.5083 14.3994 20.8839 13.775 20.1136 13.775H16.3945L16.3945 10.0558Z"
+                            fill="#F9FBFD" />
+                    </svg>
+                </div>
+                <div class="faq__table__element__hide-text">{$question.content}</div>
+            </div>
+            {/foreach}
+        </div>
+        <div class="faq__see-more">
+            <a title="{$block.url_title}" href="{$block.url.url}">{$block.url_title}</a>
+        </div>
+    </div>
+</section>

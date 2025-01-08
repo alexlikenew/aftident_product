@@ -1,0 +1,42 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    {section name=l loop=$log}
+        {if $smarty.section.l.first}
+            <table class="special" cellspacing="1">
+                <thead>
+                    <tr>
+                        <th width="1%" align="center">{$LANG.LP}</th>
+                        <th>{$LANG.LOGIN}</th>
+                        <th style="text-transform: capitalize">{$LANG.IMIE}</th>
+                        <th style="text-transform: capitalize">{$LANG.NAZWISKO}</th>
+                        <th style="text-transform: capitalize">{$LANG.ID_UZYTKOWNIKA}</th>
+                        <th>{$LANG.GRUPA}</th>
+                        <th>{$LANG.DATA}</th>
+                        <th>{$LANG.HOST}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {/if}
+                <tr class="{cycle values="shadow_dark,shadow_light"}">
+                    <td align="center">{$smarty.section.l.iteration+$interval}.</td>
+                    <td><b>{$log[l].login}</b></td>
+                    <td>{$log[l].first_name}</td>
+                    <td>{$log[l].last_name}</td>	
+                    <td class="center"><span class="not-important">{$log[l].user_id}</span></td>
+                    <td class="center"><span class="not-important">{$log[l].group_id}</span></td>
+                    <td class="center"><span class="not-important">{$log[l].date_add}</span></td>
+                    <td class="center">{$log[l].host}</td>
+                </tr>
+                {if $smarty.section.l.last}
+                </tbody>
+            </table>
+        {/if}
+    {sectionelse}
+        <p class="center error">{$LANG.BRAK_WPISOW_W_BAZIE}</p>
+    {/section}
+
+    {if $pages>1}
+        {include file="misc/stronicowanie.html"}
+    {/if}
+</div>

@@ -1,0 +1,58 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+
+        <div class="tab active">
+            <div class="content-block">
+                <h2 class="content-block-title">
+                    {$group_name}
+                </h2>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Edytuj nazwę</label>
+                        <input type="text" class="form-input" id="name" name="name" value="{$group_name}" size="25">
+                    </div>
+                </div>
+            </div>
+            <div class="content-block">
+                <h3 class="content-block-title">Uprawnienia dla grupy</h3>
+                <table class="list-table">
+                    <thead>
+                    <tr class="list-table-row list-table-head">
+                        <th>
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="1" name="mark_all" class="checkbox-mark-all"/>
+                                <span class="checkmark"></span>
+                            </label>
+                        </th>
+                        <th style="width: 280px">Nazwa</th>
+                        <th>Opis</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach from=$privileges item=item name=aa}
+                    <tr class="list-table-row">
+                        <td>
+                            <label class="checkbox-item list-check-item">
+                                <input type="checkbox" value="{$item.id}" name="privileges[]" {if $item.status==1}checked="checked"{/if}/>
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>{$item.name}</td>
+                        <td>{$item.description}</td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="action" value="edit_group" />
+            <input type="hidden" name="group_id" value="{$smarty.get.group_id}" />
+            <input type="hidden" name="moduleName" value="{$module_name}">
+            <button class="btn btn-save" id="save">Zapisz zmiany</button>
+            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+        </div>
+    </form>
+</div>

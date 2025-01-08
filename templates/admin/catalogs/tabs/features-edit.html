@@ -1,0 +1,35 @@
+<div class="tab{if $tab_selected == 'features'} active{/if}" data-tab="features">
+    <div class="tab-wrapper">
+
+        {foreach from=$features item=feature}
+        <div class="content-block">
+            <h4 class="content-block-title">{$feature.title}</h4>
+            {if isset($feature.values.custom) && $feature.values.custom}
+                {foreach from=$feature.values.custom item=value}
+                <div class="form-grid">
+                    <label class="checkbox-item">
+                        {$value.title}
+                        <input type="checkbox" value="{$value.id}" name="features_active[]" {if isset($item.features[$value.id])} checked {/if} />
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="text" name="features_values[{$value.id}]" value="{$item.features[$value.id].value}">
+                </div>
+                {/foreach}
+            {/if}
+            {if isset($feature.values.only_value) && $feature.values.only_value}
+            <div class="form-grid">
+                {foreach from=$feature.values.only_value item=value}
+                <label class="checkbox-item">
+                    {$value.title}
+                    <input type="checkbox" value="{$value.id}" name="features_active[]" {if isset($item.features[$value.id])} checked {/if} />
+                    <span class="checkmark"></span>
+                </label>
+                {/foreach}
+            </div>
+            {/if}
+
+        </div>
+        {/foreach}
+
+    </div>
+</div>

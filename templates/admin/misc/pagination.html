@@ -1,0 +1,63 @@
+<div class="pagination">
+    {if $page>1}
+    <a class="pagination-item" href="?page=1{$query_string|default:''}{if isset($type)}&type={$type}{/if}"><<</a>
+    <a class="pagination-item" href="?page={$page-1}{$query_string|default:''}{if isset($type)}&type={$type}{/if}"><</a>
+    {else}
+    <span class="pagination-item inactive"><<</span>
+    <span class=" pagination-item inactive"><</span>
+    {/if}
+
+    {section name=p start=1 loop=$pages+1}
+        {assign var=i value=$smarty.section.p.index}
+        {if $page<4}
+            {if $i<=5}
+                {if $i == $page}
+                    <span class="pagination-item active"> {$page} </span>
+                {else}
+                    <a class="pagination-item" href="module.php?moduleName={$module_name}&page={$i}{$query_string|default:''}{if isset($type)}&type={$type}{/if}"> {$i} </a>
+                {/if}
+            {/if}
+        {/if}
+        {if $page>=4}
+            {if $pages>5}
+                {if $page<=$pages-3}
+                    {if $i>=$page-2 and $i<=$page+2}
+                        {if $i == $page}
+                            <span class="pagination-item active"> {$page} </span>
+                        {else}
+                            <a class="pagination-item" href="module.php?moduleName={$module_name}&page={$i}{$query_string|default:''}{if isset($type)}&type={$type}{/if}"> {$i} </a>
+                        {/if}
+                    {/if}
+                {else}
+                    {if $i>$pages-5}
+                        {if $i == $page}
+                            <span class="pagination-item active"> {$page} </span>
+                        {else}
+                            <a class="pagination-item" href="module.php?moduleName={$module_name}&page={$i}{$query_string|default:''}{if isset($type)}&type={$type}{/if}"> {$i} </a>
+                        {/if}
+                    {/if}
+                {/if}
+            {else}
+                {if $i == $page}
+                    <span class="pagination-item active"> {$page} </span>
+                {else}
+                    <a class="pagination-item" href="module.php?moduleName={$module_name}&page={$i}{$query_string|default:''}{if isset($type)}&type={$type}{/if}"> {$i} </a>
+                {/if}
+            {/if}
+        {/if}
+    {/section}
+
+
+    {if $page<$pages}
+        <a class="pagination-item" href="module.php?moduleName={$module_name}&page={$page+1}{$query_string|default:''}{if isset($type)}&type={$type}{/if}">></a>
+        <a class="pagination-item" href="module.php?moduleName={$module_name}&page={$pages}{$query_string|default:''}{if isset($type)}&type={$type}{/if}">>></a>
+    {else}
+        <span class="pagination-item inactive">
+            >
+        </span>
+        <span class="pagination-item inactive">
+            >>
+        </span>
+    {/if}
+
+</div>

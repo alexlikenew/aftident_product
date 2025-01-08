@@ -1,0 +1,14 @@
+<div class="home-about">
+    <div class="container">
+        {include file="blocks/{$blocks['o-nas'][0].template_file}.html"}
+        {if $blocks['o-nas-element']}
+            <div class="grid" data-aos="fade-in" data-aos-duration="400" data-aos-easing="ease-in-out">
+                <div class="line-v"></div>
+                <div class="line-h"></div>
+                {foreach from=$blocks['o-nas-element'] item=about_us}
+                    {include file="blocks/{$about_us.template_file}.html"}
+                {/foreach}
+            </div>
+        {/if}
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="content">
+    <div class="tab tab-list active">
+        <div class="tab-list-top">
+            <a href="module.php?moduleName=bloki&action=add" class="btn btn-primary">+ Dodaj nowy blok</a>
+            <a href="module.php?moduleName=bloki&action=type_list" class="btn btn-primary">Typy bloków</a>
+
+        </div>
+
+        <div class="list">
+            <form method="post" action="module.php?moduleName={$module_name}&action=show_main">
+
+                    <div class="list-top">
+                        <div class="list-top-panel">
+                            &nbsp;<div class="form-grid">
+                                <div class="form-group products-list-select" style="margin-bottom: 0">
+                                    <label for="type">Typ</label>
+                                    <select id="type" name="type_id" class="form-select" onchange="this.form.submit();">
+                                        <option value="0" >-- typ --</option>
+                                        {foreach from=$types item=type}
+                                            <option value="{$type.id}" {if isset($type_id) && $type_id == $type.id }selected {/if} >{$type.title}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                                <div class="list-top-panel-count btn-row">
+                                    <div style="margin-right: 20px">Wybrano: <span class="checked-count"></span></div>
+                                    <input type="submit" name="action" value="Usuń" class="btn btn-cancel" onclick="return confirmDelete();">
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+
+                {if $articles}
+                <table class="list-table" >
+                    <thead>
+                    <tr class="list-table-row list-table-head">
+                        <th>Nazwa</th>
+                        <th>Klucz</th>
+                        <th>Aktywny</th>
+                    </tr>
+                    </thead>
+                    <tbody data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}"  data-action="move" >
+                    {foreach from=$articles item=item name=aa}
+                    <tr class="list-table-row" data-id="{$item.id}">
+                        <td>
+                            <a href="module.php?moduleName={$module_name}&action={if $item.is_parent}show_items{else}edit{/if}&amp;id={$item.id}">{$item.name}</a>
+                        </td>
+                        <td>{$item.title_url}</td>
+                        <td>
+                            <input type="checkbox"
+                                   id="switch_{$item.id}"
+                                   class="switch-input switch-active"
+                                   data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}"
+                                   data-id="{$item.id}"
+                                   {if $item.active}checked="checked"{/if} />
+                            <label for="switch_{$item.id}" class="switch"></label>
+                        </td>
+                        <td>
+                            <a href="module.php?moduleName={$module_name}&action=edit&amp;id={$item.id}" class="list-table-icon" title="Edytuj">
+                                <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                            </a>
+                            <div class="list-table-icon delete-item" title="Kasuj" onclick="return confirmDelete('{$item.title}', '?moduleName={$module_name}&action=delete&amp;id={$item.id}');">
+                                <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                            </div>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+                {/if}
+            </form>
+        </div>
+        {if $pages>1}
+        {include file="misc/pagination.html"}
+        {/if}
+    </div>
+</div>
+{include file="modals/modal-delete.html"}

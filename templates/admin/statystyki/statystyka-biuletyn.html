@@ -1,0 +1,36 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    {section name=m loop=$mail_tpl}
+    {if $smarty.section.m.first}
+    <table class="special" cellspacing="1">
+        <thead>
+            <tr>
+                <td width="1%" align="center">{$LANG.LP}</td>
+                <td>{$LANG.TYTUL}</td>
+                <td>{$LANG.DATA_UTWORZENIA}</td>
+                <td>{$LANG.OPIS}</td>
+                <td>{$LANG.WYSLANE}</td>
+                <td>{$LANG.ODEBRANE}</td>
+                <td>{$LANG.KLIKNIETE_LINKI}</td>
+            </tr>
+        </thead>
+        <tbody>
+            {/if}
+            <tr class="{cycle values="shadow_dark,shadow_light"}">
+                <td align="center">{$smarty.section.m.iteration+$interval}.</td>
+                 <td><b>{$mail_tpl[m].name}</b></td>
+                 <td>{$mail_tpl[m].date}</td>
+                 <td>{$mail_tpl[m].description}</td>
+                 <td class="center important"><strong>{$mail_tpl[m].send}</strong></td>
+                 <td class="center important"><strong>{$mail_tpl[m].odebrano}</strong></td>
+                 <td class="center important"><strong>{$mail_tpl[m].clik}</strong></td>
+             </tr>
+             {if $smarty.section.m.last}
+            </tbody>
+        </table>
+        {/if}
+        {sectionelse}
+        <p class="center error">{$LANG.BRAK_WPISOW_W_BAZIE}</p>
+        {/section}
+    </div>

@@ -1,0 +1,41 @@
+<div class="page-wrapper">
+    <header class="page-header">
+        {include file="misc/breadcrumbs.html"}
+
+        <picture>
+            {if $module.photo.source.photo_webp}
+            <source class="lazy-load" srcset="{$module.photo.source.blur_webp}" data-srcset="{$module.photo.source.photo_webp}" type="image/webp">
+            {/if}
+            <source class="lazy-load" srcset="{$module.photo.source.blur}" data-srcset="{$module.photo.source.photo}" >
+            <img class="lazy-load" src="{$module.photo.source.blur}" data-src="{$module.photo.source.photo}" alt="{$module.title}">
+        </picture>
+
+        <div class="overlay">
+            <h1 class="page-title">{$module.title}</h1>
+            <div class="page-subtitle">
+                {$module.subtitle}
+            </div>
+        </div>
+    </header>
+</div>
+
+<main class="main offer-page container">
+
+    <div class="page-text">
+        {$article.content}
+    </div>
+
+    <div class="offer-content">
+
+        <div id="ax_products" class="products-list">
+            {foreach from=$items item=item}
+            {include file="products/product-card.html"}
+            {/foreach}
+        </div>
+    </div>
+
+    {include file="blog/blog-bottom.html"}
+
+</main>
+
+{include file="blocks/newsletter-banner.html"}

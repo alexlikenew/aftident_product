@@ -1,0 +1,36 @@
+{
+  "name": "aftident",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "sass --watch --no-source-map templates/default/scss:templates/default/css",
+    "dev_admin": "sass --watch --no-source-map templates/admin/scss/main.scss:templates/admin/css/main.css",
+    "compress": "sass --style=compressed --no-source-map templates/default/scss:templates/default/css",
+    "prefix": "postcss --use autoprefixer --replace templates/default/css/*.css",
+    "build": "npm-run-all prefix compress"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "browserslist": [
+    ">0.1%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "dependencies": {
+    "concat": "^1.0.3",
+    "npm-run-all": "^4.1.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "postcss": "^8.4.18",
+    "postcss-cli": "^10.0.0",
+    "sass": "^1.58.1"
+  }
+}

@@ -1,0 +1,26 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}" id="edit_form" enctype="multipart/form-data">
+        <div class="tabs-nav">
+            <div class="tabs-nav-item {if $tab_selected=='content'} active{/if}" data-tab-label="content">Treść</div>
+            <div class="tabs-nav-item {if $tab_selected=='features'}active{/if}" data-tab-label="features">Zakres usług</div>
+            <div class="tabs-nav-item tabs-buttons-hide {if $tab_selected=='price-steps'} active{/if}" data-tab-label="price-steps">Progi kwotowe</div>
+        </div>
+
+        <div class="tabs-wrapper">
+            {include file="./tabs/content-edit.html"}
+            {include file="./tabs/features-edit.html"}
+        </div>
+
+        <div class="btn-row btn-row-bottom">
+            <input type="hidden" name="id" value="{$item.id}" />
+            <input type="hidden" name="moduleName" value="{$module_name}">
+            <input type="hidden" name="action" value="{if isset($duplicate) && $duplicate}save_duplicate{else}Zapisz{/if}">
+            {if isset($duplicate) && !$duplicate}<input type="submit" class="btn btn-primary save_item" id="save_and_continue" name="action" data-module="{$module_name}" value="Zapisz i kontynuuj edycję">{/if}
+            <input type="submit" class="btn btn-save" id="save" data-module="{$module_name}"   value="Zapisz">
+            <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+        </div>
+    </form>
+
+    {include file="./tabs/price-steps.html"}
+
+</div>

@@ -1,0 +1,25 @@
+<div class="content">
+  <form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+    <div class="tabs-nav">
+      <div class="tabs-nav-item active" data-tab-label="content">Treść</div>
+    </div>
+
+    <div class="tabs-wrapper">
+      {include file="./tabs/input-content-add.html" tabActive=true}
+    </div>
+
+
+    <div class="btn-row btn-row-bottom">
+      <input type="hidden" name="moduleName" value="{$module_name}">
+      {if $item_module}
+      <input type="hidden" name="item_module" value="{$item_module}">
+      <input type="hidden" name="item_id" value="{$item_id}">
+      <input type="hidden" name="module_id" value="{$module_id}">
+      {/if}
+      <input type="hidden" name="parent_id" value="{$parent_id}"/>
+      <input type="hidden" name="action" value="create_input" /> &nbsp;
+      <input type="submit" class="btn btn-save" id="save" value="Dodaj">
+      <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+    </div>
+  </form>
+</div>

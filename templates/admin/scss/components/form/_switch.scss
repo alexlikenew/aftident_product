@@ -1,0 +1,43 @@
+.switch {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 24px;
+  height: 15px;
+  background: grey;
+  display: block;
+  border-radius: 10px;
+  position: relative;
+  margin-right: 10px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    width: 9px;
+    height: 9px;
+    background: #fff;
+    border-radius: 9px;
+    transition: .1s;
+  }
+
+  &-input {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+}
+
+.switch-input:checked + .switch {
+  background: green;
+}
+
+.switch-input:checked + .switch:after {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}
+
+.checkbox-switch {
+  display: flex;
+  align-items: center;
+}

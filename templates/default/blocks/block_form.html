@@ -1,0 +1,63 @@
+<div id="formularz" class="block-contact">
+    <div class="block-contact-main">
+        {if $block.title}<h{$block.h_type} class="block-title">{$block.title}</h{$block.h_type}>{/if}
+
+        <div class="block-contact-text">
+            {$block.content}
+        </div>
+    </div>
+
+    <div class="block-contact-form">
+        <div class="form-frame form-frame--right">
+            <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-2-right.svg" alt="Formularz kontaktowy - Chutor Kozacki">
+        </div>
+
+        <div class="form-title">Formularz kontaktowy</div>
+
+        <form action="">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="form-1" class="form-label">Imię</label>
+                    <input type="text" id="form-1" class="form-input input-required" name="1" placeholder="Imię...">
+                </div>
+
+                <div class="form-group">
+                    <label for="form-2" class="form-label">Nazwisko</label>
+                    <input type="text" id="form-2" class="form-input input-required" name="2" placeholder="Nazwisko...">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="form-3" class="form-label">Numer telefonu</label>
+                    <input type="text" id="form-3" class="form-input input-required" name="3" placeholder="Numer telefonu...">
+                </div>
+
+                <div class="form-group">
+                    <label for="form-4" class="form-label">Adres e-mail</label>
+                    <input type="text" id="form-4" class="form-input input-required" name="4" placeholder="Adres e-mail...">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="form-5" class="form-label">Treść wiadomości</label>
+                <textarea name="5" id="form-5" class="form-textarea input-required" placeholder="Treść wiadomości..."></textarea>
+            </div>
+
+            <div class="form-buttons">
+                <label class="checkbox-item">
+                    <span class="checkbox-item-row">{$LANG.PRIVACY}</span>
+                    <input type="checkbox" name="privacy" class="check-required" />
+                    <span class="checkmark white"></span>
+                </label>
+
+                <input type="hidden" name="action" value="send_kontakt" />
+                <input type="hidden" name="csrf_token" value="{$csrf_token}" />
+                <div id="send-contact" class="btn btn-primary">
+                    {$LANG.FORMULARZ_BUTTON}
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<main class="page">
+  {include file="misc/breadcrumbs.html"}
+  <div class="container">
+    {if $page.blocks} {foreach from=$page.blocks item=block} {include
+    file="blocks/{$block.template_file}.html"} {/foreach} {/if}
+  </div>
+</main>

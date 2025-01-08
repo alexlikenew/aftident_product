@@ -1,0 +1,121 @@
+<div class="tab{if $tabActive} active{/if}" data-tab="content">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">Dane</h2>
+            {foreach from=$languages item=lang}
+                <div class="form-grid form-grid-2" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                    <div class="form-group">
+                        <label for="title">Tytuł galerii [{$lang.code}] </label>
+                        <input type="text" class="form-input" id="title" name="title[{$lang.id}]">
+                    </div>
+                </div>
+
+                <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                    <label for="content">Treść [{$lang.code}] </label>
+                    <textarea name="content[{$lang.id}]" id="content" class="text-editor"></textarea>
+                </div>
+            {/foreach}
+        </div>
+
+        <div class="content-block">
+            <h2 class="content-block-title">Wymiary</h2>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="width">Szerokość miniaturki:</label>
+                    <input type="text" class="form-input" id="width" name="width" value="{$opcje.thumb_width_default}">
+                </div>
+
+                <div class="form-group">
+                    <label for="height">Szerokość miniaturki:</label>
+                    <input type="text" class="form-input" id="height" name="height" value="{$opcje.thumb_height_default}">
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2 class="content-block-title">Znak wodny:</h2>
+
+            <div class="form-grid">
+                <label class="checkbox-item">
+                    Znak wodny
+                    <input type="checkbox" name="watermark" value="1" />
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="watermark_x">Pozycja X znaku wodnego:</label>
+                    <input type="text" class="form-input" id="watermark_x" name="watermark_x">
+                </div>
+
+                <div class="form-group">
+                    <label for="watermark_y">Pozycja Y znaku wodnego:</label>
+                    <input type="text" class="form-input" id="watermark_y" name="watermark_y">
+                </div>
+
+                <div class="form-group">
+                    <label for="watermark_position">Punkt startowy znaku wodnego:</label>
+                    <select name="watermark_position" id="watermark_position" class="form-select">
+                        <option value="1" {if isset($smarty.post.watermark_position) and $smarty.post.watermark_position==1}selected{/if}>lewa góra</option>
+                        <option value="2" {if isset($smarty.post.watermark_position) and  $smarty.post.watermark_position==2}selected{/if}>prawa góra</option>
+                        <option value="3" {if isset($smarty.post.watermark_position) and  $smarty.post.watermark_position==3}selected{/if}>lewa dół</option>
+                        <option value="4" {if isset($smarty.post.watermark_position) and  $smarty.post.watermark_position==4}selected{/if}>prawa dół</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content-block">
+            <div class="form-group-label">Opcje dodatkowe</div>
+            <br>
+
+            <div class="form-grid">
+                <label class="checkbox-item">
+                    Pokazuj podstronę w serwisie
+                    <input type="checkbox" name="active" value="1" checked="checked" />
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="checkbox-item">
+                    Galeria możliwa do dołączenia w podstronach
+                    <input type="checkbox" name="show_page" value="1" checked="checked" />
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{if $languages|count > 1}
+<div class="content-panel{if $tabActive} active{/if}" data-tab="content">
+    <div class="content-block-title">Ustawienia</div>
+
+    <div class="form-group">
+        <label for="language">Wersja językowa</label>
+        <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+            {foreach from=$languages item=lang}
+            <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    {foreach from=$languages item=lang}
+    <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+        <input type="checkbox"
+               name="lang_active[{$lang.id}]"
+               id="switch_active_{$lang.id}"
+               class="switch-input switch-active"
+               {if $lang.id == $LANG_MAIN.id}checked="checked"{/if} />
+        <label for="switch_active_{$lang.id}" class="switch"></label>
+        Aktywna
+    </div>
+    {/foreach}
+
+</div>
+{else}
+<input type="hidden" name="lang_active[{$languages[0].id}]" value="1">
+{/if}

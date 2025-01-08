@@ -1,0 +1,20 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+	<form method="post" action="{$smarty.server.PHP_SELF}?mm={$smarty.get.mm}">
+                {$LANG.KOMENTARZE_WIDOCZNE_DLA_NIEZALOGOWANYCH}
+		<select name="comments_not_logged">
+                    <option value="0"{if $comments_not_logged==0} selected="true"{/if}>{$LANG.NIE}</option>
+                    <option value="1"{if $comments_not_logged==1} selected="true"{/if}>{$LANG.TAK}</option>
+		</select><br />
+                {$LANG.CZY_NIEZALOGOWANI_UZYTKOWNICY_MOGA_PISAC_KOMENTARZE}
+		<select name="comments_not_logged_post">
+                    <option value="0"{if $comments_not_logged_post==0} selected="true"{/if}>{$LANG.NIE}</option>
+                    <option value="1"{if $comments_not_logged_post==1} selected="true"{/if}>{$LANG.TAK}</option>
+		</select>
+
+		<br /><br />
+                <input class="submit" type="submit" value="{$LANG.ZAPISZ}" />
+		<input type="hidden" name="action" value="save" />
+	</form>
+</div>

@@ -1,0 +1,40 @@
+<div class="content">
+	<form class="form" method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+
+		<div class="tab active" data-tab="content">
+			<div class="tab-wrapper">
+				<div class="content-block">
+
+					<div class="form-grid form-grid-2">
+						<div class="form-group">
+							<label for="name">Nazwa szablonu:</label>
+							<input type="text" class="form-input" id="name" name="name" value="{$mail.name}">
+						</div>
+					</div>
+
+					<div class="form-grid form-grid-2">
+						<div class="form-group">
+							<label for="description">Opis:</label>
+							<input type="text" class="form-input" id="description" name="description" value="{$mail.description}">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="value">Treść</label>
+						<textarea name="value" id="value" class="text-editor">{$mail.value}</textarea>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="btn-row btn-row-bottom">
+			<input type="hidden" name="moduleName" value="{$module_name}">
+			<input type="hidden" name="id" value="{$mail.id}" />
+			<input class="btn btn-primary" type="submit" name="action" value="Zapisz i kontynuuj edycję" /> &nbsp;&nbsp;
+			<input class="btn btn-save" type="submit" name="action" value="Zapisz" />
+			<div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+		</div>
+	</form>
+</div>

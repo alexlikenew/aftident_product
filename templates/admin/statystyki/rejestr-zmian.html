@@ -1,0 +1,32 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    {section name=z loop=$rejestr}
+        {if $smarty.section.z.first}
+            <table class="special" cellspacing="1">
+                <thead>
+                <th>{$LANG.DATA}</th>
+                <th>{$LANG.AKCJA}</th>
+                <th>{$LANG.DOTYCZY}</th>
+                <th>{$LANG.WYKONANA_PRZEZ}</th>
+                </thead>
+                <tbody>
+                {/if}
+                <tr class="{cycle values="shadow_dark,shadow_light"}">
+                    <td width="150">{$rejestr[z].date_add}</td>
+                    <td width="100">{$rejestr[z].action}</td>
+                    <td>
+                        <a href="{$rejestr[z].url}" title="{$rejestr[z].title}">{$rejestr[z].title}</a>
+                    </td>
+                    <td>{$rejestr[z].login}</td>
+                </tr>
+                {if $smarty.section.z.last}
+                </tbody>
+            </table>
+        {/if}
+    {/section}
+
+    {if $pages>1}
+        {include file="misc/stronicowanie.html"}
+    {/if}
+</div>

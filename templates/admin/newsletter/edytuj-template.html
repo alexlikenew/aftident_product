@@ -1,0 +1,51 @@
+<div class="page-title"><h1>{$pageTitle} | <span class="important">{$mail.name}</span></h1></div>
+
+<div class="page-content">
+    <form method="post" action="{$smarty.server.PHP_SELF}">
+        <table class="special" cellspacing="1" cellpadding="0">
+            <tr>
+                <th>Nazwa szablonu:</th>
+            </tr>
+            <tr>
+                <td>
+                    <input class="text title" type="text" name="name" size="70" value="{$mail.name}" />
+                </td>
+            </tr>
+            <tr>
+                <th>Opis:</th>
+            </tr>
+            <tr>
+                <td>
+                    <input class="text title" type="text" name="description" size="70" value="{$mail.description}" />
+                </td>
+            </tr>
+            <tr>
+                <th>Treść:</th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="edytor" name="value">{$mail.value}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="hidden" name="id" value="{$mail.id}" />
+                    <input class="submit" type="submit" name="action" value="Zapisz i kontynuuj edycję" /> &nbsp;&nbsp;
+                    <input class="submit" type="submit" name="action" value="Zapisz" /> &nbsp;&nbsp;
+                    <input class="submit" type="submit" name="action" value="Porzuć zmiany" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{literal}
+    <script type="text/javascript">
+        if ($('#edytor').length > 0) {
+            initTinyMce('edytor');
+        }
+        _editor_url = "{/literal}{$BASE_URL}{literal}/js/tinymce/";
+        var BASE_URL = "{/literal}{$BASE_URL}{literal}";
+        var SERVER_URL = "{/literal}{$CONF.server_addr|default:''}{literal}";
+    </script>
+{/literal}

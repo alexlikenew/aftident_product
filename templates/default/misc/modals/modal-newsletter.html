@@ -1,0 +1,52 @@
+<div class="modal" data-modal="modal-newsletter">
+    <div class="modal-bg"></div>
+    <div class="modal-content">
+        <div class="modal-close"></div>
+        <div class="modal-title">{$LANG.SUBSCRIBE_NEWSLETTER}</div>
+
+        <form method="post" class="contact-form" action="/ax_newsletter" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email" class="form-label">{$LANG._LABEL_EMAIL}</label>
+                    <input type="email" class="form-input input-required" name="2" id="email">
+                    <span class="input-error-message">{$LANG.FORM_REQUIRED}</span>
+                </div>
+                <div class="form-group">
+                    <label for="first_name" class="form-label">{$LANG._LABEL_FIRSTNAME}</label>
+                    <input type="text" class="form-input input-required" name="1" id="first_name">
+                    <span class="input-error-message">{$LANG.FORM_REQUIRED}</span>
+                </div>
+            </div>
+
+            <label class="checkbox-item">
+                {$LANG._LABEL_RODO}
+                <input type="checkbox" name="privacy" value="1" class="check-required"/>
+                <span class="checkmark"></span>
+            </label>
+            <input type="hidden" name="ajax" value="1">
+            <input type="hidden" name="action" value="send_newsletter">
+            <input type="hidden" name="token" value="{getCSRFToken()}">
+
+            <div class="btn-row justify-end" style="margin-top: 40px">
+                <div id="newsletter-assign" class="btn btn-red">
+                    {$LANG._LABEL_SEND_MESSAGE}
+                    {include file="misc/icons/icon-more.html"}
+                </div>
+            </div>
+        </form>
+
+        <div class="form-result" style="display: none">
+            <div class="icon">
+                <img src="{$TPL_URL}/img/icons/icon-form-success.png" id="icon-form-success" alt="Chutor Kozacki">
+                <img src="{$TPL_URL}/img/icons/icon-form-error.png" id="icon-form-error" style="display: none" alt="Chutor Kozacki">
+            </div>
+
+            <div class="text">Wiadomość wysłana</div>
+
+            <div class="btn btn-red modal-close-btn">
+                {$LANG._LABEL_BACK}
+                {include file="misc/icons/icon-more.html"}
+            </div>
+        </div>
+    </div>
+</div>

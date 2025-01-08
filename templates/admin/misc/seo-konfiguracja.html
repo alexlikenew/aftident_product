@@ -1,0 +1,132 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <div class="info">{$LANG._SEO_KONFIGURACJA_INFO}</div>
+    <form class="form-opcje" method="post" action="{$smarty.server.PHP_SELF}">
+        <div><b>Title:</b></div>{$LANG._SEO_KONFIGURACJA_TITLE}
+        
+        <div>
+            <select name="op_page_title">
+                <option value="1" {if $opcje.op_page_title=='1'}selected="selected"{/if}>{$LANG.KONFIGURACJA_CMS}</option>
+                <option value="2" {if $opcje.op_page_title=='2'}selected="selected"{/if}>{$LANG.Z_TYTULU}</option>
+                <option value="3" {if $opcje.op_page_title=='3'}selected="selected"{/if}>{$LANG.Z_TYTULU_CMS}</option>
+                <option value="4" {if $opcje.op_page_title=='4'}selected="selected"{/if}>{$LANG.RECZNA}</option>
+                <option value="5" {if $opcje.op_page_title=='5'}selected="selected"{/if}>{$LANG.RECZNA_CMS}</option>
+            </select>
+        </div>
+        <br />
+        <div>
+            {if $lang_multi}
+                {section name=j2 loop=$JEZYK}
+                    {if $smarty.section.j2.first}
+                        <div class="zakladki">
+                        {/if}
+                        <div id="zakladka-label-page-title-{$JEZYK[j2].code}" class="zakladka-label{if $smarty.section.j2.first} zakladka-label-selected{/if}">
+                            <img src="{$TPL_URL}/img/{$JEZYK[j2].directory}/{$JEZYK[j2].code}.gif" alt="{$JEZYK[j2].name}" /> <small>[{$JEZYK[j2].name}]</small>
+                        </div>
+                        {if $smarty.section.j2.last}
+                            <div class="clear"></div>
+                        </div>
+                    {/if}
+                {/section}
+                {section name=j2 loop=$JEZYK}
+                    {assign var=language_id value=$JEZYK[j2].id}
+                    <div id="zakladka-page-title-{$JEZYK[j2].code}" class="zakladka">
+                        <div>{$LANG.ZAWARTOSC_TAGU_TITLE}</div>
+                        <textarea class="seo-konf-small" name="page_title[{$language_id}]">{$page_title[$language_id]}</textarea>
+                        <div>{$LANG.PREFIKS}</div>
+                        <textarea class="seo-konf-small" name="page_title_prefix[{$language_id}]">{$page_title_prefix[$language_id]}</textarea>
+                        <div>{$LANG.SUFFIKS}</div>
+                        <textarea class="seo-konf-small" name="page_title_suffix[{$language_id}]">{$page_title_suffix[$language_id]}</textarea>
+                    </div>
+                {/section}
+            {else}
+                <div>{$LANG.ZAWARTOSC_TAGU_TITLE}</div>
+                <textarea class="seo-konf-small" name="page_title[{$lang_main.id}]">{$page_title[$lang_main.id]}</textarea>
+                <div>{$LANG.PREFIKS}</div>
+                <textarea class="seo-konf-small" name="page_title_prefix[{$lang_main.id}]">{$page_title_prefix[$lang_main.id]}</textarea>
+                <div>{$LANG.SUFFIKS}</div>
+                <textarea class="seo-konf-small" name="page_title_suffix[{$lang_main.id}]">{$page_title_suffix[$lang_main.id]}</textarea>
+            {/if}
+        </div>
+        <br />
+        <div><b>Keywords:</b></div>
+        {$LANG._ZAWARTOSC_TAGU_KEYWORDS}
+        <div>
+            <select name="op_page_keywords">
+                <option value="1" {if $opcje.op_page_keywords=='1'}selected="selected"{/if}>{$LANG.KONFIGURACJA_CMS}</option>
+                <option value="2" {if $opcje.op_page_keywords=='2'}selected="selected"{/if}>{$LANG.Z_TYTULU}</option>
+                <option value="3" {if $opcje.op_page_keywords=='3'}selected="selected"{/if}>{$LANG.Z_TYTULU_CMS}</option>
+                <option value="4" {if $opcje.op_page_keywords=='4'}selected="selected"{/if}>{$LANG.RECZNA}</option>
+                <option value="5" {if $opcje.op_page_keywords=='5'}selected="selected"{/if}>{$LANG.RECZNA_CMS}</option>
+            </select>
+        </div>
+        <br />
+        <div>
+            {if $lang_multi}
+                {section name=j2 loop=$JEZYK}
+                    {if $smarty.section.j2.first}
+                        <div class="zakladki">
+                        {/if}
+                        <div id="zakladka-label-page-keywords-{$JEZYK[j2].code}" class="zakladka-label{if $smarty.section.j2.first} zakladka-label-selected{/if}">
+                            <img src="{$TPL_URL}/img/{$JEZYK[j2].directory}/{$JEZYK[j2].code}.gif" alt="{$JEZYK[j2].name}" /> <small>[{$JEZYK[j2].name}]</small>
+                        </div>
+                        {if $smarty.section.j2.last}
+                            <div class="clear"></div>
+                        </div>
+                    {/if}
+                {/section}
+                {section name=j2 loop=$JEZYK}
+                    {assign var=language_id value=$JEZYK[j2].id}
+                    <div id="zakladka-page-keywords-{$JEZYK[j2].code}" class="zakladka">
+                        <textarea class="seo-konf-small" name="page_keywords[{$language_id}]">{$page_keywords[$language_id]}</textarea>
+                    </div>
+                {/section}
+            {else}
+                <textarea class="seo-konf-small" name="page_keywords[{$lang_main.id}]">{$page_keywords[$lang_main.id]}</textarea>
+            {/if}
+        </div>
+        <br />
+        <div>Description:</div>
+        {$LANG._ZAWARTOSC_TAGU_DESCRIPTION}
+        <div>
+            <select name="op_page_description">
+                <option value="1" {if $opcje.op_page_description=='1'}selected="selected"{/if}>{$LANG.KONFIGURACJA_CMS}</option>
+                <option value="2" {if $opcje.op_page_description=='2'}selected="selected"{/if}>{$LANG.Z_TYTULU}</option>
+                <option value="3" {if $opcje.op_page_description=='3'}selected="selected"{/if}>{$LANG.Z_TYTULU_CMS}</option>
+                <option value="4" {if $opcje.op_page_description=='4'}selected="selected"{/if}>{$LANG.Z_TRESCI}</option>
+                <option value="5" {if $opcje.op_page_description=='5'}selected="selected"{/if}>{$LANG.Z_TRESCI_CMS}</option>
+                <option value="6" {if $opcje.op_page_description=='6'}selected="selected"{/if}>{$LANG.RECZNA}</option>
+                <option value="7" {if $opcje.op_page_description=='7'}selected="selected"{/if}>{$LANG.RECZNA_CMS}</option>
+            </select>
+        </div>
+        <br />
+        <div>
+            {if $lang_multi}
+                {section name=j2 loop=$JEZYK}
+                    {if $smarty.section.j2.first}
+                        <div class="zakladki">
+                        {/if}
+                        <div id="zakladka-label-page-description-{$JEZYK[j2].code}" class="zakladka-label{if $smarty.section.j2.first} zakladka-label-selected{/if}">
+                            <img src="{$TPL_URL}/img/{$JEZYK[j2].directory}/{$JEZYK[j2].code}.gif" alt="{$JEZYK[j2].name}" /> <small>[{$JEZYK[j2].name}]</small>
+                        </div>
+                        {if $smarty.section.j2.last}
+                            <div class="clear"></div>
+                        </div>
+                    {/if}
+                {/section}
+                {section name=j2 loop=$JEZYK}
+                    {assign var=language_id value=$JEZYK[j2].id}
+                    <div id="zakladka-page-description-{$JEZYK[j2].code}" class="zakladka">
+                        <textarea class="seo-konf-small" name="page_description[{$language_id}]">{$page_description[$language_id]}</textarea>
+                    </div>
+                {/section}
+            {else}
+                <textarea class="seo-konf-small" name="page_description[{$lang_main.id}]">{$page_description[$lang_main.id]}</textarea>
+            {/if}
+        </div>
+        <br />
+        <input type="hidden" name="action" value="zapisz_konfiguracja" />
+        <input class="submit" type="submit" value="{$LANG.ZAPISZ}" />
+    </form>
+</div>

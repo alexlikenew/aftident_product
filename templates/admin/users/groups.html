@@ -1,0 +1,56 @@
+<div class="content">
+    <div class="tab tab-list active">
+        <div class="tab-list-top">
+            <a href="module.php?moduleName={$module_name}&action=add" class="btn btn-primary">+ Dodaj nową grupę</a>
+            {include file="misc/search.html"}
+        </div>
+
+        <div class="list">
+            <div class="list-top">
+                <div class="list-top-panel">
+                    &nbsp;
+                </div>
+
+                <div class="list-top-filter">
+                    <div class="list-top-filter__item">
+                        <span class="label">Sortuj:</span>
+                        <select class="list-top-filter__select">
+                            <option value="newest">Najnowsze</option>
+                            <option value="oldest">Najstarsze</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            {if $groups}
+            <table class="list-table">
+                <thead>
+                <tr class="list-table-row list-table-head">
+                    <th style="width: 280px">Nazwa grupy</th>
+                    <th>Opcje</th>
+                </tr>
+                </thead>
+                <tbody>
+                {foreach from=$groups item=item name=aa}
+                <tr class="list-table-row">
+                    <td><a href="module.php?moduleName={$module_name}&group_id={$item.id}&amp;action=load_group">{$item.name}</a></td>
+                    <td>
+                        <a href="module.php?moduleName={$module_name}&group_id={$item.id}&amp;action=load_group" class="list-table-icon" title="Edytuj">
+                            <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                        </a>
+                        <a href="module.php?moduleName={$module_name}&action=delete_group&amp;id={$item.id}" class="list-table-icon" title="Kasuj" onclick="return confirmDelete()">
+                            <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                        </a>
+                    </td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+            {else}
+            <div>Brak</div>
+            {/if}
+        </div>
+
+    </div>
+    {$menu_group}
+</div>

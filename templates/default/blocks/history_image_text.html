@@ -1,0 +1,32 @@
+<div class="block-image-text history-block">
+    {if $block.photo}
+    <div class="image">
+        <picture>
+            {if $block.photo.source.photo_webp}
+            <source srcset="{$block.photo.source.webp}" type="image/webp">
+            {/if}
+            <source srcset="{$block.photo.source.photo}" type="{$block.photo.params.type}" >
+            <img loading="lazy" src="{$block.photo.source.photo}" alt="{$block.title}">
+        </picture>
+    </div>
+    {/if}
+
+    <div class="content">
+        <div class="history-block-frame history-block-frame--left">
+            <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-2-left.svg" alt="Chutor Kozacki">
+        </div>
+        <div class="history-block-frame history-block-frame--right">
+            <img loading="lazy" src="{$TPL_URL}/img/frames/frame-page-2-right.svg" alt="Chutor Kozacki">
+        </div>
+
+        {if $block.title}<h{$block.h_type} class="block-title">{$block.title}</h{$block.h_type}>{/if}
+
+        <div class="text">
+            {$block.content}
+        </div>
+
+        {if $block.url.url}
+        <a href="{$block.url.url}" class="btn btn-outline">{$block.url_title}</a>
+        {/if}
+    </div>
+</div>

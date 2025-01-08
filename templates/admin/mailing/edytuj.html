@@ -1,0 +1,24 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <p><a href="{$BASE_URL}/admin/uzytkownicy-mailing.php">&laquo; {$LANG.POWROT}</a></p>
+
+    <form method="post" action="{$smarty.server.PHP_SELF}">
+        <p>{$description|nl2br}</p>
+
+        <textarea id="edytor" name="mail_value">{$mail_value}</textarea>
+        <input type="hidden" name="action" value="save" />
+        <input type="hidden" name="id" value="{$smarty.get.id}" /><br />
+        <input class="submit" type="submit" value="{$LANG.ZAPISZ_ZMIANY}" />
+    </form>
+</div>
+
+<script type="text/javascript" src="{$BASE_URL}/js/tinymce/tiny_mce.js"></script>
+<script type="text/javascript" src="{$BASE_URL}/js/tinymce.init.js"></script>
+<script type="text/javascript">
+    // <![CDATA[
+    _editor_url = "{$BASE_URL}/js/tinymce/";
+    var BASE_URL = "{$BASE_URL}";
+    var SERVER_URL = "{$CONF.server_addr}";
+    // ]]>
+</script>

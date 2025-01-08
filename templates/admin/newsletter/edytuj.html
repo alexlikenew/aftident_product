@@ -1,0 +1,47 @@
+<div class="page-title"><h1>{$pageTitle} | <span class="important">{$u.first_name} {$u.last_name}</span></h1></div>
+
+<div class="page-content">
+	<p><a href="?action=user">&laquo; Powrót do spisu użytkowników</a></p>
+
+		<form method="post" action="{$smarty.server.PHP_SELF}">
+		<table align="center" width="95%">
+			<tr>
+				<td><b>Imię:</b></td>
+				<td><input class="text" type="text" name="first_name" value="{$u.first_name}" size="40" /></td>
+			</tr><tr>
+				<td><b>Nazwisko:</b></td>
+				<td><input class="text" type="text" name="last_name" value="{$u.last_name}" size="40" /></td>			
+			</tr><tr>
+				<td><b>E-mail:</b></td>
+				<td><input class="text" type="text" name="email" value="{$u.email}" size="40" /></td>			
+			</tr>
+                        <tr>
+				<td><b>Grupa:</b></td>
+				<td>
+					<select name="grupa">
+                                            {foreach from=$grupy item=val key=k}
+                                            <option value='{$k}' {if $k==$u.grupa}selected{/if} >{$val}</option>
+                                            {/foreach}
+					</select>				
+				</td>
+			</tr>
+                        <tr>
+				<td><b>Status konta:</b></td>
+				<td>
+					<select name="active">
+						<option value="0"{if $u.active==0} selected="true"{/if}>nieaktywne</option>
+						<option value="1"{if $u.active==1} selected="true"{/if}>aktywne</option>
+					</select>				
+				</td>
+			</tr>
+                        <tr>
+				<td></td>
+				<td>
+					<input type="hidden" name="action" value="save_user" />
+					<input type="hidden" name="id" value="{$u.id}" /><br />
+					<input class="submit" type="submit" value="Zapisz zmiany" />				
+				</td>			
+			</tr>
+		</table>
+		</form>  
+</div>

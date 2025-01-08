@@ -1,0 +1,59 @@
+<div class="content">
+    <form class="form" method="post" action="{$smarty.server.PHP_SELF}?moduleName={$module_name}" enctype="multipart/form-data" onsubmit="return checkLabel();">
+
+        <div class="tab active" data-tab="content">
+            <div class="tab-wrapper">
+
+                <div class="content-block">
+                    <div class="content-panel active" style="padding: 0">
+                        <div class="content-block-title">Ustawienia</div>
+
+                        <div class="form-group">
+                            <label for="language">Wersja językowa</label>
+                            <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+                                {foreach from=$languages item=lang}
+                                <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="form-grid form-grid-2">
+                    <div class="form-group">
+                        <label for="conf_name">Nazwa opcji :</label>
+                        <input type="text" id="conf_name" name="conf_name" class="form-input">
+                    </div>
+                </div>
+
+                    {foreach from=$languages item=lang}
+
+                        <div class="form-grid form-grid-2" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                            <div class="form-group">
+                                <label for="conf_value_{$lang.id}">Wartość opcji [{$lang.code}]:</label>
+                                <textarea name="conf_value[{$lang.id}]" id="conf_value_{$lang.id}" class="form-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-grid form-grid-2" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                            <div class="form-group">
+                                <label for="conf_description_{$lang.id}">Krótki opis opcji [{$lang.code}]:</label>
+                                <textarea name="conf_description[{$lang.id}]" id="conf_description_{$lang.id}" class="form-textarea"></textarea>
+                            </div>
+                        </div>
+                    {/foreach}
+            </div>
+        </div>
+
+</div>
+
+<div class="btn-row btn-row-bottom">
+    <input type="hidden" value="dodaj" />
+    <input type="hidden" name="action" value="new_option" />
+    <input type="hidden" name="moduleName" value="{$module_name}">
+    <input type="hidden" name="conf_table" value="config" />
+    <input type="submit" class="btn btn-save" value="Dodaj">
+    <div class="btn btn-cancel" onclick="window.history.back()">Anuluj</div>
+</div>
+</form>
+</div>

@@ -1,0 +1,70 @@
+<div class="tab{if $tabActive} active{/if}" data-tab="params">
+    <div class="tab-wrapper">
+        <div class="content-block">
+            <h2 class="content-block-title">Opis</h2>
+            <div class="form-grid form-grid-3">
+                <div class="form-group">
+                    <label for="name">Nazwa</label>
+                    <input type="text" class="form-input" id="name" name="name" value="{$item.name}">
+                </div>
+                <div class="form-group">
+                    <label for="table_name">Nazwa tabeli</label>
+                    <input type="text" class="form-input" id="table_name" name="table_name" value="{$item.table_name}">
+                </div>
+                <div class="form-group">
+                    <label for="class_name">Nazwa klasy</label>
+                    <input type="text" class="form-input" id="class_name" name="class_name" value="{$item.class_name}">
+                </div>
+                <div class="form-group">
+                    <label for="class_name">Folder z szablonem</label>
+                    <input type="text" class="form-input" id="directory_name" name="directory_name" value="{if $item.templates_dir}{$item.templates_dir}{else}root{/if}" placeholder="root" >
+                </div>
+            </div>
+            <div class="form-grid form-grid-2">
+
+            </div>
+        </div>
+        <div class="content-block">
+            <h2 class="content-block-title">Miniatury</h2>
+            <div class="form-grid form-grid-3">
+                <div class="form-group">
+                    <label for="thumbsize_list">Lista</label>
+                    <input type="text" class="form-input" id="thumbsize_list" name="thumbsize_list" value="{$item.thumbsize_list}" placeholder="128x128">
+                </div>
+                <div class="form-group">
+                    <label for="thumbsize_detail">Szczególy</label>
+                    <input type="text" class="form-input" id="thumbsize_detail" name="thumbsize_detail" value="{$item.thumbsize_detail}" placeholder="128x128">
+                </div>
+                <div class="form-group">
+                    <label for="thumbsize_scale">Skala</label>
+                    <input type="text" class="form-input" id="thumbsize_scale" name="thumbsize_scale" value="{$item.thumbsize_scale}" placeholder="128x128">
+                </div>
+            </div>
+            <div class="form-grid form-grid-2">
+
+            </div>
+        </div>
+
+
+        <div class="content-block">
+            <div class="form-grid">
+                <label class="checkbox-item">
+                    Aktywny
+                    <input type="checkbox" name="active" value="1" {if $item.active}checked="checked"{/if} />
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-item">
+                    Frontend
+                    <input type="checkbox" name="frontend" value="1" {if $item.frontend}checked="checked"{/if} />
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-item">
+                    Backend
+                    <input type="checkbox" name="backend" value="1" {if $item.backend}checked="checked"{/if} />
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+</div>

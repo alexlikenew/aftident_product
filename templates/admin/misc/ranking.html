@@ -1,0 +1,62 @@
+<div class="page-title"><h1>{$pageTitle}</h1></div>
+
+<div class="page-content">
+    <div class="info">{$LANG._RANKING_INFO}</div>
+
+    <span>{$LANG.AKTUALNIE_AUTOMAT_SPRAWDZAJACY_JEST}: {if $CONF.check_google==1}<strong class="not-important">{$LANG.WLACZONY}</strong>{else}<strong class="important">{$LANG.WYLACZONY}</strong>{/if} {$LANG.DLA_DOMENY}: <strong>{$CONF.server_addr}</strong></span>
+
+    {section name=aa loop=$anchory}
+        {if $smarty.section.aa.first}
+            <h3>Wszytkich fraz: {$liczba}</h3>
+            <table cellspacing="1" class="special">
+                <thead>
+                    <tr>
+                        <th>{$LANG.LP}</th>
+                        <th>{$LANG.FRAZA}</th>
+                        <th>{$LANG.POZYCJA}</th>
+                        <th>{$LANG.OPCJE}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {/if}
+                <tr class="shadow_light">
+                    <td>{$smarty.section.aa.iteration}</td>
+                    <td><a href="./ranking.php?id={$anchory[aa].id}&action=pokaz" title="{$LANG.POKAZ_WYNIKI}">{$anchory[aa].anchor}</a></td>
+                    <td class="center"><strong>{$anchory[aa].pozycja}</strong></td>
+                    <td class="opcje">
+                        <a href="./ranking.php?id={$anchory[aa].id}&action=pokaz" title="{$LANG.POKAZ_WYNIKI}"><img src="{$BASE_URL}/templates/admin/img/wykres.png" alt="{$LANG.POKAZ_WYNIKI}" /></a>
+                        <a href="#" onclick="return showHide('edit_{$anchory[aa].id}');" title="{$LANG.EDYTUJ}"><img src="{$BASE_URL}/templates/admin/img/edit.png" alt="{$LANG.EDYTUJ}" /></a>		
+                        <a href="./ranking.php?id={$anchory[aa].id}&action=del_anchor" title="{$LANG.KASUJ}" onclick="return confirmDelete('{$LANG.CONFIRM_DELETE}')"><img src="{$BASE_URL}/templates/admin/img/delete.png" alt="{$LANG.KASUJ}" /></a>
+                    </td>
+                </tr>
+                <tr class="shadow_light" id="edit_{$anchory[aa].id}" style="display: none;">
+                    <td colspan="4">
+                        <div>
+                            <form method="post" action="{$smarty.server.PHP_SELF}">
+                                &nbsp; Edytuj anchor: <input class="text" type="text" name="anchor" value="{$anchory[aa].anchor}" />
+                                <input type="hidden" name="action" value="edit_anchor" />
+                                <input type="hidden" name="id" value="{$anchory[aa].id}" />
+                                <input class="submit" type="submit" name="submit" value="{$LANG.ZAPISZ}" />
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {if $smarty.section.aa.last}
+                </tbody>
+            </table>
+        {/if}
+    {sectionelse}
+    <p class="center error">{$LANG.BRAK_WPISOW_W_BAZIE}</p>
+    {/section}
+
+    {if $liczba <10}
+        <form method="post" action="{$smarty.server.PHP_SELF}">
+            <h3>{$LANG.DODAWANIE_FRAZY}</h3>
+            {$LANG.ANCHOR}: <input class="text" type="text" name="anchor" />
+            <input type="hidden" name="action" value="add_anchor" />
+            <input class="submit" type="submit" name="submit" value="{$LANG.DODAJ}" />
+        </form>
+    {else}
+    <p class="center error">{$LANG.WYKORZYSTALES_JUZ_LICZBE_DOPUSZCZALNYCH_FRAZ}</p>
+    {/if}
+</div>

@@ -1,0 +1,16 @@
+/templates/_cache/
+/templates/_compile/
+node_modules/
+/baza-444ee92c578af3e2e1f99a28e21bcaf0/
+/_cache/
+.idea
+
+logs/
+
+/upload/
+config.inc.php
+.htaccess
+/includes/vendor/
+package-lock.json
+
+.vscode

@@ -1,0 +1,213 @@
+
+<div class="content">
+    <div class="tab tab-list active">
+        {* kategorie *}
+        <div class="tab-list-top">
+            <a href="module.php?moduleName={$module_name}&action=category_add&category_id={$category_id}" class="btn btn-primary">+ Dodaj nową kategorię</a>
+            {include file="misc/search.html"}
+        </div>
+        <div class="list-top-panel">
+            {include file="misc/breadcrumbs.html"}
+        </div>
+
+        <div class="list">
+            <form method="post" id="category_list" action="">
+
+                <div class="list-top">
+                    <div class="list-top-panel">
+                        {if isset($category_parent)}
+                        <a href="{$category_parent}" class="list-top-panel-back" style="margin-right: 40px">
+                            <img src="{$TPL_URL}/img/icons/icon-arrow-back.svg" alt="">
+                            Przejdź kategorię wyżej
+                        </a>
+                        {/if}
+                    </div>
+                </div>
+                {if $categories}
+                <table class="list-table" >
+                    <thead>
+                    <tr class="list-table-row list-table-head">
+                        <th style="width: 30%;">Tytuł</th>
+                        <th>Data dodania</th>
+                        <th>Widoczna</th>
+                        <th>Opcje</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach from=$categories item=category name=cc}
+                    <tr class="list-table-row">
+                        <td>
+                            <a href="?moduleName={$module_name}&amp;category_id={$category.id}">{$category.title}</a>
+                        </td>
+                        <td>{$category.date_add}</td>
+                        <td>
+                            <input type="checkbox"
+                                   id="switch_{$category.id}"
+                                   class="switch-input switch-active"
+                                   data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}"
+                                   data-id="{$category.id}"
+                                   {if $category.active}checked="checked"{/if} />
+                            <label for="switch_{$category.id}" class="switch"></label>
+                        </td>
+                        <td>
+                            <a href="{$category.url}" class="list-table-icon" title="Podgląd online" target="_blank">
+                                <img src="{$TPL_URL}/img/icons/icon-list-search.svg" alt="Podgląd online">
+                            </a>
+                            <a href="?moduleName={$module_name}&action=category_edit&amp;id={$category.id}" data-module="{$menu_selected}" data-id="{$category.id}" class="list-table-icon " title="Edytuj">
+                                <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                            </a>
+                            <div class="list-table-icon delete-item" title="Kasuj" onclick="return confirmDelete('{$category.title}', '?moduleName={$module_name}&action=category_delete&amp;id={$category.id}');">
+                                <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                            </div>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+                {/if}
+            </form>
+        </div>
+        {* kategorie *}
+        <div class="tab-list-top">
+            <a href="module.php?moduleName={$module_name}&action=add&category_id={$category_id}" class="btn btn-primary">+ Dodaj nowy produkt</a>
+        </div>
+
+        <div class="list">
+            <form method="post" id="items_list" action="">
+                {if $articles}
+                <div class="list-top">
+                    <div class="list-top-panel">
+                        &nbsp;<div class="form-grid">
+                            <div class="list-top-panel-count btn-row">
+                                <div style="margin-right: 20px">Wybrano: <span class="checked-count"></span></div>
+                                <input type="button" name="action" value="Usuń" class="btn btn-cancel" onclick="return confirmMassDelete();">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-top-filter">
+                        <div class="list-top-filter__item">
+                            <span class="label">Sortuj:</span>
+                            <select class="list-top-filter__select">
+                                <option value="newest">Najnowsze</option>
+                                <option value="oldest">Najstarsze</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <table class="list-table" >
+                    <thead>
+                        <tr class="list-table-row list-table-head">
+                            <th style="width: 70px">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="1" name="mark_all" class="checkbox-mark-all"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </th>
+                            <th style="width: 30%;">Tytuł i krótka treść</th>
+                            <th>Data dodania</th>
+                            <th>Widoczna</th>
+                            <th>Opcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {foreach from=$articles item=item name=aa}
+                        <tr class="list-table-row">
+                            <td>
+                                <label class="checkbox-item list-check-item">
+                                    <input type="checkbox" value="{$item.id}" name="list_items[]"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <a href="?moduleName={$module_name}&action=edit&amp;id={$item.id}">{$item.title}</a>
+                            </td>
+                            <td>{$item.date_add}</td>
+                            <td>
+                                <input type="checkbox"
+                                       id="switch_{$item.id}"
+                                       class="switch-input switch-active"
+                                       data-url="{$smarty.server.PHP_SELF}?moduleName={$module_name}"
+                                       data-id="{$item.id}"
+                                       {if $item.active}checked="checked"{/if} />
+                                <label for="switch_{$item.id}" class="switch"></label>
+                            </td>
+                            <td>
+                               {* <a href="{$item.url}" class="list-table-icon" title="Podgląd online" target="_blank">
+                                    <img src="{$TPL_URL}/img/icons/icon-list-search.svg" alt="Podgląd online">
+                                </a>*}
+                                <a href="?moduleName={$module_name}&action=duplicate&amp;id={$item.id}" class="list-table-icon" title="Duplikuj" target="_blank">
+                                    <img src="{$TPL_URL}/img/icons/icon-copy.svg" alt="Duplikuj">
+                                </a>
+                                <a href="?moduleName={$module_name}&action=edit&amp;id={$item.id}" data-module="{$menu_selected}" data-id="{$item.id}" class="list-table-icon " title="Edytuj">
+                                    <img src="{$TPL_URL}/img/icons/icon-edit.svg" alt="Edytuj">
+                                </a>
+                                <div class="list-table-icon delete-item" title="Kasuj" onclick="return confirmDelete('{$item.title}', '?moduleName={$module_name}&action=delete&amp;id={$item.id}');">
+                                    <img src="{$TPL_URL}/img/icons/icon-delete.svg" alt="Kasuj">
+                                </div>
+                            </td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+                {/if}
+                <input type="hidden" name="action" id="action" >
+            </form>
+        </div>
+        {if $pages>1}
+        {include file="misc/pagination.html"}
+        {/if}
+
+    {if isset($current_cat)}
+        <div class="tab active" data-tab="content">
+            <form method="post" action="{$smarty.server.PHP_SELF}" enctype="multipart/form-data">
+                <div class="tab-wrapper">
+                    <div class="content-block">
+                        <h2 class="content-block-title">Opis kategorii</h2>
+                        {if $languages|count > 1}
+                        <div class="content-panel active" data-tab="content" style="padding: 20px 0">
+                            <label for="language">Wersja językowa</label>
+                            <select name="language" id="language" class="form-select" style="text-transform: uppercase">
+                                {foreach from=$languages item=lang}
+                                <option value="{$lang.id}" {if $lang.id == $LANG_MAIN.id}selected{/if}>{$lang.code}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                        {foreach from=$languages item=lang}
+                        <div class="checkbox-switch" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                            <input type="checkbox"
+                                   name="lang_active[{$lang.id}]"
+                                   id="switch_active_{$lang.id}"
+                                   class="switch-input switch-active"
+                                   {if $category_description[$lang.id].active}checked="checked"{/if} />
+                            <label for="switch_active_{$lang.id}" class="switch"></label>
+                            Aktywna
+                        </div>
+                        {/foreach}
+                    <br>
+                    {else}
+                    <input type="hidden" name="lang_active[{$languages[0].id}]" value="1">
+                        {/if}
+
+                    {foreach from=$languages item=lang}
+                        <div class="form-group" data-lang="{$lang.id}" {if $lang.id != $LANG_MAIN.id}style="display: none;"{/if}>
+                            <label for="content">Treść [{$lang.code}]</label>
+                            <textarea name="content[{$lang.id}]" id="content" class="text-editor">{$category_description[$lang.id].content}</textarea>
+                        </div>
+                    {/foreach}
+
+                <div class="btn-row">
+                    <input type="hidden" name="id" value="{$current_cat.id}" />
+                    <input type="hidden" name="moduleName" value="{$module_name}">
+                    <input type="hidden" name="action" value="update_category_description">
+                    <input type="submit" class="btn btn-save" id="save" data-module="{$module_name}" value="Zapisz">
+                </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    {/if}
+    </div>
+</div>
+
+{include file="modals/modal-delete.html"}
