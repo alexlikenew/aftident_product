@@ -12,10 +12,14 @@
         {section name=pp loop=$path}
         {if !$smarty.section.pp.last}
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a itemprop="item" itemscope itemtype="https://schema.org/WebPage" itemid="{$path[pp].url}" href="{$path[pp].url}" title="{$path[pp].name}" class="breadcrumbs-item"><span itemprop="name">{$path[pp].name|truncate:55}</span></a>
+            <a itemprop="item" itemscope itemtype="https://schema.org/WebPage" itemid="{$path[pp].url}"
+                href="{$path[pp].url}" title="{$path[pp].name}" class="breadcrumbs-item"><span
+                    itemprop="name">{$path[pp].name|truncate:55}</span></a>
             <meta itemprop="position" content="{$smarty.section.pp.iteration + 1}" />
         </li>
-        <li><div class="breadcrumbs-divider"></div></li>
+        <li>
+            <div class="breadcrumbs-divider"></div>
+        </li>
         {else}
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             <span itemprop="name" class="breadcrumbs-item active">{$path[pp].name|truncate:55}</span>

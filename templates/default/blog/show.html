@@ -1,18 +1,45 @@
 <script type="application/ld+json">
     {
-      "@context": "https://schema.org/",
+      "@context": "https://schema.org",
       "@type": "Article",
-      "name": "Party Coffee Cake",
-      "author": {
-        "@type": "Person",
-        "name": "Mary Stone"
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{$article.id}"
       },
-      "datePublished": "2018-03-10",
-      "description": {$article.content_short},
-      "prepTime": "PT20M"
+      "headline": "{$article.title}",
+      "image": [
+    {
+            "@type": "ImageObject",
+            "url": "{$TPL_URL}/{$article.photo.source.photo_webp}",
+            "caption": "{$article.title}",
+            "dateCreated": "{$article.date_add}"
+    },
+],
+      "description": "{$article.description}",
+      "datePublished": "{$article.date_add}",
+      "dateModified": "{$article.date_add}",
+      "about": {$article.page_keywords},
+      "inLanguage": "pl-IN",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Chema-Elektromet",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{$TPL_URL}/img/logo-aftident.svg"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ul. Przemysłowa 9",
+            "addressLocality": "Rzeszów",
+            "postalCode": "35-105"
+          },
+        "url": "{$TPL_URL}",
+        "telephone": "+48178621330",
+    "email": "chema@chema.rzeszow.pl"
+      }
     }
     </script>
-
+<!-- {include file="misc/breadcrumbs.html"} -->
 <main>
     <!-- SECTION ARTICLE  -->
     <section class="single-article">
@@ -69,9 +96,6 @@
                                 <h2 class="single-article__content__articles__article__information__title">
                                     <a href="{$item.url}" title="{$item.title}">{$item.title}</a>
                                 </h2>
-                                <!-- <p class="single-article__content__articles__article__information__text">
-                                    {$item.content_short}
-                                </p> -->
                             </div>
                         </div>
                         {/foreach}
