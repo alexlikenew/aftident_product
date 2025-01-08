@@ -15,9 +15,11 @@
             <div class="newest-article__container">
                 <div class="newest-article__container__image">
                     <img class="newest-article__container__image--mobile" src="{$last_added.0.photo.source.photo_webp}"
-                        alt="Zjęcie głowne artykułu" title="{$last_added.0.title}">
+                        alt="Zjęcie głowne artykułu : {$last_added.0.title}" title="{$last_added.0.title}"
+                        width="{$last_added.0.photo.params.width}px" height="{$last_added.0.photo.params.height}px">
                     <img class="newest-article__container__image--desktop" src="{$last_added.0.photo.source.photo_webp}"
-                        alt="Zjęcie głowne artykułu" title="{$last_added.0.title}">
+                        alt="Zjęcie głowne artykułu : {$last_added.0.title}" title="{$last_added.0.title}"
+                        width="{$last_added.0.photo.params.width}px" height="{$last_added.0.photo.params.height}px">
                 </div>
                 <div class="newest-article__container__information">
                     <p class="newest-article__container__information__heading">Najnowszy artykuł</p>
@@ -44,11 +46,13 @@
                 <div class="articles__table__article">
                     <div class="articles__table__article__image">
                         <img loading="lazy" class="articles__table__article__image--mobile"
-                            src="{$item.photo.source.photo_webp}" alt="Miniaturne zdjęcie artykułu"
-                            title="{$item.title}">
+                            src="{$item.photo.source.photo_webp}" alt="Zdjęcie artykułu : {$item.title}"
+                            title="{$item.title}" width="{$item.photo.params.width}px"
+                            height="{$item.photo.params.height}px">
                         <img loading="lazy" class="articles__table__article__image--desktop"
-                            src="{$item.photo.source.photo_webp}" alt="Miniaturne zdjęcie artykułu"
-                            title="{$item.title}">
+                            src="{$item.photo.source.photo_webp}" alt="Zdjęcie artykułu : {$item.title}"
+                            title="{$item.title}" width="{$item.photo.params.width}px"
+                            height="{$item.photo.params.height}px">
                     </div>
                     <div class="articles__table__article__information">
                         <p class="articles__table__article__information__date">{$item.date_add}</p>
