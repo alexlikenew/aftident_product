@@ -992,7 +992,6 @@ main .faq__table--faq-page .faq__table__element {
 	border-bottom: 1px solid #e5e9ed;
 }
 .top-info {
-	padding-top: 7.2rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1502,7 +1501,6 @@ main .knowledge-base {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-top: 7.2rem;
 }
 main .knowledge-base .wrapper {
 	width: 100%;
@@ -1793,7 +1791,7 @@ main .single-article {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-top: 7.2rem;
+
 	background-color: #f9fbfd;
 }
 main .single-article .wrapper {
@@ -2058,7 +2056,13 @@ main .page-map__table__section__list__link a {
 }
 /* breadcrumbs */
 .breadcrumbs {
+	display: flex;
+	justify-content: flex-start;
 	position: relative;
+	width: 100%;
+	max-width: 1420px;
+	padding-top: 7.5rem;
+	padding-left: 2rem;
 }
 .breadcrumbs-list {
 	display: flex;
@@ -2331,7 +2335,7 @@ main .page-map__table__section__list__link a {
 	}
 	main .faq-page {
 		width: 100%;
-		padding-top: 7.2rem;
+
 		background-image: url('../img/aftident_faq-page_background_dots.png');
 		background-position: center;
 	}
