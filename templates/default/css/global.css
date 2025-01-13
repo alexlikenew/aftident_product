@@ -1859,11 +1859,12 @@ main .single-article__content {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding-bottom: 6rem;
 }
 main .single-article__content__text {
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	flex-direction: column;
 	gap: 1rem;
